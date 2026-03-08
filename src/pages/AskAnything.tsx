@@ -1,6 +1,7 @@
 import { Send, ChevronDown, ChevronUp, Save, BookOpen, Loader2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { chatWithGemini, ChatAiResponse } from "@/lib/gemini-chat";
+import { useXPContext } from "@/components/XPContext";
 
 interface ChatMessage {
   id: number;
