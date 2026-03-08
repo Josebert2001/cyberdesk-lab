@@ -54,6 +54,7 @@ export function CaesarCipherLab() {
   const handleCheck = () => {
     if (guess.trim().toUpperCase() === "HELLO WORLD") {
       setCrackStatus("correct");
+      addXP(10);
     } else {
       setCrackStatus("wrong");
     }
