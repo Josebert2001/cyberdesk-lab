@@ -26,8 +26,11 @@ const Lab = () => {
   };
 
   return (
-    <div className="p-6 md:p-12 max-w-4xl mx-auto">
-      <div className="text-center mt-12 mb-12">
+    <div className="p-6 md:p-12 max-w-4xl mx-auto relative min-h-[calc(100vh-2rem)]">
+      <MatrixRain />
+      <div className="relative z-10">
+      <div className="text-center mt-12 mb-8">
+        <TypewriterHero />
         <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
           Don't just study it.{" "}
           <span className="text-primary neon-text-glow">Break it.</span>
