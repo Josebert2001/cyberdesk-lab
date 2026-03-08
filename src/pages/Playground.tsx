@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CaesarCipherLab } from "@/components/CaesarCipherLab";
 
 const tabs = ["Caesar Cipher", "SQL Injection", "Hash Cracker"];
 
@@ -23,11 +24,15 @@ const Playground = () => {
         ))}
       </div>
 
-      <div className="flex items-center justify-center h-64 bg-card border border-border rounded-lg">
-        <p className="text-muted-foreground font-mono text-sm">
-          Lab coming soon
-        </p>
-      </div>
+      {active === 0 ? (
+        <CaesarCipherLab />
+      ) : (
+        <div className="flex items-center justify-center h-64 bg-card border border-border rounded-lg">
+          <p className="text-muted-foreground font-mono text-sm">
+            Lab coming soon
+          </p>
+        </div>
+      )}
     </div>
   );
 };
