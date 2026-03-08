@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useAiPanel } from "./AiPanelContext";
 
 export function SqlInjectionLab() {
+  const { analyze } = useAiPanel();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "injected" | "failed">("idle");
@@ -99,7 +101,7 @@ export function SqlInjectionLab() {
           </p>
 
           {/* AI button */}
-          <Button variant="neon" className="font-mono">
+          <Button variant="neon" className="font-mono" onClick={() => analyze("I just performed an SQL injection on a login form using the payload ' OR '1'='1. The query became: SELECT * FROM users WHERE username='' OR '1'='1' --' AND password='anything'. It returned all users and logged me in as admin. Analyze this SQL injection attack.")}>
             Analyze with AI →
           </Button>
         </div>

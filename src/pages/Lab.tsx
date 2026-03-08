@@ -1,6 +1,8 @@
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useAiPanel } from "@/components/AiPanelContext";
+import { useState } from "react";
 
 const labs = [
   { title: "Caesar Cipher", desc: "Encrypt & crack messages" },
@@ -10,6 +12,16 @@ const labs = [
 
 const Lab = () => {
   const navigate = useNavigate();
+  const { analyze } = useAiPanel();
+  const [query, setQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim()) {
+      analyze(query.trim());
+      setQuery("");
+    }
+  };
 
   return (
     <div className="p-6 md:p-12 max-w-4xl mx-auto">
@@ -23,14 +35,16 @@ const Lab = () => {
         </p>
       </div>
 
-      <div className="relative max-w-xl mx-auto mb-16">
+      <form onSubmit={handleSearch} className="relative max-w-xl mx-auto mb-16">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <input
           type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Ask anything or pick a lab below..."
           className="w-full bg-card border border-border rounded-lg py-3 pl-11 pr-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-shadow"
         />
-      </div>
+      </form>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {labs.map((lab) => (
