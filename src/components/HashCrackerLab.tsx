@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAiPanel } from "./AiPanelContext";
+import { useXPContext } from "./XPContext";
 
 const WORDLIST = ["password", "hello", "admin", "123456", "letmein", "welcome", "monkey", "dragon"];
 const CORRECT = "password";
 
 export function HashCrackerLab() {
   const { analyze } = useAiPanel();
+  const { addXP } = useXPContext();
   const [guess, setGuess] = useState("");
   const [status, setStatus] = useState<"idle" | "correct" | "in-list" | "not-in-list">("idle");
   const [showHint, setShowHint] = useState(false);
