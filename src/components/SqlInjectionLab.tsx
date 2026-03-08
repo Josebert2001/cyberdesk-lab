@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAiPanel } from "./AiPanelContext";
+import { useXPContext } from "./XPContext";
 
 export function SqlInjectionLab() {
   const { analyze } = useAiPanel();
+  const { addXP } = useXPContext();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "injected" | "failed">("idle");
