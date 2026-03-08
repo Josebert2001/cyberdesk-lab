@@ -75,7 +75,7 @@ export function HashCrackerLab() {
           <p className="text-muted-foreground text-sm leading-relaxed">
             This hash was generated with MD5. MD5 is broken and should never be used for passwords.
           </p>
-          <Button variant="neon" className="font-mono">
+          <Button variant="neon" className="font-mono" onClick={() => analyze("I just cracked the MD5 hash 5f4dcc3b5aa765d61d8327deb882cf99 using a wordlist attack. The plaintext is 'password'. Analyze this MD5 hash cracking attack.")}>
             Analyze with AI →
           </Button>
         </div>

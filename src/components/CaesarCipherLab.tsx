@@ -199,7 +199,12 @@ export function CaesarCipherLab() {
       {/* AI button */}
       {showAiButton && (
         <div className="pt-4 animate-fade-in">
-          <Button variant="neon" className="font-mono">
+          <Button variant="neon" className="font-mono" onClick={() => {
+            const ctx = mode === "encrypt"
+              ? `I just encrypted "${message}" with a Caesar Cipher shift of ${shift}. Result: "${encryptedResult}". Analyze this Caesar Cipher encryption.`
+              : `I just cracked the Caesar Cipher "KHOOR ZRUOG" — the answer is "HELLO WORLD" with shift 3. Analyze this Caesar Cipher crack.`;
+            analyze(ctx);
+          }}>
             Analyze with AI →
           </Button>
         </div>
