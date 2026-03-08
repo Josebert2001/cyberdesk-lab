@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useAiPanel } from "./AiPanelContext";
 
 export function SqlInjectionLab() {
+  const { analyze } = useAiPanel();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "injected" | "failed">("idle");
