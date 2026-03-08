@@ -95,6 +95,7 @@ const AskAnything = () => {
         text: m.role === "user" ? m.text : (m.aiData?.answer || m.text),
       }));
       const response = await chatWithGemini(history);
+      addXP(5);
       setMessages((prev) => [
         ...prev,
         { id: Date.now() + 1, role: "ai", text: response.answer, aiData: response },
