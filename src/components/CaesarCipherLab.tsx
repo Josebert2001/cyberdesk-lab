@@ -48,6 +48,7 @@ export function CaesarCipherLab() {
     const result = encryptCaesar(message, shift);
     setEncryptedResult(result);
     setTransformations(getTransformations(message, shift));
+    addXP(10);
   };
 
   const handleCheck = () => {
