@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useAiPanel } from "@/components/AiPanelContext";
 import { useState } from "react";
+import { TypewriterHero } from "@/components/TypewriterHero";
+import { MatrixRain } from "@/components/MatrixRain";
 
 const labs = [
   { title: "Caesar Cipher", desc: "Encrypt & crack messages" },
