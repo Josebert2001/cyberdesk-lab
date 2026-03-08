@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useAiPanel } from "./AiPanelContext";
 
 const WORDLIST = ["password", "hello", "admin", "123456", "letmein", "welcome", "monkey", "dragon"];
 const CORRECT = "password";
