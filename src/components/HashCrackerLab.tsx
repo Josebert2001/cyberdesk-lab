@@ -17,6 +17,7 @@ export function HashCrackerLab() {
     const g = guess.trim().toLowerCase();
     if (g === CORRECT) {
       setStatus("correct");
+      addXP(10);
     } else if (WORDLIST.includes(g)) {
       setStatus("in-list");
     } else {

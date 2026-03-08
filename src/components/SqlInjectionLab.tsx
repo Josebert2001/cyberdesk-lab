@@ -13,6 +13,7 @@ export function SqlInjectionLab() {
   const handleLogin = () => {
     if (username.includes("' OR '1'='1")) {
       setStatus("injected");
+      addXP(10);
     } else {
       setStatus("failed");
     }
