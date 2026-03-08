@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAiPanel } from "./AiPanelContext";
+import { useXPContext } from "./XPContext";
 
 function encryptCaesar(text: string, shift: number): string {
   return text
