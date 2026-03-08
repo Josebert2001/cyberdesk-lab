@@ -6,6 +6,7 @@ const WORDLIST = ["password", "hello", "admin", "123456", "letmein", "welcome", 
 const CORRECT = "password";
 
 export function HashCrackerLab() {
+  const { analyze } = useAiPanel();
   const [guess, setGuess] = useState("");
   const [status, setStatus] = useState<"idle" | "correct" | "in-list" | "not-in-list">("idle");
   const [showHint, setShowHint] = useState(false);
