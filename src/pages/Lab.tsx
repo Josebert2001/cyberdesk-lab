@@ -72,6 +72,7 @@ const Lab = () => {
           </div>
         ))}
       </div>
+      </div>
     </div>
   );
 };
