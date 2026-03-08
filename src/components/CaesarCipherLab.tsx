@@ -27,6 +27,7 @@ function getTransformations(text: string, shift: number) {
 }
 
 export function CaesarCipherLab() {
+  const { analyze } = useAiPanel();
   const [mode, setMode] = useState<"encrypt" | "crack">("encrypt");
 
   // Encrypt state
