@@ -24,9 +24,9 @@ const Playground = () => {
         ))}
       </div>
 
-      {active === 0 ? (
-        <CaesarCipherLab />
-      ) : (
+      {active === 0 && <CaesarCipherLab />}
+      {active === 1 && <SqlInjectionLab />}
+      {active === 2 && (
         <div className="flex items-center justify-center h-64 bg-card border border-border rounded-lg">
           <p className="text-muted-foreground font-mono text-sm">
             Lab coming soon
