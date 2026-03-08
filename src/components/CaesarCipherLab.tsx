@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAiPanel } from "./AiPanelContext";
+import { useXPContext } from "./XPContext";
 
 function encryptCaesar(text: string, shift: number): string {
   return text
@@ -28,6 +29,7 @@ function getTransformations(text: string, shift: number) {
 
 export function CaesarCipherLab() {
   const { analyze } = useAiPanel();
+  const { addXP } = useXPContext();
   const [mode, setMode] = useState<"encrypt" | "crack">("encrypt");
 
   // Encrypt state
@@ -46,11 +48,13 @@ export function CaesarCipherLab() {
     const result = encryptCaesar(message, shift);
     setEncryptedResult(result);
     setTransformations(getTransformations(message, shift));
+    addXP(10);
   };
 
   const handleCheck = () => {
     if (guess.trim().toUpperCase() === "HELLO WORLD") {
       setCrackStatus("correct");
+      addXP(10);
     } else {
       setCrackStatus("wrong");
     }

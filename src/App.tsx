@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { AiPanelProvider } from "./components/AiPanelContext";
 import { AiPanel } from "./components/AiPanel";
+import { XPProvider } from "./components/XPContext";
 import Lab from "./pages/Lab";
 import Playground from "./pages/Playground";
 import AskAnything from "./pages/AskAnything";
@@ -20,18 +21,20 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AiPanelProvider>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Lab />} />
-              <Route path="/playground" element={<Playground />} />
-              <Route path="/ask" element={<AskAnything />} />
-              <Route path="/exam-prep" element={<ExamPrep />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Layout>
-          <AiPanel />
-        </AiPanelProvider>
+        <XPProvider>
+          <AiPanelProvider>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Lab />} />
+                <Route path="/playground" element={<Playground />} />
+                <Route path="/ask" element={<AskAnything />} />
+                <Route path="/exam-prep" element={<ExamPrep />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+            <AiPanel />
+          </AiPanelProvider>
+        </XPProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

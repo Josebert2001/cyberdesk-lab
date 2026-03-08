@@ -1,6 +1,7 @@
 import { Send, ChevronDown, ChevronUp, Save, BookOpen, Loader2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { chatWithGemini, ChatAiResponse } from "@/lib/gemini-chat";
+import { useXPContext } from "@/components/XPContext";
 
 interface ChatMessage {
   id: number;
@@ -73,6 +74,7 @@ const AskAnything = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { addXP } = useXPContext();
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -93,6 +95,7 @@ const AskAnything = () => {
         text: m.role === "user" ? m.text : (m.aiData?.answer || m.text),
       }));
       const response = await chatWithGemini(history);
+      addXP(5);
       setMessages((prev) => [
         ...prev,
         { id: Date.now() + 1, role: "ai", text: response.answer, aiData: response },
