@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CaesarCipherLab } from "@/components/CaesarCipherLab";
-
+import { SqlInjectionLab } from "@/components/SqlInjectionLab";
 const tabs = ["Caesar Cipher", "SQL Injection", "Hash Cracker"];
 
 const Playground = () => {
