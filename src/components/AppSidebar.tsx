@@ -5,6 +5,7 @@ import { useXPContext } from "@/components/XPContext";
 import { Progress } from "@/components/ui/progress";
 
 const navItems = [
+  { title: "Home", path: "/welcome", icon: Home },
   { title: "Lab", path: "/", icon: FlaskConical },
   { title: "Playground", path: "/playground", icon: Gamepad2 },
   { title: "Ask Anything", path: "/ask", icon: MessageCircle },
