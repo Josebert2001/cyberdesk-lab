@@ -11,6 +11,7 @@ import Lab from "./pages/Lab";
 import Playground from "./pages/Playground";
 import AskAnything from "./pages/AskAnything";
 import ExamPrep from "./pages/ExamPrep";
+import Welcome from "./pages/Welcome";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
