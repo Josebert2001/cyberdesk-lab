@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { FlaskConical, Gamepad2, MessageCircle, BookOpen, Menu, X, Zap } from "lucide-react";
+import { FlaskConical, Gamepad2, MessageCircle, BookOpen, Menu, X, Zap, Home } from "lucide-react";
 import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
 import { Progress } from "@/components/ui/progress";
