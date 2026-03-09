@@ -11,6 +11,7 @@ import Lab from "./pages/Lab";
 import Playground from "./pages/Playground";
 import AskAnything from "./pages/AskAnything";
 import ExamPrep from "./pages/ExamPrep";
+import Welcome from "./pages/Welcome";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,15 +24,14 @@ const App = () => (
       <BrowserRouter>
         <XPProvider>
           <AiPanelProvider>
-            <Layout>
-              <Routes>
-                <Route path="/" element={<Lab />} />
-                <Route path="/playground" element={<Playground />} />
-                <Route path="/ask" element={<AskAnything />} />
-                <Route path="/exam-prep" element={<ExamPrep />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Layout>
+            <Routes>
+              <Route path="/welcome" element={<Welcome />} />
+              <Route path="/" element={<Layout><Lab /></Layout>} />
+              <Route path="/playground" element={<Layout><Playground /></Layout>} />
+              <Route path="/ask" element={<Layout><AskAnything /></Layout>} />
+              <Route path="/exam-prep" element={<Layout><ExamPrep /></Layout>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
             <AiPanel />
           </AiPanelProvider>
         </XPProvider>
