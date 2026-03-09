@@ -49,7 +49,7 @@ export default function Welcome() {
           <div className="bg-card border border-border rounded-lg p-4 font-mono text-sm text-left max-w-md mx-auto mb-10">
             <div className="flex gap-2 mb-3">
               <span className="w-3 h-3 rounded-full bg-destructive" />
-              <span className="w-3 h-3 rounded-full bg-yellow-500" />
+              <span className="w-3 h-3 rounded-full bg-amber-500" />
               <span className="w-3 h-3 rounded-full bg-primary" />
             </div>
             <div className="text-muted-foreground">
