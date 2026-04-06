@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MatrixRain } from "@/components/MatrixRain";
-import { Shield, Brain, Terminal, Zap, BookOpen, Users } from "lucide-react";
+import { Shield, Brain, Terminal, Zap, BookOpen, FolderOpen } from "lucide-react";
 
 const features = [
-  { icon: Terminal, title: "Interactive Labs", desc: "Hands-on hacking challenges" },
-  { icon: Brain, title: "AI Tutor", desc: "Get instant help & explanations" },
-  { icon: BookOpen, title: "Exam Prep", desc: "Practice exam-style questions" },
-  { icon: Shield, title: "Safe Environment", desc: "Learn without real-world risk" },
-  { icon: Zap, title: "Earn XP", desc: "Level up as you learn" },
-  { icon: Users, title: "Community", desc: "Join fellow cyber learners" },
+  { icon: Terminal, title: "Interactive Labs", desc: "Hands-on cybersecurity challenges built around your syllabus" },
+  { icon: Brain, title: "CYB AI Assistant", desc: "Ask any cybersecurity, networking or programming question" },
+  { icon: BookOpen, title: "CBT Practice Zone", desc: "Exam-style questions for PHY 111, SEN 211, CYB 212, CYB 213" },
+  { icon: FolderOpen, title: "Resource Library", desc: "Lecture notes, past questions and tools — all in one place" },
+  { icon: Zap, title: "Earn XP & Rank Up", desc: "Level up from Script Kiddie to Legend as you learn" },
+  { icon: Shield, title: "Safe Environment", desc: "Learn offensive and defensive security without real-world risk" },
 ];
 
 export default function Welcome() {
@@ -23,7 +23,7 @@ export default function Welcome() {
         <nav className="flex items-center justify-between p-6 max-w-6xl mx-auto">
           <div className="flex items-center gap-2">
             <Terminal className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">CyberDesk</span>
+            <span className="text-xl font-bold text-foreground">Dept. of Cybersecurity</span>
           </div>
           <div className="flex gap-3">
             <Button variant="ghost" asChild>
@@ -38,11 +38,11 @@ export default function Welcome() {
         {/* Hero */}
         <section className="max-w-4xl mx-auto text-center px-6 pt-20 pb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-            Learn to <span className="text-primary neon-text-glow">Hack Ethically</span>
+            Your Cybersecurity Department.{" "}
+            <span className="text-primary neon-text-glow">Reimagined.</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Master cybersecurity through interactive labs, AI-powered tutoring, and hands-on challenges. 
-            Your journey to becoming a security expert starts here.
+            Access interactive labs, past questions, AI-powered tutoring and course resources — built for UniUyo Cybersecurity students by the Director of Software &amp; Hardware.
           </p>
 
           {/* Terminal snippet */}
@@ -53,24 +53,27 @@ export default function Welcome() {
               <span className="w-3 h-3 rounded-full bg-primary" />
             </div>
             <div className="text-muted-foreground">
-              <p>&gt; initializing CyberDesk...</p>
-              <p>&gt; loading exploit modules... <span className="text-primary">done</span></p>
-              <p>&gt; <span className="text-primary animate-pulse">ready_</span></p>
+              <p>&gt; initializing dept. portal...</p>
+              <p>&gt; loading student resources... <span className="text-primary">done</span></p>
+              <p>&gt; <span className="text-primary animate-pulse">welcome, cyb student_</span></p>
             </div>
           </div>
 
           <div className="flex gap-4 justify-center">
             <Button size="lg" variant="neon" asChild>
-              <Link to="/signup">Get Started Free</Link>
+              <Link to="/">Get Started</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link to="/login">I Have an Account</Link>
+              <Link to="/ask">Learn More</Link>
             </Button>
           </div>
         </section>
 
         {/* Features */}
         <section className="max-w-5xl mx-auto px-6 py-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
+            Everything You Need to Succeed
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map(({ icon: Icon, title, desc }) => (
               <div
@@ -87,7 +90,7 @@ export default function Welcome() {
 
         {/* Footer */}
         <footer className="text-center py-8 text-muted-foreground text-sm">
-          © 2024 CyberDesk. Learn responsibly.
+          © 2026 Department of Cybersecurity, University of Uyo. Built by the Director of Software &amp; Hardware.
         </footer>
       </div>
     </div>

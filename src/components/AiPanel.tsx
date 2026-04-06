@@ -74,7 +74,7 @@ export function AiPanel() {
         {/* Header */}
         <div className="sticky top-0 bg-card border-b border-border p-4 flex items-center justify-between z-10">
           <h2 className="text-primary font-mono font-bold text-sm neon-text-glow">
-            CyberDesk AI
+            CYB AI Assistant
           </h2>
           <button
             onClick={close}

@@ -1,0 +1,42 @@
+Rebrand the entire app using the following official department information:
+
+Department name: "Department of Cybersecurity"
+Institution: University of Uyo (UniUyo)
+Faculty: Faculty of Computing
+HOD: Dr. Uyinomen O. Ekong
+
+1. AppSidebar.tsx:
+   - Change h1 from "CyberDesk" to "CYB Dept."
+   - Change subtitle to "University of Uyo · Faculty of Computing"
+   - Change footer text from "Powered by Gemini AI" to "Dept. of Cybersecurity, UniUyo"
+
+2. AiPanel.tsx:
+   - Change "CyberDesk AI" to "CYB AI Assistant"
+
+3. index.html:
+   - Change <title> to "Department of Cybersecurity — University of Uyo"
+   - Change og:title to "Dept. of Cybersecurity, UniUyo"
+   - Change og:description to "The official student portal for the Department of Cybersecurity, University of Uyo. Access labs, resources, AI tutoring and exam prep."
+
+4. Welcome.tsx — full rewrite of text content only, keep ALL existing styling, layout, animations, and components exactly as-is:
+   - Nav brand: "Dept. of Cybersecurity"
+   - Hero headline: "Your Cybersecurity Department. Reimagined."
+   - Hero subtext: "Access interactive labs, past questions, AI-powered tutoring and course resources — built for UniUyo Cybersecurity students by the Director of Software & Hardware."
+   - Terminal snippet:
+     > initializing dept. portal...
+     > loading student resources... done
+     > welcome, cyb student_
+   - CTA buttons: "Get Started" and "Learn More"
+   - Features section title: "Everything You Need to Succeed"
+   - Update the 6 feature cards to:
+     1. Icon: Terminal — "Interactive Labs" — "Hands-on cybersecurity challenges built around your syllabus"
+     2. Icon: Brain — "CYB AI Assistant" — "Ask any cybersecurity, networking or programming question"
+     3. Icon: BookOpen — "CBT Practice Zone" — "Exam-style questions for PHY 111, SEN 211, CYB 212, CYB 213"
+     4. Icon: FolderOpen — "Resource Library" — "Lecture notes, past questions and tools — all in one place"
+     5. Icon: Zap — "Earn XP & Rank Up" — "Level up from Script Kiddie to Legend as you learn"
+     6. Icon: Shield — "Safe Environment" — "Learn offensive and defensive security without real-world risk"
+   - Footer: "© 2026 Department of Cybersecurity, University of Uyo. Built by the Director of Software & Hardware."
+
+5. Lab.tsx hero section:
+   - Change tagline from "Don't just study it. Break it." to "Built for UniUyo Cybersecurity Students."
+   - Change subtitle to "Explore interactive labs, crack real challenges, and learn how attackers think."

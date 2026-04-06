@@ -21,10 +21,10 @@ export function AppSidebar() {
     <div className="flex flex-col h-full">
       <div className="p-6">
         <h1 className="text-2xl font-bold text-primary neon-text-glow font-mono">
-          CyberDesk
+          CYB Dept.
         </h1>
         <p className="text-xs text-muted-foreground mt-1">
-          Don't just study it. Break it.
+          University of Uyo · Faculty of Computing
         </p>
       </div>
 
@@ -77,7 +77,7 @@ export function AppSidebar() {
 
       <div className="p-6 pt-2">
         <p className="text-xs text-muted-foreground font-mono">
-          Powered by Gemini AI
+          Dept. of Cybersecurity, UniUyo
         </p>
       </div>
     </div>

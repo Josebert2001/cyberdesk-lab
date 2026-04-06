@@ -32,11 +32,11 @@ const Lab = () => {
       <div className="text-center mt-12 mb-8">
         <TypewriterHero />
         <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-          Don't just study it.{" "}
-          <span className="text-primary neon-text-glow">Break it.</span>
+          Built for UniUyo{" "}
+          <span className="text-primary neon-text-glow">Cybersecurity Students.</span>
         </h1>
         <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          Your personal ethical hacking lab and cybersecurity tutor.
+          Explore interactive labs, crack real challenges, and learn how attackers think.
         </p>
       </div>
 
