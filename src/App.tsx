@@ -15,6 +15,9 @@ import ExamPrep from "./pages/ExamPrep";
 import CbtPrep from "./pages/CbtPrep";
 import Opportunities from "./pages/Opportunities";
 import Roadmap from "./pages/Roadmap";
+import About from "./pages/About";
+import Staff from "./pages/Staff";
+import Showcase from "./pages/Showcase";
 import Welcome from "./pages/Welcome";
 import NotFound from "./pages/NotFound";
 
@@ -39,6 +42,9 @@ const App = () => (
               <Route path="/cbt-prep" element={<Layout><CbtPrep /></Layout>} />
               <Route path="/opportunities" element={<Layout><Opportunities /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
+              <Route path="/about" element={<Layout><About /></Layout>} />
+              <Route path="/staff" element={<Layout><Staff /></Layout>} />
+              <Route path="/showcase" element={<Layout><Showcase /></Layout>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <AiPanel />

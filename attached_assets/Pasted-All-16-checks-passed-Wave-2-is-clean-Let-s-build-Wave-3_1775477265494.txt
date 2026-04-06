@@ -1,0 +1,258 @@
+All 16 checks passed. Wave 2 is clean.
+
+Let's build Wave 3. Here are your prompts:
+
+---
+
+**PROMPT 7 — About the Department**
+
+```
+Add a new page at route /about. Add it to the AppSidebar with an Info 
+icon, labeled "About", positioned at the bottom of the nav list above 
+the XP section.
+
+PAGE LAYOUT:
+
+SECTION 1 — Hero Banner:
+- Large heading: "Department of Cybersecurity"
+- Subheading: "Faculty of Computing · University of Uyo"
+- A short intro line: "Training the next generation of cybersecurity 
+  professionals for Nigeria and the world."
+
+SECTION 2 — HOD Message (card with left accent border in primary color):
+- Label: "HEAD OF DEPARTMENT" (small, monospace, muted)
+- Name: "Dr. Uyinomen O. Ekong"
+- A short message: "Welcome to the Department of Cybersecurity. Our 
+  mission is to equip you with the knowledge, skills and ethical 
+  grounding to defend cyberspace — locally and globally. Make the most 
+  of every resource this platform offers."
+- A decorative quote mark in primary color
+
+SECTION 3 — Overview (two column layout on desktop, single on mobile):
+Left column — "About the Programme":
+Use this exact text broken into readable paragraphs:
+"Recent developments in computing, network technologies, internet, and 
+cloud technologies have generated the need for reliability and secure 
+exchange of digital information vital to most human activities such as 
+banking, medicine, infrastructure management and elections.
+
+As the use of information technology expands, so do the potential 
+consequences of cyber-attacks, and the need for a skilled workforce to 
+prevent and defend against them. The pool of available talent to build 
+and certify secure applications is inadequate to meet the growing global 
+demand.
+
+This programme equips students with knowledge and skills to minimise and 
+prevent cybersecurity threats, gather and analyse digital evidence, and 
+understand the impact of cybercrime on business and the public."
+
+Right column — "Programme Philosophy":
+"The philosophy of this programme is to build capacity and develop human 
+capital in the field of cybersecurity, to safeguard business 
+transactions, corporate assets, critical infrastructure and all cyber 
+operations in cyberspace — nationally and globally."
+
+Below philosophy, show a "Programme Objectives" list with these 5 items 
+as styled cards with a numbered accent:
+1. Produce graduates with foundation knowledge of cybersecurity skills 
+   to detect and prevent cyber-fraud.
+2. Empower graduates to analyse cybersecurity threats and develop 
+   detective codes and software agents to address them.
+3. Develop knowledge of cryptography, steganography and digital forensic 
+   techniques for cybercrime detection.
+4. Produce graduates who can think critically about cyber intelligence 
+   and implement strategic cybersecurity tactics.
+5. Prepare graduates for self-employment, job placement and professional 
+   practice in government and industry.
+
+SECTION 4 — Admission Requirements (two cards side by side):
+Card 1 — "4-Year Programme (UTME)":
+"UTME score + five SSC credit passes including English Language, 
+Mathematics, Physics and any other relevant Science subjects in not more 
+than two sittings."
+
+Card 2 — "3-Year Programme (Direct Entry)":
+"Minimum credit at University/National Diploma or NCE with five SSC 
+credit passes in relevant Science subjects including English Language, 
+Mathematics and Physics."
+
+Below both cards: "Minimum duration: 4 academic sessions (UTME) · 3 
+academic sessions (Direct Entry)"
+
+SECTION 5 — Quick Stats bar (4 stats in a row):
+- "4 Years" — Programme Duration
+- "200+" — Students Enrolled  
+- "5" — Core Objectives
+- "100%" — Career-Focused
+
+Match existing dark neon-green theme. Use animate-fade-in on sections. 
+Accent borders and numbered badges in primary color. Font-mono for 
+labels and codes.
+```
+
+---
+
+**PROMPT 8 — Staff & Faculty Profiles**
+
+```
+Add a new page at route /staff. Add it to the AppSidebar with a Users 
+icon, labeled "Staff", positioned after "About".
+
+PAGE LAYOUT:
+- Header: "Faculty & Staff" with subtitle "Meet the team behind the 
+  Department of Cybersecurity, UniUyo"
+- Filter tabs: All / Lecturers / Admin / Director
+
+Staff cards in a grid (2 col desktop, 1 mobile). Each card shows:
+- Avatar placeholder (large circle with initials in primary color on 
+  dark background)
+- Full name (bold)
+- Title/Role (muted, italic)
+- Department/Faculty tag
+- Specialisation tags (small badges)
+- A short bio (2-3 sentences)
+- Contact/office info if available
+
+Seed with these staff members:
+
+1. Name: "Prof. Uduak A. Umoh"
+   Role: "Dean, Faculty of Computing"
+   Department: "Computer Science / Faculty of Computing"
+   Specialisation tags: Artificial Intelligence, Soft Computing, Fuzzy Systems, Database Systems
+   Bio: "Professor Umoh holds a PhD in Computer Science (Soft Computing/AI) from the University of Port Harcourt (2012). She is Dean of the Faculty of Computing, an Adjunct Professor at Akwa Ibom State University and Obong University, and has published over 70 papers in international journals. She also serves as ICT Manager at Alternative Petroleum and Power Limited (APPL)."
+   Initials: "UU"
+
+2. Name: "Dr. Uyinomen O. Ekong"
+   Role: "Head of Department, Cybersecurity"
+   Department: "Department of Cybersecurity"
+   Specialisation tags: Cybersecurity, Department Administration
+   Bio: "Dr. Ekong serves as the Head of the Department of Cybersecurity, University of Uyo. He oversees the academic and administrative activities of the department and is committed to building a world-class cybersecurity programme."
+   Initials: "UE"
+
+3. Name: "Josebert Sunday Robert"
+   Role: "Director of Software & Hardware"
+   Department: "Department of Cybersecurity"
+   Specialisation tags: AI Development, IT Support, Web Development, Cybersecurity
+   Bio: "Josebert is the student Director of Software & Hardware for the Department of Cybersecurity. He is the founder of Jrsolvy, holds a Google AI Professional Certificate, and has 6+ years of IT experience. He built and maintains this student portal."
+   Initials: "JS"
+   Badge: Show a special "Portal Builder" badge in primary color on this card
+
+Filter tabs:
+- "All" shows all cards
+- "Lecturers" shows Prof. Umoh and Dr. Ekong
+- "Admin" shows Dr. Ekong
+- "Director" shows Josebert
+
+Match existing dark neon-green theme. Initials avatars use primary 
+color. Animate cards on load with staggered animate-fade-in. 
+Specialisation badges use border-primary/30 bg-primary/10 text-primary.
+```
+
+---
+
+**PROMPT 9 — Student Project Showcase**
+
+```
+Add a new page at route /showcase. Add it to the AppSidebar with a 
+Layers icon, labeled "Showcase", positioned after "Staff".
+
+PAGE LAYOUT:
+- Header: "Student Project Showcase" with subtitle "Real projects built 
+  by Cybersecurity students at UniUyo"
+- Filter tabs: All / Security Tools / Web Apps / Research / Forensics / 
+  AI & ML
+- Search input filtering by title, author or tags
+- Project cards grid (2 col desktop, 1 mobile)
+
+Each project card shows:
+- Project title (bold, font-mono)
+- Author name + level badge (e.g. "200L")
+- Category badge (color coded, same as filter tabs)
+- Short description (2-3 sentences)
+- Tags (small monospace badges)
+- Links: "View Project" button (variant neon) and optional "GitHub" link
+- A "👍 Like" button that increments a count saved to localStorage as 
+  "cyb_likes_[projectId]"
+- Year badge
+
+Seed with these 6 hardcoded showcase projects:
+
+1. Title: "Guard9ja — AI-Powered Digital Security Platform"
+   Author: "Josebert Sunday Robert" | Level: 300L | Year: 2026
+   Category: Security Tools
+   Desc: "Nigeria's first AI-powered digital security awareness platform. Provides real-time threat alerts, cybersecurity education and incident reporting for Nigerian internet users."
+   Tags: AI, Nigeria, Security Awareness, Gemini
+   Project URL: "https://jrsolvy.com"
+   GitHub: "https://github.com/Josebert2001"
+
+2. Title: "CyberDesk — University Cybersecurity Lab"
+   Author: "Josebert Sunday Robert" | Level: 300L | Year: 2026
+   Category: Security Tools
+   Desc: "An interactive cybersecurity learning platform for UniUyo students featuring hands-on labs, AI tutoring, CBT practice and a resource library. Built with React, TypeScript and Gemini AI."
+   Tags: React, TypeScript, Gemini, Education
+   Project URL: "#"
+   GitHub: "https://github.com/Josebert2001"
+
+3. Title: "CareerSage — AI Career Assistant"
+   Author: "Josebert Sunday Robert" | Level: 300L | Year: 2025
+   Category: AI & ML
+   Desc: "An AI-powered career guidance tool helping Nigerian graduates navigate job opportunities, build CVs and prepare for interviews in the tech industry."
+   Tags: AI, Career, Nigeria, React
+   Project URL: "#"
+   GitHub: "https://github.com/Josebert2001"
+
+4. Title: "Dept. Fine-Tuned AI Model"
+   Author: "Josebert Sunday Robert" | Level: 300L | Year: 2026
+   Category: AI & ML
+   Desc: "A fine-tuned language model trained on cybersecurity department data. Answers course-specific and general cybersecurity questions without censorship restrictions for academic use."
+   Tags: LLM, Fine-tuning, Cybersecurity, Groq
+   Project URL: "#"
+   GitHub: "https://github.com/Josebert2001"
+
+5. Title: "Smart Temperature Control System"
+   Author: "Group B — CYB 214" | Level: 200L | Year: 2026
+   Category: Research
+   Desc: "An Arduino-based embedded system using DHT11 sensor, relay module and LCD display to automatically regulate temperature in a controlled environment."
+   Tags: Arduino, IoT, Embedded Systems, DHT11
+   Project URL: "#"
+   GitHub: "#"
+
+6. Title: "Smart Wi-Fi Motion Detection Alarm"
+   Author: "Group D — CYB 214" | Level: 200L | Year: 2026
+   Category: Security Tools
+   Desc: "A NodeMCU ESP8266-based motion detection alarm system with a web dashboard for remote monitoring. Sends real-time alerts when motion is detected."
+   Tags: NodeMCU, IoT, ESP8266, Web Dashboard
+   Project URL: "#"
+   GitHub: "#"
+
+SUBMIT A PROJECT section (collapsible, toggle with "+ Submit Your 
+Project" button):
+Fields:
+- Project Title (required)
+- Your Name (required)
+- Level (select: 100L/200L/300L/400L)
+- Category (select matching filter tabs)
+- Description (textarea)
+- Project URL (optional)
+- GitHub URL (optional)
+- Tags (comma separated text input)
+
+On submit: save to Supabase table "showcase_projects" with columns: 
+id, title, author, level, category, description, project_url, 
+github_url, tags, created_at. Show success toast. Add to displayed 
+list immediately.
+
+Also add this SQL comment at top of file:
+-- CREATE TABLE showcase_projects (id uuid DEFAULT gen_random_uuid() 
+-- PRIMARY KEY, title text, author text, level text, category text, 
+-- description text, project_url text, github_url text, tags text, 
+-- created_at timestamptz DEFAULT now());
+
+Match existing dark neon-green theme exactly.
+```
+
+---
+
+Run in order: **Prompt 7 → Prompt 8 → Prompt 9**
+
+After all 3 are done, run the same review check prompt we used for Wave 2. Then the site is complete for HOD presentation. 🎯
