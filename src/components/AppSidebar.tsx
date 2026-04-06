@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { FlaskConical, Gamepad2, MessageCircle, BookOpen, Menu, X, Zap, Home, GraduationCap, FolderOpen } from "lucide-react";
+import { FlaskConical, Gamepad2, MessageCircle, BookOpen, Menu, X, Zap, Home, GraduationCap, FolderOpen, Trophy, Map } from "lucide-react";
 import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
 import { Progress } from "@/components/ui/progress";
@@ -10,6 +10,8 @@ const navItems = [
   { title: "Playground", path: "/playground", icon: Gamepad2 },
   { title: "Ask Anything", path: "/ask", icon: MessageCircle },
   { title: "Exam Prep", path: "/exam-prep", icon: BookOpen },
+  { title: "Opportunities", path: "/opportunities", icon: Trophy },
+  { title: "Roadmap", path: "/roadmap", icon: Map },
   { title: "Resources", path: "/resources", icon: FolderOpen },
   { title: "CBT Prep", path: "/cbt-prep", icon: GraduationCap },
 ];

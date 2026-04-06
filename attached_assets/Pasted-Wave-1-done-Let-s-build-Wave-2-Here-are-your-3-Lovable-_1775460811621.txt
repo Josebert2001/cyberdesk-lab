@@ -1,0 +1,164 @@
+Wave 1 done. Let's build Wave 2.
+
+Here are your 3 Lovable prompts — run them in order:
+
+---
+
+**PROMPT 4 — Interactive Cybersecurity Labs (expanded)**
+
+```
+Add 3 new labs to the existing Playground page tabs. Currently there are 3 tabs: Caesar Cipher, SQL Injection, Hash Cracker. Add these 3 new tabs after them:
+
+TAB 4 — XSS Playground:
+- Show a fake social media post editor (dark card, fake "UniPortal Social" header)
+- Text input labeled "Write a post..." and a "Post" button
+- When posted, render the input as innerHTML inside a "feed" div below
+- If the input contains a <script> tag, show an animated red banner: "⚠ XSS Attack Detected — Script Executed" and trigger addXP(10)
+- Show a working example payload hint: <script>alert('hacked')</script>
+- Below the feed, show a "What just happened?" explanation card
+- "Analyze with AI →" button that calls analyze() with context about XSS
+- Show a defense tip: "Always sanitize user input. Use textContent instead of innerHTML."
+
+TAB 5 — Network Scanner (Simulated):
+- A simulated nmap-style terminal interface
+- Input field: "Enter target IP" (default value: 192.168.1.1)
+- A "Scan" button that triggers an animated terminal output sequence with a 2-second fake loading state ("Scanning host...")
+- After scan, display a realistic fake output in a terminal box (monospace, green text on black):
+  Starting Nmap scan...
+  Host: [entered IP] Status: Up
+  PORT     STATE  SERVICE
+  22/tcp   open   ssh
+  80/tcp   open   http
+  443/tcp  open   https
+  3306/tcp open   mysql
+  Nmap done: 1 IP address scanned
+- "Analyze with AI →" button after scan with context about port scanning and what each open port means
+- addXP(10) after first scan
+- Defense tip: "Close unused ports. Use a firewall to restrict access."
+
+TAB 6 — Password Strength Analyzer:
+- Input: "Enter a password to analyze" (show/hide toggle)
+- Live analysis as user types showing:
+  - Strength meter bar (red/orange/yellow/green) 
+  - Score out of 5 checks: Length ≥ 12, Has uppercase, Has lowercase, Has numbers, Has special characters
+  - Each check shown as a row: green tick if passed, red X if failed
+  - Estimated crack time (use these rules: all checks pass = "centuries", 4/5 = "years", 3/5 = "months", 2/5 = "days", 1/5 = "hours", 0/5 = "seconds")
+  - A "Generate Strong Password" button that generates a random 16-char password with all character types and copies it to clipboard
+- addXP(5) when user reaches 4/5 or 5/5 strength
+- "Analyze with AI →" button that sends the strength result (not the actual password) to analyze()
+
+Match existing dark neon-green theme. Same tab switcher style. Same card and font-mono patterns.
+```
+
+---
+
+**PROMPT 5 — Hackathon & Opportunity Board**
+
+```
+Add a new page at route /opportunities. Add it to the AppSidebar with a Trophy icon, labeled "Opportunities", positioned between "Resources" and "Exam Prep".
+
+PAGE LAYOUT:
+- Header: "Hackathon & Opportunity Board" with subtitle "Curated for Nigerian Cybersecurity & Tech students — updated by the Director of Software & Hardware"
+- Filter tabs: All / Hackathons / Internships / Scholarships / Competitions
+- Search input
+- Cards grid (2 col desktop, 1 mobile)
+
+Each opportunity card shows:
+- Title (bold)
+- Organisation/Host
+- Type badge (Hackathon / Internship / Scholarship / Competition) — color coded: Hackathon=primary, Internship=blue, Scholarship=amber, Competition=purple
+- Deadline badge (red if within 14 days, normal otherwise)
+- Prize/Benefit text (italic, muted)
+- A short description (2 sentences max)
+- "View & Apply →" button (variant neon, links to URL)
+- A bookmark icon button — toggling saves to localStorage as "cyb_bookmarked_opps"
+
+Add a "Bookmarked" filter tab that shows only bookmarked items.
+
+Seed with these real opportunities (hardcoded):
+1. Title: "Octoverse Hackathon" | Host: GitHub | Type: Hackathon | Deadline: "Check site" | Prize: "Cash prizes + GitHub swag" | Desc: "Annual global hackathon for open source projects. Build tools that help developers." | URL: "https://github.com"
+2. Title: "Google for Startups Accelerator Africa" | Host: Google | Type: Competition | Deadline: "Rolling" | Prize: "Up to $350,000 in cloud credits + mentorship" | Desc: "For early-stage African tech startups solving African problems. Equity-free support." | URL: "https://startup.google.com/accelerator/africa/"
+3. Title: "ALX Software Engineering Programme" | Host: ALX Africa | Type: Internship | Deadline: "Rolling" | Prize: "Full scholarship — 12-month remote programme" | Desc: "Intensive software engineering training for African youth. Free for accepted students." | URL: "https://www.alxafrica.com/"
+4. Title: "Zindi Africa Data Science Competitions" | Host: Zindi | Type: Competition | Deadline: "Multiple active" | Prize: "Cash prizes per competition" | Desc: "Africa's largest data science community. Multiple active competitions on AI and ML." | URL: "https://zindi.africa"
+5. Title: "Meta Bug Bounty Program" | Host: Meta | Type: Hackathon | Deadline: "Ongoing" | Prize: "$500–$1,500,000 depending on severity" | Desc: "Report security vulnerabilities in Meta products. Open to all security researchers." | URL: "https://bugbounty.meta.com/"
+6. Title: "Mastercard Foundation Scholars Program" | Host: Mastercard Foundation | Type: Scholarship | Deadline: "Check site" | Prize: "Full university scholarship" | Desc: "For academically talented yet economically disadvantaged African students." | URL: "https://mastercardfdn.org/all/scholars/"
+7. Title: "HackerEarth University Hackathons" | Host: HackerEarth | Type: Hackathon | Deadline: "Multiple active" | Prize: "Cash + certificates" | Desc: "Regular online hackathons open to university students globally including Nigeria." | URL: "https://www.hackerearth.com/challenges/"
+8. Title: "Nigeria Cybersecurity Innovation Challenge" | Host: NITDA Nigeria | Type: Competition | Deadline: "Check NITDA site" | Prize: "Recognition + funding support" | Desc: "National competition for Nigerian students building cybersecurity solutions." | URL: "https://nitda.gov.ng"
+9. Title: "Microsoft Learn Student Ambassadors" | Host: Microsoft | Type: Internship | Deadline: "Rolling" | Prize: "Free Azure credits + Microsoft certifications + mentorship" | Desc: "Leadership programme for student tech enthusiasts. Build your campus tech community." | URL: "https://studentambassadors.microsoft.com/"
+10. Title: "CTFtime — Capture the Flag Events" | Host: CTFtime.org | Type: Competition | Deadline: "Multiple active" | Prize: "Points + rankings + some cash prizes" | Desc: "Global directory of CTF competitions. Perfect for practising real hacking skills." | URL: "https://ctftime.org"
+
+Match existing dark neon-green theme exactly.
+```
+
+---
+
+**PROMPT 6 — Learning Roadmaps by Level**
+
+```
+Add a new page at route /roadmap. Add it to the AppSidebar with a Map icon, labeled "Roadmap", positioned after "Opportunities".
+
+PAGE LAYOUT:
+- Header: "Your Cybersecurity Learning Roadmap" with subtitle "Know exactly what to learn at every level — from 100L to graduation"
+- Level selector: 4 large toggle buttons — 100L / 200L / 300L / 400L
+- Selected level shows a vertical timeline roadmap below
+
+Each level has:
+- A level title and description
+- A vertical timeline of learning milestones, each milestone card showing:
+  - Milestone title
+  - Category badge: Foundation / Technical / Tools / Certification / Career
+  - Short description (1-2 sentences)
+  - Resource links (if any) — small "Learn →" links
+  - Status toggle: "Mark as Done" checkbox — saves to localStorage as "cyb_roadmap_[level]_[index]" and shows a green checkmark when done
+- Progress bar at top showing X/total milestones completed for that level
+
+ROADMAP CONTENT:
+
+100L — "Build Your Foundation":
+1. Understand the CIA Triad | Foundation | Learn what Confidentiality, Integrity and Availability mean — the core pillars of cybersecurity.
+2. Learn Basic Networking | Foundation | Understand IP addresses, DNS, HTTP, ports and how data travels across the internet.
+3. Master Linux Command Line Basics | Technical | Get comfortable with the terminal — most security tools run on Linux.
+4. Learn Python Basics | Technical | Python is the most used language in cybersecurity scripting and automation. | Link: python.org
+5. Understand How the Web Works | Foundation | Learn HTTP/HTTPS, how browsers communicate with servers, cookies and sessions.
+6. Complete PHY 111 & Intro Courses | Foundation | Build your academic foundation — physics and maths underpin cryptography and algorithms.
+7. Create a GitHub Account | Tools | Version control is essential. Start pushing your practice code and projects. | Link: github.com
+8. Try Your First CTF | Technical | Attempt beginner CTF challenges on PicoCTF or CTFtime to apply what you've learned. | Link: picoctf.org
+
+200L — "Go Technical":
+1. Master CYB 212 — Introduction to Cybersecurity | Foundation | Understand attack types, defence strategies, cryptography basics and the CIA model deeply.
+2. Learn SQL & SQL Injection | Technical | Understand relational databases and how SQL injection attacks exploit them.
+3. Study CYB 213 — Cybercrime & Digital Forensics | Technical | Learn Nigerian cybercrime laws, digital evidence handling and forensic investigation.
+4. Set Up Kali Linux | Tools | Install Kali Linux as a VM or dual boot. This is your primary ethical hacking OS. | Link: kali.org
+5. Learn Nmap & Wireshark | Tools | Network scanning and packet analysis are core skills for any security professional.
+6. Attempt Intermediate CTFs | Technical | Move up to intermediate CTF challenges. Try HackTheBox starting point machines. | Link: hackthebox.com
+7. Build a Portfolio Project | Career | Build and document one small security tool or research project on GitHub.
+8. Explore Bug Bounty Basics | Career | Learn the basics of responsible disclosure and set up accounts on HackerOne or Bugcrowd.
+
+300L — "Specialise & Build":
+1. Choose a Specialisation | Career | Pick your focus: Penetration Testing, Digital Forensics, Cloud Security, or AppSec.
+2. Learn Web Application Hacking | Technical | Study OWASP Top 10. Practice on DVWA and WebGoat. Master Burp Suite.
+3. Study Cryptography in Depth | Technical | Go beyond basics — understand RSA, elliptic curves, TLS handshakes and PKI.
+4. Pursue a Certification | Certification | Target CompTIA Security+ or CEH as your first professional certification. | Link: comptia.org
+5. Complete a Real-World Project | Career | Build a security tool, conduct a simulated pentest or document a forensic investigation.
+6. Contribute to Open Source | Career | Find a security-related open source project on GitHub and make a contribution.
+7. Participate in a Hackathon | Career | Enter at least one hackathon or competition — Octoverse, Zindi or CTFtime events.
+8. Start Networking | Career | Join LinkedIn, follow security researchers, attend virtual cybersecurity conferences.
+
+400L — "Launch Your Career":
+1. Complete Final Year Project | Foundation | Choose a cybersecurity research topic that solves a real Nigerian or African problem.
+2. Get Certified | Certification | Sit for CompTIA Security+, CEH or OSCP depending on your specialisation.
+3. Build a Strong GitHub Portfolio | Career | Have at least 3 documented security projects publicly visible on GitHub.
+4. Prepare Your CV & LinkedIn | Career | Tailor your CV for cybersecurity roles. Get your LinkedIn to All-Star status.
+5. Apply for Internships & Graduate Roles | Career | Apply to EFCC, NCC, financial institutions, tech companies and cybersecurity firms in Nigeria.
+6. Practise Interview Questions | Career | Study common cybersecurity interview questions — technical and behavioural.
+7. Explore Freelancing | Career | Register on Upwork or Fiverr. Offer security audits, vulnerability assessments or training.
+8. Consider Postgraduate Study | Career | Explore MSc Cybersecurity programmes locally (UniUyo) or internationally for research careers.
+
+Match existing dark neon-green theme. Use animate-fade-in for timeline items. Category badges should use distinct colors matching the neon theme.
+```
+
+---
+
+Run in order: **Prompt 4 → Prompt 5 → Prompt 6**
+
+After all 3 are done, share screenshots and we'll review before moving to Wave 3.
