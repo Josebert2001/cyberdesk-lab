@@ -12,6 +12,7 @@ import Lab from "./pages/Lab";
 import Playground from "./pages/Playground";
 import AskAnything from "./pages/AskAnything";
 import ExamPrep from "./pages/ExamPrep";
+import CbtPrep from "./pages/CbtPrep";
 import Welcome from "./pages/Welcome";
 import NotFound from "./pages/NotFound";
 
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/playground" element={<Layout><Playground /></Layout>} />
               <Route path="/ask" element={<Layout><AskAnything /></Layout>} />
               <Route path="/exam-prep" element={<Layout><ExamPrep /></Layout>} />
+              <Route path="/cbt-prep" element={<Layout><CbtPrep /></Layout>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <AiPanel />

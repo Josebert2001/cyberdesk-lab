@@ -1,0 +1,81 @@
+Add a new page called CBT Practice Zone at route /cbt-prep. Add it to the AppSidebar navigation with a GraduationCap icon, positioned between "Exam Prep" and the XP section. Label it "CBT Prep" in the nav.
+
+PAGE LAYOUT:
+- Header: "CBT Practice Zone" with subtitle "Exam-style questions for your courses — practice until you pass"
+- Course selection grid (2x2): 4 course cards
+- Quiz mode: one question at a time
+- Results screen after all questions
+
+COURSE CARDS — each shows: course code (large font-mono primary color), full title, level badge, question count, "Start Quiz" button (variant neon):
+1. PHY 111 | General Physics I | 100L
+2. SEN 211 | Software Engineering | 200L
+3. CYB 212 | Introduction to Cybersecurity | 200L
+4. CYB 213 | Cybercrime & Digital Forensics | 200L
+
+QUIZ BEHAVIOUR:
+- Progress bar: "Question X of 10"
+- Question displayed in a large card
+- 4 answer options as clickable bordered cards
+- On selection: correct = green border + bg, wrong = red border + bg, correct answer always revealed
+- Explanation text shown below after answering (muted, italic)
+- "Next Question" button (disabled until answered)
+- addXP(10) for each correct answer
+- addXP(5) for each wrong answer (participation XP)
+
+RESULTS SCREEN:
+- Score: "X / 10"
+- Grade message: 0-4 = "Keep Studying 📚", 5-7 = "Good Progress! 💪", 8-10 = "Excellent! You're Ready 🏆"
+- XP earned this session displayed
+- "Try Again" + "Choose Another Course" buttons
+
+QUESTIONS — use these exact questions:
+
+PHY 111 — General Physics I:
+1. What is the SI unit of force? Options: Joule / Newton / Pascal / Watt — Answer: Newton — Explanation: 1 Newton = 1 kg·m/s², named after Isaac Newton.
+2. Which is a scalar quantity? Options: Velocity / Displacement / Speed / Force — Answer: Speed — Explanation: Speed has magnitude only; velocity has magnitude and direction.
+3. Acceleration due to gravity on Earth? Options: 8.9 m/s² / 9.8 m/s² / 10.8 m/s² / 7.6 m/s² — Answer: 9.8 m/s² — Explanation: g ≈ 9.8 m/s² at Earth's surface.
+4. Newton's second law states F = ? Options: mv / ma / m/a / m+a — Answer: ma — Explanation: Force = mass × acceleration.
+5. Unit of electric current? Options: Volt / Ohm / Ampere / Watt — Answer: Ampere — Explanation: Current is measured in Amperes (A).
+6. Work done = Force × ? Options: Mass / Time / Distance / Speed — Answer: Distance — Explanation: W = F × d (when force and displacement are parallel).
+7. Which is NOT a fundamental quantity? Options: Mass / Length / Velocity / Time — Answer: Velocity — Explanation: Velocity is derived (length/time), not fundamental.
+8. Ohm's law: V = ? Options: IR / I/R / I+R / R/I — Answer: IR — Explanation: Voltage = Current × Resistance.
+9. Unit of energy? Options: Newton / Pascal / Joule / Watt — Answer: Joule — Explanation: Energy and work are both measured in Joules.
+10. Frequency is measured in? Options: Hertz / Decibel / Lumen / Tesla — Answer: Hertz — Explanation: Frequency (cycles per second) is measured in Hz.
+
+SEN 211 — Software Engineering:
+1. What does SDLC stand for? Options: Software Design Life Cycle / System Development Life Cycle / Software Development Life Cycle / System Design Language Construct — Answer: Software Development Life Cycle — Explanation: SDLC is the structured process for planning, creating, testing and deploying software.
+2. Which SDLC model is most flexible to changes? Options: Waterfall / Spiral / Agile / V-Model — Answer: Agile — Explanation: Agile uses iterative sprints making it highly adaptable to changing requirements.
+3. What is a use case diagram used for? Options: Database design / Showing system-user interactions / Network topology / Hardware layout — Answer: Showing system-user interactions — Explanation: Use case diagrams model how actors interact with a system's functions.
+4. Which testing checks individual components in isolation? Options: Integration testing / System testing / Unit testing / Acceptance testing — Answer: Unit testing — Explanation: Unit testing validates individual functions or modules independently.
+5. What is the purpose of a requirements specification document? Options: To write code / To define what the system must do / To test the software / To deploy the system — Answer: To define what the system must do — Explanation: SRS documents functional and non-functional requirements before development begins.
+6. Cohesion in software design means? Options: Modules are loosely connected / A module does one well-defined task / Classes inherit from each other / Code has no bugs — Answer: A module does one well-defined task — Explanation: High cohesion means a module is focused on a single responsibility.
+7. What does UML stand for? Options: Unified Modelling Language / Universal Machine Language / Unified Machine Logic / Universal Modelling Logic — Answer: Unified Modelling Language — Explanation: UML is the standard language for visualising software design.
+8. Agile development uses? Options: Big bang releases / Waterfall phases / Iterative sprints / No documentation — Answer: Iterative sprints — Explanation: Agile delivers working software in short cycles called sprints.
+9. Which is a version control system? Options: MySQL / Git / Apache / Docker — Answer: Git — Explanation: Git tracks changes to source code enabling collaboration and rollback.
+10. Black-box testing focuses on? Options: Internal code logic / Input-output behaviour / Database queries / Memory usage — Answer: Input-output behaviour — Explanation: Black-box testing evaluates outputs from given inputs without knowledge of internal code.
+
+CYB 212 — Introduction to Cybersecurity:
+1. What does CIA stand for in cybersecurity? Options: Central Intelligence Agency / Confidentiality Integrity Availability / Cyber Intrusion Analysis / Computer Integrity Assessment — Answer: Confidentiality Integrity Availability — Explanation: The CIA triad is the core model for information security policy.
+2. What is a firewall? Options: A physical security door / Software that monitors network traffic / An antivirus program / A type of encryption — Answer: Software that monitors network traffic — Explanation: Firewalls filter incoming and outgoing traffic based on security rules.
+3. Phishing is an example of? Options: Malware / Social engineering / Brute force attack / SQL injection — Answer: Social engineering — Explanation: Phishing manipulates users psychologically rather than exploiting technical vulnerabilities.
+4. What does VPN stand for? Options: Virtual Private Network / Very Protected Node / Virtual Public Network / Verified Private Node — Answer: Virtual Private Network — Explanation: VPNs encrypt traffic and mask IP addresses for secure communication.
+5. Which encryption uses the same key for encryption and decryption? Options: Asymmetric / Public key / Symmetric / Hashing — Answer: Symmetric — Explanation: Symmetric encryption (e.g. AES) uses a single shared key for both operations.
+6. What is a zero-day vulnerability? Options: A bug fixed immediately / An unknown vulnerability with no patch / A virus released at midnight / A vulnerability in old software — Answer: An unknown vulnerability with no patch — Explanation: Zero-day vulnerabilities are unknown to vendors and therefore have no available fix.
+7. What does SQL injection target? Options: Network routers / Databases / Operating systems / Physical hardware — Answer: Databases — Explanation: SQL injection inserts malicious SQL code to manipulate or extract database data.
+8. Two-factor authentication adds? Options: A second password / A second username / An additional verification layer / Biometric data only — Answer: An additional verification layer — Explanation: 2FA combines something you know with something you have or are.
+9. What is malware? Options: Malfunctioning hardware / Malicious software / A network error / A firewall rule — Answer: Malicious software — Explanation: Malware includes viruses, ransomware, spyware and other harmful programs.
+10. HTTPS differs from HTTP by? Options: Being faster / Using encryption (TLS/SSL) / Using a different port (80) / Being text-only — Answer: Using encryption (TLS/SSL) — Explanation: HTTPS encrypts data in transit using TLS, protecting against eavesdropping.
+
+CYB 213 — Cybercrime & Digital Forensics:
+1. What is cybercrime? Options: Crimes committed using computers or networks / Physical theft of computers / Software bugs / Hardware failure — Answer: Crimes committed using computers or networks — Explanation: Cybercrime encompasses illegal activities targeting or using digital systems.
+2. Digital forensics involves? Options: Repairing damaged hardware / Collecting and analysing digital evidence / Writing security policies / Developing antivirus software — Answer: Collecting and analysing digital evidence — Explanation: Digital forensics recovers and investigates data from digital devices for legal proceedings.
+3. Which Nigerian law addresses cybercrime? Options: NDLEA Act / Cybercrimes Act 2015 / Companies Act / EFCC Act — Answer: Cybercrimes Act 2015 — Explanation: Nigeria's Cybercrimes (Prohibition, Prevention, etc.) Act 2015 is the primary legislation on cybercrime.
+4. Chain of custody in forensics means? Options: A blockchain network / Documentation tracking evidence handling / Linking suspects together / A type of malware — Answer: Documentation tracking evidence handling — Explanation: Chain of custody documents who handled evidence and when, maintaining its integrity for court.
+5. What is ransomware? Options: Free software / Malware that encrypts files and demands payment / A network scanner / A forensic tool — Answer: Malware that encrypts files and demands payment — Explanation: Ransomware locks victim data and demands cryptocurrency payment for decryption.
+6. Steganography means? Options: Encrypting messages / Hiding messages within other files / Deleting evidence / Scanning networks — Answer: Hiding messages within other files — Explanation: Steganography conceals data inside images, audio or other media without detection.
+7. What is a botnet? Options: A secure network / A network of infected computers controlled remotely / A type of firewall / A cloud service — Answer: A network of infected computers controlled remotely — Explanation: Botnets are zombie networks used for spam, DDoS attacks and data theft.
+8. MD5 and SHA are examples of? Options: Encryption algorithms / Hashing algorithms / Compression tools / Firewall rules — Answer: Hashing algorithms — Explanation: MD5 and SHA produce fixed-length digests used to verify data integrity.
+9. What does EFCC stand for? Options: Electronic Fraud Control Committee / Economic and Financial Crimes Commission / Electronic Financial Crimes Council / Enforcement of Financial Crimes Commission — Answer: Economic and Financial Crimes Commission — Explanation: Nigeria's EFCC investigates financial crimes including cybercrime and fraud.
+10. First response in digital forensics should? Options: Immediately wipe the drive / Preserve the crime scene and avoid altering evidence / Install antivirus / Reboot the system — Answer: Preserve the crime scene and avoid altering evidence — Explanation: First responders must preserve evidence integrity — any alteration can invalidate it in court.
+
+Style: match existing dark neon-green theme exactly — bg-card, border-border, text-primary, font-mono, neon-glow, animate-fade-in classes.
