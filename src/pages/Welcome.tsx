@@ -61,7 +61,7 @@ export default function Welcome() {
 
           <div className="flex gap-4 justify-center">
             <Button size="lg" variant="neon" asChild>
-              <Link to="/">Get Started</Link>
+              <Link to="/lab">Get Started</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link to="/ask">Learn More</Link>

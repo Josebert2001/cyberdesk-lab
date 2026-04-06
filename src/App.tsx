@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { Layout } from "./components/Layout";
 import { AiPanelProvider } from "./components/AiPanelContext";
@@ -30,8 +30,9 @@ const App = () => (
         <XPProvider>
           <AiPanelProvider>
             <Routes>
+              <Route path="/" element={<Navigate to="/welcome" replace />} />
               <Route path="/welcome" element={<Welcome />} />
-              <Route path="/" element={<Layout><Lab /></Layout>} />
+              <Route path="/lab" element={<Layout><Lab /></Layout>} />
               <Route path="/playground" element={<Layout><Playground /></Layout>} />
               <Route path="/ask" element={<Layout><AskAnything /></Layout>} />
               <Route path="/exam-prep" element={<Layout><ExamPrep /></Layout>} />

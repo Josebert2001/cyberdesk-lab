@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 
 const navItems = [
   { title: "Home", path: "/welcome", icon: Home },
-  { title: "Lab", path: "/", icon: FlaskConical },
+  { title: "Lab", path: "/lab", icon: FlaskConical },
   { title: "Playground", path: "/playground", icon: Gamepad2 },
   { title: "Ask Anything", path: "/ask", icon: MessageCircle },
   { title: "Exam Prep", path: "/exam-prep", icon: BookOpen },
