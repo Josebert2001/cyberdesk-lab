@@ -1,8 +1,9 @@
 import { useAiPanel } from "./AiPanelContext";
-import { X, BookOpen, Save } from "lucide-react";
+import { X, BookOpen, Save, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { saveToExamPrep } from "@/lib/storage";
+import { toast } from "@/components/ui/sonner";
 
 const LOADING_TEXTS = [
   "Analyzing...",
@@ -39,11 +40,34 @@ function LoadingState() {
   );
 }
 
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      toast("Copied to clipboard");
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      toast("Could not copy — try selecting and copying manually");
+    });
+  }
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded"
+      aria-label="Copy to clipboard"
+    >
+      {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Copy className="h-3.5 w-3.5" />}
+    </button>
+  );
+}
+
 export function AiPanel() {
   const { isOpen, isLoading, analysis, error, close } = useAiPanel();
   const [saved, setSaved] = useState(false);
 
-  // Reset saved state when new analysis arrives
   useEffect(() => {
     setSaved(false);
   }, [analysis]);
@@ -52,15 +76,12 @@ export function AiPanel() {
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 z-40 bg-background/60 backdrop-blur-sm"
         onClick={close}
       />
 
-      {/* Panel */}
       <div className="fixed top-0 right-0 z-50 h-full w-full md:w-[40%] bg-card border-l border-border overflow-y-auto animate-slide-in-right">
-        {/* Header */}
         <div className="sticky top-0 bg-card border-b border-border p-4 flex items-center justify-between z-10">
           <h2 className="text-primary font-mono font-bold text-sm neon-text-glow">
             CYB AI Assistant
@@ -68,6 +89,7 @@ export function AiPanel() {
           <button
             onClick={close}
             className="text-muted-foreground hover:text-foreground transition-colors p-1"
+            aria-label="Close panel"
           >
             <X className="h-5 w-5" />
           </button>
@@ -84,33 +106,38 @@ export function AiPanel() {
 
           {analysis && (
             <div className="space-y-6 animate-fade-in">
-              {/* Concept */}
               <section>
-                <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
-                  What Happened
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                    What Happened
+                  </h3>
+                  <CopyButton text={analysis.concept} />
+                </div>
                 <p className="text-foreground font-semibold text-lg">{analysis.concept}</p>
               </section>
 
-              {/* How it works */}
               <section>
-                <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
-                  How It Works
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                    How It Works
+                  </h3>
+                  <CopyButton text={analysis.how_it_works} />
+                </div>
                 <p className="text-foreground/80 text-sm leading-relaxed">{analysis.how_it_works}</p>
               </section>
 
-              {/* Live Example */}
               <section>
-                <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
-                  Live Example
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                    Live Example
+                  </h3>
+                  <CopyButton text={analysis.demonstration} />
+                </div>
                 <div className="bg-background border border-border rounded-lg p-4 font-mono text-primary text-sm whitespace-pre-wrap neon-text-glow">
                   {analysis.demonstration}
                 </div>
               </section>
 
-              {/* Challenge */}
               <section>
                 <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
                   Try This Next
@@ -120,19 +147,23 @@ export function AiPanel() {
                 </div>
               </section>
 
-              {/* Defense */}
               <section>
-                <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
-                  Defend Against It
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                    Defend Against It
+                  </h3>
+                  <CopyButton text={analysis.defense} />
+                </div>
                 <p className="text-foreground/80 text-sm leading-relaxed">{analysis.defense}</p>
               </section>
 
-              {/* Exam Bullets */}
               <section>
-                <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
-                  Exam Bullets
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                    Exam Bullets
+                  </h3>
+                  <CopyButton text={analysis.exam_bullets.join("\n")} />
+                </div>
                 <div className="space-y-2">
                   {analysis.exam_bullets.map((bullet, i) => (
                     <div
@@ -145,7 +176,6 @@ export function AiPanel() {
                 </div>
               </section>
 
-              {/* Save button */}
               <Button
                 variant={saved ? "secondary" : "neon"}
                 className="font-mono w-full"
@@ -153,6 +183,7 @@ export function AiPanel() {
                 onClick={() => {
                   saveToExamPrep(analysis.concept, analysis.exam_bullets);
                   setSaved(true);
+                  toast("Saved to Exam Prep");
                 }}
               >
                 {saved ? (

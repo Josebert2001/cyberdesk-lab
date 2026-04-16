@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { chatWithGemini, ChatAiResponse } from "@/lib/gemini-chat";
 import { useXPContext } from "@/components/XPContext";
 import { saveToExamPrep } from "@/lib/storage";
+import { toast } from "@/components/ui/sonner";
 
 interface ChatMessage {
   id: number;
@@ -51,6 +52,7 @@ function AiMessage({ msg }: { msg: ChatMessage }) {
           if (d.example) bullets.push(d.example);
           saveToExamPrep(d.answer.slice(0, 60) + "...", bullets);
           setSaved(true);
+          toast("Saved to Exam Prep");
         }}
         disabled={saved}
         className={`flex items-center gap-1.5 text-xs font-mono transition-colors ${

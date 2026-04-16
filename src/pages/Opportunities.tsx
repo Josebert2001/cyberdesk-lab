@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Trophy, Bookmark, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/sonner";
 
 interface Opportunity {
   id: number;
@@ -37,7 +38,15 @@ const FILTERS = ["All", "Hackathons", "Internships", "Scholarships", "Competitio
 type Filter = (typeof FILTERS)[number];
 
 function getBookmarks(): number[] {
-  return JSON.parse(localStorage.getItem("cyb_bookmarked_opps") || "[]");
+  try {
+    const raw = localStorage.getItem("cyb_bookmarked_opps");
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    localStorage.removeItem("cyb_bookmarked_opps");
+    return [];
+  }
 }
 
 function saveBookmarks(ids: number[]) {
@@ -51,8 +60,10 @@ export default function Opportunities() {
 
   function toggleBookmark(id: number) {
     setBookmarks((prev) => {
-      const next = prev.includes(id) ? prev.filter((b) => b !== id) : [...prev, id];
+      const isBookmarked = prev.includes(id);
+      const next = isBookmarked ? prev.filter((b) => b !== id) : [...prev, id];
       saveBookmarks(next);
+      toast(isBookmarked ? "Bookmark removed" : "Bookmarked", { duration: 2000 });
       return next;
     });
   }
@@ -138,6 +149,8 @@ export default function Opportunities() {
                 <button
                   onClick={() => toggleBookmark(opp.id)}
                   className={`shrink-0 p-1.5 rounded-md transition-colors ${bookmarks.includes(opp.id) ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+                  aria-label={bookmarks.includes(opp.id) ? "Remove bookmark" : "Bookmark"}
+                  aria-pressed={bookmarks.includes(opp.id)}
                 >
                   <Bookmark className={`h-4 w-4 ${bookmarks.includes(opp.id) ? "fill-primary" : ""}`} />
                 </button>

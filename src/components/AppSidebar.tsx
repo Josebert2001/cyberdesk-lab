@@ -4,19 +4,55 @@ import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
 import { Progress } from "@/components/ui/progress";
 
-const navItems = [
-  { title: "Home", path: "/welcome", icon: Home },
-  { title: "Lab", path: "/lab", icon: FlaskConical },
-  { title: "Playground", path: "/playground", icon: Gamepad2 },
-  { title: "Ask Anything", path: "/ask", icon: MessageCircle },
-  { title: "Exam Prep", path: "/exam-prep", icon: BookOpen },
-  { title: "Opportunities", path: "/opportunities", icon: Trophy },
-  { title: "Roadmap", path: "/roadmap", icon: Map },
-  { title: "Resources", path: "/resources", icon: FolderOpen },
-  { title: "CBT Prep", path: "/cbt-prep", icon: GraduationCap },
-  { title: "About", path: "/about", icon: Info },
-  { title: "Staff", path: "/staff", icon: Users },
-  { title: "Showcase", path: "/showcase", icon: Layers },
+interface NavItem {
+  title: string;
+  path: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
+
+const navGroups: NavGroup[] = [
+  {
+    label: "",
+    items: [
+      { title: "Home", path: "/welcome", icon: Home },
+    ],
+  },
+  {
+    label: "Learn",
+    items: [
+      { title: "Lab", path: "/lab", icon: FlaskConical },
+      { title: "Playground", path: "/playground", icon: Gamepad2 },
+      { title: "Ask Anything", path: "/ask", icon: MessageCircle },
+    ],
+  },
+  {
+    label: "Practice",
+    items: [
+      { title: "CBT Prep", path: "/cbt-prep", icon: GraduationCap },
+      { title: "Exam Prep", path: "/exam-prep", icon: BookOpen },
+    ],
+  },
+  {
+    label: "Explore",
+    items: [
+      { title: "Opportunities", path: "/opportunities", icon: Trophy },
+      { title: "Roadmap", path: "/roadmap", icon: Map },
+      { title: "Resources", path: "/resources", icon: FolderOpen },
+      { title: "Showcase", path: "/showcase", icon: Layers },
+    ],
+  },
+  {
+    label: "Department",
+    items: [
+      { title: "About", path: "/about", icon: Info },
+      { title: "Staff", path: "/staff", icon: Users },
+    ],
+  },
 ];
 
 export function AppSidebar() {
@@ -35,28 +71,38 @@ export function AppSidebar() {
         </p>
       </div>
 
-      <nav className="flex-1 px-3 space-y-1">
-        {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
-          return (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={() => setMobileOpen(false)}
-              className={`flex items-center gap-3 px-4 py-3 rounded-md text-sm transition-colors duration-200 ${
-                isActive
-                  ? "text-primary border-l-2 border-primary bg-primary/5 font-medium"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-              }`}
-            >
-              <item.icon className="h-4 w-4" />
-              <span>{item.title}</span>
-            </NavLink>
-          );
-        })}
+      <nav className="flex-1 px-3 space-y-4 overflow-y-auto">
+        {navGroups.map((group) => (
+          <div key={group.label || "home"}>
+            {group.label && (
+              <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/50 px-4 mb-1">
+                {group.label}
+              </p>
+            )}
+            <div className="space-y-0.5">
+              {group.items.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-md text-sm transition-all duration-200 ${
+                      isActive
+                        ? "text-primary border-l-2 border-primary bg-primary/5 font-medium"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    <item.icon className={`h-4 w-4 shrink-0 ${isActive ? "text-primary" : ""}`} />
+                    <span>{item.title}</span>
+                  </NavLink>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </nav>
 
-      {/* XP Section */}
       <div className="px-4 pb-2">
         <div
           className={`rounded-lg border border-border bg-card p-4 transition-all duration-300 ${
@@ -76,7 +122,7 @@ export function AppSidebar() {
           </div>
           {rankUp && (
             <div className="mt-2 text-center text-xs font-mono text-primary neon-text-glow animate-fade-in font-bold">
-              ⚡ RANK UP! ⚡
+              RANK UP!
             </div>
           )}
         </div>
@@ -95,6 +141,7 @@ export function AppSidebar() {
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         className="fixed top-4 left-4 z-50 md:hidden p-2 rounded-md bg-card border border-border text-foreground"
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
         {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>

@@ -7,6 +7,7 @@ import { Layout } from "./components/Layout";
 import { AiPanelProvider } from "./components/AiPanelContext";
 import { AiPanel } from "./components/AiPanel";
 import { XPProvider } from "./components/XPContext";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import Lab from "./pages/Lab";
 import Playground from "./pages/Playground";
 import AskAnything from "./pages/AskAnything";
@@ -22,6 +23,7 @@ import Welcome from "./pages/Welcome";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
+  <ErrorBoundary>
   <TooltipProvider>
     <Toaster />
     <Sonner />
@@ -50,6 +52,7 @@ const App = () => (
       </XPProvider>
     </BrowserRouter>
   </TooltipProvider>
+  </ErrorBoundary>
 );
 
 export default App;

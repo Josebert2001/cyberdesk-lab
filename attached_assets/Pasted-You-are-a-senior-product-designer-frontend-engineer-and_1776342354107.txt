@@ -1,0 +1,235 @@
+You are a senior product designer, frontend engineer, and UI/UX systems thinker working directly inside this Replit project.
+
+Your job is to inspect the current app and implement a polished, modern, high-quality UI/UX upgrade based on the enhancement strategy below. Do not just describe ideas. Actually examine the current codebase, identify the right components/pages to improve, and implement the changes in a clean, consistent, production-ready way.
+
+PROJECT CONTEXT
+This is a Cybersecurity Department Portal for students of the Department of Cybersecurity, University of Uyo.
+
+The existing app already includes:
+- multiple routed pages
+- interactive cybersecurity labs
+- AI tutor features
+- exam prep
+- roadmap/progress features
+- opportunities/bookmarks
+- gamification elements
+- a cybersecurity-themed design language
+
+Your task is to improve the user experience across the app without breaking existing functionality.
+
+MAIN GOAL
+Transform the current interface into a more polished, engaging, responsive, accessible, and intuitive experience while preserving the core product structure and cybersecurity identity.
+
+IMPORTANT EXECUTION RULES
+- First inspect the actual codebase before making assumptions
+- Do not redesign blindly; improve what is already there
+- Keep the theme consistent with the cybersecurity/tech aesthetic
+- Preserve all working features
+- Do not add fake functionality with no UI logic behind it
+- Implement real improvements, not placeholder visuals
+- Keep performance in mind
+- Make the interface feel modern, smooth, and premium
+- Ensure the app still works correctly in Replit after changes
+- Use reusable components and clean architecture
+- Prioritize both desktop and mobile usability
+- Add graceful fallbacks where advanced behavior is not possible
+
+UI/UX ENHANCEMENT OBJECTIVES
+
+PHASE 1 — FULL UI/UX AUDIT IN CODE
+Inspect the current codebase and identify:
+- layout inconsistencies
+- spacing problems
+- weak visual hierarchy
+- repetitive UI patterns
+- missing loading states
+- weak empty states
+- confusing navigation flows
+- poor mobile responsiveness
+- inaccessible controls
+- missing feedback for important actions
+- interaction dead ends
+- components that feel plain or unfinished
+
+Then apply improvements systematically.
+
+PHASE 2 — VISUAL POLISH AND MICRO-INTERACTIONS
+Implement tasteful polish across the app:
+1. Add smooth route/page transition animations
+2. Add hover animations to important cards and interactive panels
+3. Improve button interactions, focus states, and pressed states
+4. Add tasteful shadow, scale, fade, or motion feedback where appropriate
+5. Add skeleton loaders or loading indicators where users wait for content
+6. Improve AI response loading experience with better visual feedback
+7. Add toast notifications for key actions such as:
+   - saving notes
+   - bookmarking opportunities
+   - XP gain
+   - rank progression
+8. Improve long-page scrolling experience with subtle motion or section reveal effects where appropriate
+
+Important:
+- keep motion subtle and professional
+- do not over-animate the app
+- prioritize responsiveness and clarity over flashy effects
+
+PHASE 3 — NAVIGATION AND INFORMATION ARCHITECTURE
+Improve discoverability and orientation:
+1. Redesign or refine the welcome/home experience so it clearly introduces key sections
+2. Improve the navigation structure so users can understand where to go quickly
+3. Add better grouping for navigation items if the menu is becoming crowded
+4. Add breadcrumbs or other location indicators where useful
+5. Add a lightweight quick-navigation feature if it fits naturally
+6. Improve header behavior so important context and progress are visible
+7. Make sure navigation is excellent on both desktop and mobile
+
+If a command palette, floating action button, or shortcut menu fits the codebase naturally, implement it properly. If not, use a simpler but real solution.
+
+PHASE 4 — INTERACTIVE LABS EXPERIENCE
+Upgrade the labs so they feel more guided and rewarding:
+1. Improve input feedback for correct/incorrect actions
+2. Add clearer status messaging and validation states
+3. Add lab metadata where useful, such as:
+   - difficulty
+   - estimated time
+   - completion state
+4. Add hint/reveal support if it can be implemented cleanly
+5. Add better completion feedback when a user finishes a lab
+6. Improve code/input areas so they are easier to use and visually clearer
+7. Strengthen the sense of progression across labs
+
+Do not turn the labs into something completely different. Improve clarity, usability, and motivation.
+
+PHASE 5 — AI PANELS AND CONTENT EXPERIENCE
+Upgrade the AI tutor and analysis experience:
+1. Improve loading and streaming-feel presentation for AI answers
+2. Add copy buttons where useful for generated notes, bullets, or explanations
+3. Improve formatting of AI responses for readability
+4. Add better empty state guidance before a user starts a prompt
+5. Improve error messages when AI fails
+6. If conversation history already exists or can be added simply, present it better
+7. Make AI areas feel premium, readable, and study-friendly
+
+If export/share features are already realistic in this codebase, implement them.
+If not, do not fake them.
+
+PHASE 6 — GAMIFICATION IMPROVEMENTS
+Make progress and rewards more engaging:
+1. Add clearer XP feedback when points are earned
+2. Improve rank progression display
+3. Add celebration states for milestones or rank-ups
+4. Improve how achievement/progress information is shown
+5. Make the motivation system visible but not distracting
+6. If streaks/badges can be added cleanly and truthfully, implement them
+7. Ensure gamification UI remains lightweight and not childish
+
+PHASE 7 — PROGRESS VISUALIZATION
+Improve data presentation and learning feedback:
+1. Add clearer progress components where users track learning
+2. Add charts, rings, bars, or summary cards only where they truly add value
+3. Improve roadmap/progress page clarity
+4. Show completed vs remaining work in a more visual way
+5. Add a clean stats summary if the codebase supports it naturally
+
+Do not force complex analytics if the underlying data is weak.
+Prefer honest, simple, elegant progress visuals.
+
+PHASE 8 — ACCESSIBILITY AND USABILITY
+Improve usability for all users:
+1. Ensure keyboard navigation works properly
+2. Improve focus visibility for all interactive controls
+3. Add accessible labels where needed
+4. Improve color contrast where necessary
+5. Make forms and buttons more understandable
+6. Add error boundaries or friendly fallback UI where needed
+7. Improve responsiveness across device sizes
+8. Add mobile-friendly layouts for dense pages
+9. Ensure side panels/modals behave well on small screens
+
+If dark mode is missing and can be added cleanly, implement it only if it fits naturally into the current architecture.
+If not, improve the existing theme instead of forcing a half-finished toggle.
+
+PHASE 9 — EMPTY STATES, GUIDANCE, AND ONBOARDING
+Upgrade moments where users may feel lost:
+1. Design meaningful empty states for:
+   - exam notes
+   - bookmarks
+   - saved items
+   - history areas
+2. Add contextual calls-to-action to guide next steps
+3. Add helpful first-time-use hints where appropriate
+4. Reduce confusion in complex sections by adding short instructional guidance
+5. Make the app easier for a new student to understand on first use
+
+PHASE 10 — SEARCH AND DISCOVERY
+Inspect whether search/discovery features make sense in this codebase.
+If feasible, implement a clean lightweight global or section-based search for:
+- pages
+- labs
+- topics
+- opportunities
+- notes
+
+Only do this if it can be implemented properly and adds real value.
+If not, improve discoverability through better navigation and grouping instead.
+
+PHASE 11 — MOBILE EXPERIENCE
+Specifically optimize for mobile:
+1. Refine navigation for smaller screens
+2. Improve spacing and stacking of cards/components
+3. Ensure forms and lab inputs are easy to use with touch
+4. Improve AI panel/modal behavior on mobile
+5. Prevent overflow, cramped layouts, and tiny click targets
+6. Make reading-heavy pages much easier to consume on phones
+
+EXPECTED IMPLEMENTATION STYLE
+- Use clean, reusable components
+- Keep Tailwind classes organized
+- Extract repeated UI patterns into shared components
+- Use motion carefully and consistently
+- Maintain strong TypeScript discipline
+- Prefer accessible patterns
+- Avoid bloated dependency usage unless clearly justified
+- If a new library is needed, use only one when necessary and integrate it cleanly
+
+DELIVERABLE REQUIREMENTS
+After implementation, provide:
+
+1. WHAT YOU FOUND
+- actual UI/UX issues discovered in the codebase
+
+2. WHAT YOU IMPROVED
+- pages, components, and interaction patterns upgraded
+
+3. NEW COMPONENTS OR PATTERNS ADDED
+- animations
+- toasts
+- loaders
+- progress visuals
+- navigation improvements
+- accessibility fixes
+- mobile improvements
+- etc.
+
+4. ANY FEATURES NOT IMPLEMENTED
+- mention what was skipped and why
+
+5. FINAL VERIFICATION
+- confirm whether:
+  - app runs
+  - pages render
+  - mobile layout is improved
+  - build passes
+  - no major existing features were broken
+
+SUCCESS STANDARD
+The final result should feel like a serious, modern, polished student platform:
+- clearer
+- smoother
+- more engaging
+- more accessible
+- more responsive
+- more intuitive
+- more trustworthy
+
+Now begin by inspecting the current project structure and implementing the improvements directly in the codebase.

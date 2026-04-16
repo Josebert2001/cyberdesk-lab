@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { safeGetNumber } from "@/lib/storage";
+import { toast } from "sonner";
 
 const XP_KEY = "cyberdesk_xp";
 
@@ -54,7 +55,22 @@ export function useXP() {
   }, [xp]);
 
   const addXP = useCallback((amount: number) => {
-    setXp((prev) => prev + amount);
+    setXp((prev) => {
+      const newXp = prev + amount;
+      const oldRank = getRank(prev);
+      const newRank = getRank(newXp);
+      if (newRank.title !== oldRank.title) {
+        toast(`Rank Up: ${newRank.title}!`, {
+          description: `You've reached ${newXp} XP`,
+        });
+      } else {
+        toast(`+${amount} XP`, {
+          description: `Total: ${newXp} XP`,
+          duration: 2000,
+        });
+      }
+      return newXp;
+    });
   }, []);
 
   return {
