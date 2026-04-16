@@ -2,6 +2,7 @@ import { useAiPanel } from "./AiPanelContext";
 import { X, BookOpen, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { saveToExamPrep } from "@/lib/storage";
 
 const LOADING_TEXTS = [
   "Analyzing...",
@@ -36,18 +37,6 @@ function LoadingState() {
       </p>
     </div>
   );
-}
-
-function saveToExamPrep(topic: string, bullets: string[]) {
-  const existing = JSON.parse(localStorage.getItem("cyberdesk_exam_notes") || "[]");
-  const entry = {
-    id: Date.now(),
-    topic,
-    bullets,
-    date: new Date().toLocaleDateString(),
-  };
-  existing.push(entry);
-  localStorage.setItem("cyberdesk_exam_notes", JSON.stringify(existing));
 }
 
 export function AiPanel() {

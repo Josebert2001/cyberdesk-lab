@@ -2,18 +2,13 @@ import { Send, ChevronDown, ChevronUp, Save, BookOpen, Loader2 } from "lucide-re
 import { useState, useRef, useEffect } from "react";
 import { chatWithGemini, ChatAiResponse } from "@/lib/gemini-chat";
 import { useXPContext } from "@/components/XPContext";
+import { saveToExamPrep } from "@/lib/storage";
 
 interface ChatMessage {
   id: number;
   role: "user" | "ai";
   text: string;
   aiData?: ChatAiResponse;
-}
-
-function saveToExamPrep(topic: string, bullets: string[]) {
-  const existing = JSON.parse(localStorage.getItem("cyberdesk_exam_notes") || "[]");
-  existing.push({ id: Date.now(), topic, bullets, date: new Date().toLocaleDateString() });
-  localStorage.setItem("cyberdesk_exam_notes", JSON.stringify(existing));
 }
 
 function AiMessage({ msg }: { msg: ChatMessage }) {

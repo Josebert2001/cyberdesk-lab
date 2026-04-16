@@ -19,23 +19,16 @@ export default function Welcome() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background" />
 
       <div className="relative z-10">
-        {/* Nav */}
         <nav className="flex items-center justify-between p-6 max-w-6xl mx-auto">
           <div className="flex items-center gap-2">
             <Terminal className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold text-foreground">Dept. of Cybersecurity</span>
           </div>
-          <div className="flex gap-3">
-            <Button variant="ghost" asChild>
-              <Link to="/login">Login</Link>
-            </Button>
-            <Button variant="neon" asChild>
-              <Link to="/signup">Sign Up</Link>
-            </Button>
-          </div>
+          <Button variant="neon" asChild>
+            <Link to="/lab">Enter Portal</Link>
+          </Button>
         </nav>
 
-        {/* Hero */}
         <section className="max-w-4xl mx-auto text-center px-6 pt-20 pb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
             Your Cybersecurity Department.{" "}
@@ -45,7 +38,6 @@ export default function Welcome() {
             Access interactive labs, past questions, AI-powered tutoring and course resources — built for UniUyo Cybersecurity students by the Director of Software &amp; Hardware.
           </p>
 
-          {/* Terminal snippet */}
           <div className="bg-card border border-border rounded-lg p-4 font-mono text-sm text-left max-w-md mx-auto mb-10">
             <div className="flex gap-2 mb-3">
               <span className="w-3 h-3 rounded-full bg-destructive" />
@@ -64,12 +56,11 @@ export default function Welcome() {
               <Link to="/lab">Get Started</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link to="/ask">Learn More</Link>
+              <Link to="/about">Learn More</Link>
             </Button>
           </div>
         </section>
 
-        {/* Features */}
         <section className="max-w-5xl mx-auto px-6 py-16">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
             Everything You Need to Succeed
@@ -88,7 +79,6 @@ export default function Welcome() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="text-center py-8 text-muted-foreground text-sm">
           © 2026 Department of Cybersecurity, University of Uyo. Built by the Director of Software &amp; Hardware.
         </footer>

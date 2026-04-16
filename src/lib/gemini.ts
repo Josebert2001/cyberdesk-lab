@@ -29,36 +29,55 @@ export interface AiAnalysis {
 
 export async function analyzeWithGemini(userPrompt: string): Promise<AiAnalysis> {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-  if (!apiKey) throw new Error("VITE_GEMINI_API_KEY is not configured");
+  if (!apiKey) {
+    throw new Error(
+      "AI features require a Gemini API key. Add VITE_GEMINI_API_KEY to your environment secrets."
+    );
+  }
 
-  const response = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [
-        { role: "user", parts: [{ text: SYSTEM_PROMPT + "\n\n" + userPrompt }] },
-      ],
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 1024,
-      },
-    }),
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [
+          { role: "user", parts: [{ text: SYSTEM_PROMPT + "\n\n" + userPrompt }] },
+        ],
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 1024,
+        },
+      }),
+    });
+  } catch {
+    throw new Error("Unable to reach the AI service. Please check your internet connection.");
+  }
+
+  if (response.status === 429) {
+    throw new Error("AI rate limit reached. Please wait a moment and try again.");
+  }
+
+  if (response.status === 403) {
+    throw new Error("Gemini API key is invalid or has been revoked. Please check your configuration.");
+  }
 
   if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Gemini API error (${response.status}): ${text}`);
+    throw new Error(`AI service returned an error (${response.status}). Please try again later.`);
   }
 
   const data = await response.json();
   const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-  
-  // Strip markdown code fences if present
+
+  if (!rawText) {
+    throw new Error("AI returned an empty response. Please try rephrasing your question.");
+  }
+
   const cleaned = rawText.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
-  
+
   try {
     return JSON.parse(cleaned) as AiAnalysis;
   } catch {
-    throw new Error("Failed to parse AI response as JSON");
+    throw new Error("AI returned an unexpected format. Please try again.");
   }
 }

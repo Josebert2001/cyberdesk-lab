@@ -1,5 +1,6 @@
 import { BookOpen, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { safeJsonParse } from "@/lib/storage";
 
 interface ExamNote {
   id: number;
@@ -12,8 +13,7 @@ const ExamPrep = () => {
   const [notes, setNotes] = useState<ExamNote[]>([]);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("cyberdesk_exam_notes") || "[]");
-    setNotes(stored);
+    setNotes(safeJsonParse<ExamNote[]>("cyberdesk_exam_notes", []));
   }, []);
 
   const handleDelete = (id: number) => {
