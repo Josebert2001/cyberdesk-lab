@@ -1,8 +1,9 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { FlaskConical, Gamepad2, MessageCircle, BookOpen, Menu, X, Zap, Home, GraduationCap, FolderOpen, Trophy, Map, Info, Users, Layers } from "lucide-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { FlaskConical, Gamepad2, MessageCircle, BookOpen, Menu, X, Zap, Home, GraduationCap, FolderOpen, Trophy, Map, Info, Users, Layers, LogOut } from "lucide-react";
 import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
 import { Progress } from "@/components/ui/progress";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface NavItem {
   title: string;
@@ -57,8 +58,17 @@ const navGroups: NavGroup[] = [
 
 export function AppSidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { xp, rank, nextRank, progress, rankUp } = useXPContext();
+  const { user, profile, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/login", { replace: true });
+  };
+
+  const displayName = profile?.name || user?.email?.split("@")[0] || "Student";
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
@@ -69,6 +79,11 @@ export function AppSidebar() {
         <p className="text-xs text-muted-foreground mt-1">
           University of Uyo · Faculty of Computing
         </p>
+        {user && (
+          <p className="text-xs text-muted-foreground/70 font-mono mt-2 truncate">
+            &gt; {displayName}
+          </p>
+        )}
       </div>
 
       <nav className="flex-1 px-3 space-y-4 overflow-y-auto">
@@ -128,8 +143,17 @@ export function AppSidebar() {
         </div>
       </div>
 
-      <div className="p-6 pt-2">
-        <p className="text-xs text-muted-foreground font-mono">
+      <div className="px-4 pb-4 pt-2 space-y-3">
+        {user && (
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-md text-sm text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors font-mono"
+          >
+            <LogOut className="h-4 w-4 shrink-0" />
+            <span>Logout</span>
+          </button>
+        )}
+        <p className="text-xs text-muted-foreground font-mono px-2">
           Dept. of Cybersecurity, UniUyo
         </p>
       </div>

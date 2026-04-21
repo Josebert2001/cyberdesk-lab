@@ -24,9 +24,14 @@ export default function Welcome() {
             <Terminal className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold text-foreground">Dept. of Cybersecurity</span>
           </div>
-          <Button variant="neon" asChild>
-            <Link to="/lab">Enter Portal</Link>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" asChild>
+              <Link to="/login">Login</Link>
+            </Button>
+            <Button variant="neon" asChild>
+              <Link to="/signup">Enter Portal</Link>
+            </Button>
+          </div>
         </nav>
 
         <section className="max-w-4xl mx-auto text-center px-6 pt-20 pb-16">
@@ -51,12 +56,12 @@ export default function Welcome() {
             </div>
           </div>
 
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center flex-wrap">
             <Button size="lg" variant="neon" asChild>
-              <Link to="/lab">Get Started</Link>
+              <Link to="/signup">Get Started</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link to="/about">Learn More</Link>
+              <Link to="/login">I have an account</Link>
             </Button>
           </div>
         </section>
