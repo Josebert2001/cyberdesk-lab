@@ -14,7 +14,120 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      lab_progress: {
+        Row: {
+          completed: boolean
+          completed_at: string | null
+          created_at: string
+          id: string
+          lab_name: string
+          score: number | null
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          lab_name: string
+          score?: number | null
+          user_id: string
+        }
+        Update: {
+          completed?: boolean
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          lab_name?: string
+          score?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          department: string | null
+          id: string
+          name: string | null
+          rank: string
+          updated_at: string
+          xp: number
+          year: string | null
+        }
+        Insert: {
+          created_at?: string
+          department?: string | null
+          id: string
+          name?: string | null
+          rank?: string
+          updated_at?: string
+          xp?: number
+          year?: string | null
+        }
+        Update: {
+          created_at?: string
+          department?: string | null
+          id?: string
+          name?: string | null
+          rank?: string
+          updated_at?: string
+          xp?: number
+          year?: string | null
+        }
+        Relationships: []
+      }
+      saved_bullets: {
+        Row: {
+          bullets: Json
+          created_at: string
+          id: string
+          topic: string
+          user_id: string
+        }
+        Insert: {
+          bullets: Json
+          created_at?: string
+          id?: string
+          topic: string
+          user_id: string
+        }
+        Update: {
+          bullets?: Json
+          created_at?: string
+          id?: string
+          topic?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      sessions: {
+        Row: {
+          created_at: string
+          exam_bullets: Json | null
+          id: string
+          lab_type: string | null
+          topic: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          exam_bullets?: Json | null
+          id?: string
+          lab_type?: string | null
+          topic: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          exam_bullets?: Json | null
+          id?: string
+          lab_type?: string | null
+          topic?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
