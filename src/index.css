@@ -1,52 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 88%;
+    /* DOCSSA brand palette — deep navy + cyan */
+    --background: 226 78% 14%;        /* navy-deep #081540 */
+    --foreground: 210 67% 96%;        /* off-white #F0F6FC */
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 88%;
+    --card: 225 71% 18%;              /* navy #0D1F4E */
+    --card-foreground: 210 67% 96%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 88%;
+    --popover: 225 71% 18%;
+    --popover-foreground: 210 67% 96%;
 
-    --primary: 153 100% 50%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 200 68% 58%;           /* cyan #4BAADC */
+    --primary-foreground: 226 78% 14%;
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 88%;
+    --secondary: 214 69% 32%;         /* blue-mid #1A4A8A */
+    --secondary-foreground: 210 67% 96%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 225 71% 22%;
+    --muted-foreground: 210 42% 68%;  /* text-muted #8BACCF */
 
-    --accent: 153 100% 50%;
-    --accent-foreground: 0 0% 4%;
+    --accent: 200 68% 58%;
+    --accent-foreground: 226 78% 14%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 78% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 10%;
-    --input: 0 0% 13%;
-    --ring: 153 100% 50%;
+    --border: 200 68% 58% / 0.18;
+    --input: 225 71% 22%;
+    --ring: 200 68% 58%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 0 0% 55%;
-    --sidebar-primary: 153 100% 50%;
-    --sidebar-primary-foreground: 0 0% 4%;
-    --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 0 0% 88%;
-    --sidebar-border: 0 0% 10%;
-    --sidebar-ring: 153 100% 50%;
+    --sidebar-background: 226 78% 12%;
+    --sidebar-foreground: 210 42% 68%;
+    --sidebar-primary: 200 68% 58%;
+    --sidebar-primary-foreground: 226 78% 14%;
+    --sidebar-accent: 225 71% 22%;
+    --sidebar-accent-foreground: 210 67% 96%;
+    --sidebar-border: 200 68% 58% / 0.15;
+    --sidebar-ring: 200 68% 58%;
 
-    --neon-glow: 0 0 8px hsl(153 100% 50% / 0.4), 0 0 20px hsl(153 100% 50% / 0.2);
-    --neon-glow-strong: 0 0 10px hsl(153 100% 50% / 0.6), 0 0 30px hsl(153 100% 50% / 0.3), 0 0 60px hsl(153 100% 50% / 0.1);
+    --neon-glow: 0 0 8px hsl(200 68% 58% / 0.4), 0 0 20px hsl(200 68% 58% / 0.2);
+    --neon-glow-strong: 0 0 10px hsl(200 68% 58% / 0.6), 0 0 30px hsl(200 68% 58% / 0.3),
+      0 0 60px hsl(200 68% 58% / 0.1);
   }
 }
 
@@ -62,7 +62,7 @@
 
 @layer utilities {
   .font-mono-code {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Space Mono', 'Fira Code', monospace;
   }
 
   .neon-glow {
@@ -74,6 +74,48 @@
   }
 
   .neon-text-glow {
-    text-shadow: 0 0 10px hsl(153 100% 50% / 0.5), 0 0 20px hsl(153 100% 50% / 0.3);
+    text-shadow: 0 0 10px hsl(200 68% 58% / 0.5), 0 0 20px hsl(200 68% 58% / 0.3);
+  }
+
+  /* DOCSSA brand utilities */
+  .brand-grid-bg {
+    background-image:
+      linear-gradient(rgba(75, 170, 220, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(75, 170, 220, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .brand-glow-primary {
+    background: radial-gradient(circle, rgba(27, 74, 138, 0.45) 0%, transparent 70%);
+  }
+
+  .brand-glow-secondary {
+    background: radial-gradient(circle, rgba(75, 170, 220, 0.15) 0%, transparent 70%);
+  }
+
+  .brand-glass {
+    background: rgba(8, 21, 64, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .brand-card {
+    background: rgba(8, 21, 64, 0.7);
+    border: 1px solid rgba(75, 170, 220, 0.15);
+    transition: all 0.25s ease;
+  }
+
+  .brand-card:hover {
+    border-color: rgba(75, 170, 220, 0.4);
+    transform: translateY(-4px);
+    background: rgba(26, 74, 138, 0.3);
+  }
+
+  .brand-text-gradient {
+    background: linear-gradient(135deg, #7ECBEF 0%, #4BAADC 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 }

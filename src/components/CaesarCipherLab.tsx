@@ -114,7 +114,7 @@ export function CaesarCipherLab() {
               value={shift}
               onChange={(e) => setShift(Number(e.target.value))}
               className="w-full accent-primary"
-              style={{ accentColor: "hsl(153 100% 50%)" }}
+              style={{ accentColor: "hsl(200 68% 58%)" }}
             />
           </div>
 

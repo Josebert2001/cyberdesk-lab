@@ -27,11 +27,11 @@ export function MatrixRain() {
     window.addEventListener("resize", resize);
 
     const draw = () => {
-      ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
+      ctx.fillStyle = "rgba(8, 21, 64, 0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "hsl(153 100% 50% / 0.15)";
-      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = "hsl(200 68% 58% / 0.18)";
+      ctx.font = `${fontSize}px 'Space Mono', monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const char = chars[Math.floor(Math.random() * chars.length)];

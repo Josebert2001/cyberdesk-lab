@@ -72,15 +72,22 @@ export function AppSidebar() {
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
-      <div className="p-6">
-        <h1 className="text-2xl font-bold text-primary neon-text-glow font-mono">
-          CYB Dept.
-        </h1>
-        <p className="text-xs text-muted-foreground mt-1">
-          University of Uyo · Faculty of Computing
-        </p>
+      <div className="p-6 border-b border-primary/10">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-full border-2 border-primary flex items-center justify-center bg-card">
+            <span className="font-display text-[11px] tracking-[0.08em] text-primary">DSA</span>
+          </div>
+          <div>
+            <h1 className="font-display text-xl tracking-[0.08em] text-primary leading-none">
+              DOCSSA
+            </h1>
+            <p className="text-[10px] font-mono text-muted-foreground tracking-wider mt-1">
+              UNIUYO · CYBER SEC
+            </p>
+          </div>
+        </div>
         {user && (
-          <p className="text-xs text-muted-foreground/70 font-mono mt-2 truncate">
+          <p className="text-xs text-muted-foreground/70 font-mono mt-3 truncate">
             &gt; {displayName}
           </p>
         )}
@@ -153,8 +160,8 @@ export function AppSidebar() {
             <span>Logout</span>
           </button>
         )}
-        <p className="text-xs text-muted-foreground font-mono px-2">
-          Dept. of Cybersecurity, UniUyo
+        <p className="text-[10px] text-muted-foreground/70 font-mono px-2 tracking-wider uppercase">
+          DOCSSA · UniUyo
         </p>
       </div>
     </div>

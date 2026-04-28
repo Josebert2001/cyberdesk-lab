@@ -15,8 +15,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        mono: ["Fira Code", "monospace"],
+        sans: ["Outfit", "system-ui", "sans-serif"],
+        display: ["'Bebas Neue'", "Impact", "sans-serif"],
+        mono: ["'Space Mono'", "'Fira Code'", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -62,6 +63,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        brand: {
+          navy: "#0D1F4E",
+          "navy-deep": "#081540",
+          "blue-mid": "#1A4A8A",
+          "blue-steel": "#2B6FBF",
+          cyan: "#4BAADC",
+          "cyan-light": "#7ECBEF",
+          "cyan-pale": "#C8EAFA",
+          "off-white": "#F0F6FC",
+          gold: "#E8C84A",
+          "text-muted": "#8BACCF",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -85,12 +98,33 @@ export default {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        "pulse-dot": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.4", transform: "scale(0.7)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-14px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.4s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
+        "pulse-dot": "pulse-dot 1.8s ease-in-out infinite",
+        float: "float 5s ease-in-out infinite",
+      },
+      backgroundImage: {
+        "brand-grid":
+          "linear-gradient(rgba(75,170,220,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(75,170,220,0.06) 1px, transparent 1px)",
+        "brand-glow-primary":
+          "radial-gradient(circle, rgba(27,74,138,0.45) 0%, transparent 70%)",
+        "brand-glow-secondary":
+          "radial-gradient(circle, rgba(75,170,220,0.15) 0%, transparent 70%)",
+      },
+      backgroundSize: {
+        "grid-60": "60px 60px",
       },
     },
   },
