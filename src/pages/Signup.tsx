@@ -17,6 +17,22 @@ export default function Signup() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
+  function friendlyAuthError(msg: string): string {
+    if (msg.includes("User already registered") || msg.includes("already been registered")) {
+      return "An account with this email already exists.";
+    }
+    if (msg.includes("Password should be at least") || msg.includes("password")) {
+      return "Password must be at least 8 characters.";
+    }
+    if (msg.includes("rate limit") || msg.includes("too many requests")) {
+      return "Too many attempts. Please wait a moment and try again.";
+    }
+    if (msg.includes("signup is disabled")) {
+      return "Sign up is currently disabled. Contact your administrator.";
+    }
+    return "Sign up failed. Please try again.";
+  }
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -34,7 +50,7 @@ export default function Signup() {
     setLoading(false);
 
     if (error) {
-      setError(error.message);
+      setError(friendlyAuthError(error.message));
       return;
     }
 
@@ -115,12 +131,12 @@ export default function Signup() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="password" className="text-xs">PASSWORD (min 6)</Label>
+                  <Label htmlFor="password" className="text-xs">PASSWORD (min 8)</Label>
                   <Input
                     id="password"
                     type="password"
                     required
-                    minLength={6}
+                    minLength={8}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="mt-1 font-mono"

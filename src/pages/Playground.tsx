@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { CaesarCipherLab } from "@/components/CaesarCipherLab";
 import { SqlInjectionLab } from "@/components/SqlInjectionLab";
 import { HashCrackerLab } from "@/components/HashCrackerLab";
@@ -30,7 +31,12 @@ const DIFF_COLORS: Record<string, string> = {
 };
 
 const Playground = () => {
-  const [active, setActive] = useState(0);
+  const [searchParams] = useSearchParams();
+  const initialTab = Math.min(
+    Math.max(parseInt(searchParams.get("lab") ?? "0", 10) || 0, 0),
+    labs.length - 1
+  );
+  const [active, setActive] = useState(initialTab);
 
   return (
     <div className="p-6 md:p-12">

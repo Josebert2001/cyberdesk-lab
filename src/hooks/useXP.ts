@@ -73,9 +73,15 @@ export function useXP() {
     });
   }, []);
 
+  // Sets XP directly without showing a toast — used for cloud hydration.
+  const forceSetXP = useCallback((value: number) => {
+    setXp(value);
+  }, []);
+
   return {
     xp,
     addXP,
+    forceSetXP,
     rank: getRank(xp),
     nextRank: getNextRank(xp),
     progress: getProgressPercent(xp),

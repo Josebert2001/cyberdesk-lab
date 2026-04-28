@@ -7,9 +7,9 @@ import { TypewriterHero } from "@/components/TypewriterHero";
 import { MatrixRain } from "@/components/MatrixRain";
 
 const labs = [
-  { title: "Caesar Cipher", desc: "Encrypt & crack messages" },
-  { title: "SQL Injection", desc: "Break a login form" },
-  { title: "Hash Cracker", desc: "Crack MD5 hashes" },
+  { title: "Caesar Cipher", desc: "Encrypt & crack messages", tab: 0 },
+  { title: "SQL Injection", desc: "Break a login form", tab: 1 },
+  { title: "Hash Cracker", desc: "Crack MD5 hashes", tab: 2 },
 ];
 
 const Lab = () => {
@@ -64,7 +64,7 @@ const Lab = () => {
             <Button
               variant="neon"
               size="sm"
-              onClick={() => navigate("/playground")}
+              onClick={() => navigate(`/playground?lab=${lab.tab}`)}
               className="w-full font-mono text-xs"
             >
               Launch Lab

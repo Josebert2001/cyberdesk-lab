@@ -29,11 +29,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const fetchProfile = async (userId: string) => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("profiles")
       .select("*")
       .eq("id", userId)
       .maybeSingle();
+    if (error) console.error("fetchProfile error:", error.message);
     if (data) setProfile(data as Profile);
   };
 

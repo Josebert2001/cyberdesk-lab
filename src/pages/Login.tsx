@@ -14,6 +14,19 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  function friendlyAuthError(msg: string): string {
+    if (msg.includes("Invalid login credentials") || msg.includes("invalid_credentials")) {
+      return "Invalid email or password.";
+    }
+    if (msg.includes("Email not confirmed")) {
+      return "Please confirm your email before logging in.";
+    }
+    if (msg.includes("rate limit") || msg.includes("too many requests")) {
+      return "Too many attempts. Please wait a moment and try again.";
+    }
+    return "Login failed. Please try again.";
+  }
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -21,7 +34,7 @@ export default function Login() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (error) {
-      setError(error.message);
+      setError(friendlyAuthError(error.message));
       return;
     }
     navigate("/lab", { replace: true });

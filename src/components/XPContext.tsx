@@ -13,13 +13,10 @@ export function XPProvider({ children }: { children: ReactNode }) {
   const initializedRef = useRef(false);
   const writeTimerRef = useRef<number | null>(null);
 
-  // Hydrate local XP from profile once when user logs in
+  // Hydrate local XP from cloud on login — cloud is always authoritative.
   useEffect(() => {
     if (!user || !profile || initializedRef.current) return;
-    if (profile.xp > xp.xp) {
-      // bring local up to cloud value
-      xp.addXP(profile.xp - xp.xp);
-    }
+    xp.forceSetXP(profile.xp);
     initializedRef.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, profile]);
