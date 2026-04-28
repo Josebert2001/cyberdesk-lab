@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import {
   Shield,
-  Brain,
-  Terminal,
   Zap,
   BookOpen,
-  FolderOpen,
   Swords,
   GraduationCap,
   Microscope,
   Briefcase,
   Code2,
+  ChevronRight,
 } from "lucide-react";
 
 const pillars = [
@@ -35,31 +33,37 @@ const programs = [
   {
     icon: Swords,
     title: "CTF Competitions",
+    tag: "offensive_sec",
     desc: "Internal and inter-university Capture The Flag competitions covering web exploitation, cryptography, forensics, and reverse engineering.",
   },
   {
     icon: Code2,
     title: "Skills Bootcamp",
+    tag: "training",
     desc: "Intensive short courses on networking, Linux, Python for security, and cloud security fundamentals — fully free for DOCSSA members.",
   },
   {
     icon: Microscope,
     title: "Research Cluster",
+    tag: "research",
     desc: "Faculty-supervised research groups publishing on AI security, threat intelligence, and digital forensics for African contexts.",
   },
   {
     icon: Briefcase,
     title: "Industry Connect",
+    tag: "career",
     desc: "Monthly guest lectures and internship pipelines with Lagos, Abuja, and remote cybersecurity firms — helping you land your first role.",
   },
   {
     icon: Zap,
     title: "Hackathon Squad",
+    tag: "competition",
     desc: "Team formation and coaching for national hackathons — DOCSSA members have placed in multiple regional tech competitions.",
   },
   {
     icon: BookOpen,
     title: "Exam Prep Hub",
+    tag: "academic",
     desc: "Past question banks, CBT practice tools, and peer-led revision sessions to keep your GPA strong while you skill up.",
   },
 ];
@@ -70,175 +74,188 @@ const stats = [
   { num: "200+", label: "Active Members" },
   { num: "12", label: "Programs Yearly" },
   { num: "5", label: "Exec Portfolios" },
-  { num: "1st", label: "CyberSec Dept in UniUyo" },
+  { num: "1st", label: "CyberSec Dept" },
 ];
 
 const executives = [
   { initials: "PR", name: "President", role: "Executive President" },
   { initials: "VP", name: "Vice President", role: "Vice President" },
-  { initials: "SG", name: "Secretary General", role: "Sec. General" },
-  { initials: "FO", name: "Financial Officer", role: "Treasurer" },
+  { initials: "SG", name: "Sec. General", role: "Secretary General" },
+  { initials: "FO", name: "Treasurer", role: "Financial Officer" },
   { initials: "PR", name: "PRO", role: "Public Relations" },
 ];
-
-function BrandLogo({ size = 160 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 160 160"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ filter: "drop-shadow(0 0 30px rgba(75, 170, 220, 0.4))" }}
-    >
-      <circle cx="80" cy="80" r="76" fill="#0D1F4E" stroke="#4BAADC" strokeWidth="3" />
-      <circle cx="80" cy="80" r="68" fill="none" stroke="#2B6FBF" strokeWidth="1" />
-      <text x="80" y="60" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontSize="10" fill="#8BACCF" letterSpacing="2">
-        DEPARTMENT OF
-      </text>
-      <text x="80" y="74" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontSize="8" fill="#8BACCF" letterSpacing="1">
-        CYBER SECURITY
-      </text>
-      <text x="80" y="86" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontSize="7" fill="#7ECBEF" letterSpacing="1">
-        STUDENTS ASSOCIATION
-      </text>
-      <path
-        d="M80 95 L65 103 L65 118 Q65 130 80 136 Q95 130 95 118 L95 103 Z"
-        fill="#1A4A8A"
-        stroke="#4BAADC"
-        strokeWidth="1.5"
-      />
-      <text x="80" y="118" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontSize="8" fill="white" fontWeight="bold">
-        UNIUYO
-      </text>
-      <text
-        x="80"
-        y="148"
-        textAnchor="middle"
-        fontFamily="Arial Black, sans-serif"
-        fontSize="11"
-        fill="#4BAADC"
-        letterSpacing="3"
-        fontWeight="bold"
-      >
-        DOCSSA
-      </text>
-    </svg>
-  );
-}
 
 export default function Welcome() {
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 brand-glass border-b border-primary/15">
+      <nav className="fixed top-0 left-0 right-0 z-50 brand-glass border-b border-primary/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
           <Link to="/welcome" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center bg-card">
-              <span className="font-display text-xs tracking-[0.08em] text-primary">DSA</span>
+            <div className="w-8 h-8 border border-primary/50 flex items-center justify-center bg-primary/5 shrink-0">
+              <span className="font-mono text-[9px] tracking-widest text-primary font-bold">DSA</span>
             </div>
-            <span className="font-display text-2xl tracking-[0.08em] text-[#7ECBEF]">DOCSSA</span>
+            <div className="leading-none">
+              <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
+              <span className="hidden sm:inline font-mono text-[9px] text-muted-foreground/40 ml-2 tracking-widest">// UNIUYO</span>
+            </div>
           </Link>
-          <ul className="hidden md:flex items-center gap-10 list-none">
-            <li>
-              <a href="#about" className="text-xs uppercase tracking-[0.06em] font-medium text-muted-foreground hover:text-[#7ECBEF] transition-colors">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#programs" className="text-xs uppercase tracking-[0.06em] font-medium text-muted-foreground hover:text-[#7ECBEF] transition-colors">
-                Programs
-              </a>
-            </li>
-            <li>
-              <a href="#executives" className="text-xs uppercase tracking-[0.06em] font-medium text-muted-foreground hover:text-[#7ECBEF] transition-colors">
-                Executives
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="text-xs uppercase tracking-[0.06em] font-medium text-muted-foreground hover:text-[#7ECBEF] transition-colors">
-                Contact
-              </a>
-            </li>
+
+          <ul className="hidden md:flex items-center gap-8 list-none">
+            {["about", "programs", "executives", "contact"].map((link) => (
+              <li key={link}>
+                <a
+                  href={`#${link}`}
+                  className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {link}
+                </a>
+              </li>
+            ))}
           </ul>
-          <div className="flex items-center gap-2">
+
+          <div className="flex items-center gap-3">
             <Link
               to="/login"
-              className="hidden sm:inline-block text-xs uppercase tracking-[0.06em] font-medium text-muted-foreground hover:text-[#7ECBEF] transition-colors px-3 py-2"
+              className="hidden sm:block font-mono text-[10px] uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors px-3 py-2"
             >
               Login
             </Link>
             <Link
               to="/signup"
-              className="inline-block bg-primary text-primary-foreground font-bold text-xs uppercase tracking-[0.06em] px-4 py-2.5 rounded hover:bg-[#7ECBEF] hover:-translate-y-px transition-all"
+              className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] font-bold px-5 py-2.5 bg-primary text-primary-foreground hover:bg-brand-ember-bright transition-all"
             >
-              Join Us
+              Join <ChevronRight className="h-3 w-3" />
             </Link>
           </div>
         </div>
       </nav>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center pt-32 pb-20 px-6 md:px-12 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-28 pb-20 px-6 md:px-12 overflow-hidden">
         <div className="absolute inset-0 brand-grid-bg" />
+        <div className="absolute inset-0 scanlines opacity-25 pointer-events-none" />
         <div
-          className="absolute -top-32 -left-20 w-[700px] h-[700px] pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(27,74,138,0.45) 0%, transparent 70%)" }}
+          className="absolute -top-40 -left-20 w-[900px] h-[900px] pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(255,100,0,0.18) 0%, transparent 62%)" }}
         />
         <div
-          className="absolute -bottom-52 -right-24 w-[600px] h-[600px] pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(75,170,220,0.15) 0%, transparent 70%)" }}
+          className="absolute bottom-0 -right-20 w-[600px] h-[600px] pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(255,136,0,0.07) 0%, transparent 65%)" }}
         />
 
-        <div className="relative z-10 max-w-7xl w-full mx-auto grid md:grid-cols-[1fr_auto] gap-12 items-center">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/35 rounded-full px-4 py-1.5 mb-7">
+        <div className="relative z-10 max-w-7xl w-full mx-auto grid md:grid-cols-[1fr_360px] gap-12 lg:gap-20 items-center">
+          {/* Left: Main content */}
+          <div className="animate-fade-in">
+            <div className="inline-flex items-center gap-2 border border-primary/30 bg-primary/5 px-3 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot" />
-              <span className="text-[11px] font-mono text-primary tracking-wide">
-                University of Uyo · Faculty of Computing · Est. 2024
+              <span className="font-mono text-[10px] text-primary tracking-widest uppercase">
+                System Online · UniUyo · Est. 2024
               </span>
             </div>
 
-            <h1 className="font-display text-[3.5rem] sm:text-7xl md:text-[6.5rem] leading-[0.95] tracking-[0.03em] text-foreground">
-              Defend.
+            <h1 className="font-display text-[4.5rem] sm:text-[6rem] md:text-[7rem] lg:text-[8.5rem] leading-[0.88] tracking-[0.02em] text-foreground">
+              DEFEND.
               <br />
-              <span className="block text-primary">Innovate.</span>
-              Lead.
+              <span className="text-primary neon-text-glow">INNOVATE.</span>
+              <br />
+              LEAD.
             </h1>
 
-            <p className="text-base text-muted-foreground leading-[1.75] max-w-xl mt-6 mb-10">
-              The Department of Cyber Security Students Association at UniUyo — building the next generation of digital
-              defenders, ethical hackers, and cybersecurity leaders across Nigeria.
-            </p>
+            <div className="mt-8 mb-10">
+              <p className="font-mono text-[10px] text-primary/45 mb-2 tracking-widest">// mission statement</p>
+              <p className="font-mono text-sm text-muted-foreground leading-[1.85] max-w-lg">
+                The Department of Cyber Security Students Association at UniUyo — building the next generation of
+                digital defenders, ethical hackers, and cybersecurity leaders across Nigeria.
+              </p>
+            </div>
 
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/signup"
-                className="inline-block bg-primary text-primary-foreground font-bold text-sm uppercase tracking-[0.05em] px-8 py-3.5 rounded hover:bg-[#7ECBEF] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(75,170,220,0.3)] transition-all"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-7 py-3.5 hover:bg-brand-ember-bright hover:shadow-[0_6px_24px_rgba(255,136,0,0.35)] transition-all"
               >
-                Become a Member
+                <span>Enlist Now</span>
+                <ChevronRight className="h-3.5 w-3.5" />
               </Link>
               <a
                 href="#programs"
-                className="inline-block bg-transparent text-[#7ECBEF] border border-primary/40 font-semibold text-sm uppercase tracking-[0.05em] px-8 py-3.5 rounded hover:border-primary hover:bg-primary/[0.08] transition-all"
+                className="inline-flex items-center gap-2 border border-primary/35 text-primary font-mono text-xs uppercase tracking-[0.1em] px-7 py-3.5 hover:border-primary hover:bg-primary/5 transition-all"
               >
                 Our Programs
               </a>
             </div>
           </div>
 
-          <div className="hidden md:block animate-float">
-            <BrandLogo size={340} />
+          {/* Right: Terminal HUD panel */}
+          <div className="hidden md:block animate-fade-in" style={{ animationDelay: "0.15s" }}>
+            <div className="border border-primary/20 bg-card/85 backdrop-blur-sm overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
+                <span className="w-2.5 h-2.5 rounded-full bg-destructive/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
+                <span className="w-2.5 h-2.5 rounded-full bg-primary/70" />
+                <span className="ml-2 font-mono text-[9px] text-muted-foreground/60 tracking-wider">docssa_portal — bash</span>
+              </div>
+              <div className="p-5 font-mono text-xs space-y-1.5">
+                <p>
+                  <span className="text-primary">$</span>{" "}
+                  <span className="text-muted-foreground">connect --host docssa.uniuyo.ng</span>
+                </p>
+                <p className="text-muted-foreground/50 text-[10px]">Establishing secure connection...</p>
+                <p className="text-primary text-[10px]">✓ Connection established.</p>
+                <div className="mt-4">
+                  <p>
+                    <span className="text-primary">$</span>{" "}
+                    <span className="text-muted-foreground">status --verbose</span>
+                  </p>
+                </div>
+                <div className="mt-2 space-y-1 text-[11px]">
+                  <p>
+                    <span className="text-primary/55">[DEPT]</span>{" "}
+                    <span className="text-foreground">CYBER_SECURITY</span>
+                  </p>
+                  <p>
+                    <span className="text-primary/55">[UNIV]</span>{" "}
+                    <span className="text-foreground">UNIVERSITY_OF_UYO</span>
+                  </p>
+                  <p>
+                    <span className="text-primary/55">[YEAR]</span>{" "}
+                    <span className="text-foreground">EST._2024</span>
+                  </p>
+                  <p>
+                    <span className="text-primary/55">[STAT]</span>{" "}
+                    <span className="text-primary font-bold">● ONLINE</span>
+                  </p>
+                </div>
+                <div className="mt-4 pt-4 border-t border-primary/10 space-y-1.5 text-[11px]">
+                  {stats.map((s) => (
+                    <p key={s.label}>
+                      <span className="text-primary/55">
+                        [{s.label.toUpperCase().replace(/ /g, "_")}]
+                      </span>{" "}
+                      <span className="text-foreground font-bold">{s.num}</span>
+                    </p>
+                  ))}
+                </div>
+                <p className="mt-4 text-primary text-base leading-none animate-pulse-dot">█</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* STATS BAR */}
-      <div className="bg-[rgba(26,74,138,0.25)] border-y border-primary/15 py-8 px-6">
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-x-20 gap-y-6">
+      <div className="bg-primary/[0.04] border-y border-primary/12 py-8 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-display text-[2.8rem] leading-none tracking-[0.04em] text-primary">{s.num}</div>
-              <div className="text-[11px] font-mono text-muted-foreground tracking-wider uppercase mt-1">{s.label}</div>
+              <div className="font-display text-[2.8rem] leading-none tracking-[0.04em] text-primary neon-text-glow">
+                {s.num}
+              </div>
+              <div className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase mt-1.5">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
@@ -246,75 +263,119 @@ export default function Welcome() {
 
       {/* ABOUT */}
       <section id="about" className="py-24 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="font-mono text-[11px] text-primary tracking-[0.15em] uppercase mb-3">// Who We Are</p>
-            <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.03em]">
-              Nigeria's Boldest <span className="text-primary">Cyber</span> Student Body
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 01 — Who We Are</p>
+            <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
+              Nigeria's Boldest{" "}
+              <span className="text-primary">Cyber</span>
+              <br />
+              Student Body
             </h2>
-            <p className="text-base text-muted-foreground leading-[1.85] mt-6">
-              DOCSSA is the official student association of the Department of Cyber Security, University of Uyo. We bridge
-              the gap between classroom learning and real-world digital defense — equipping students with hands-on CTF
-              experience, industry mentorship, and a powerful alumni network.
+            <p className="font-mono text-sm text-muted-foreground leading-[1.85] mt-6">
+              DOCSSA is the official student association of the Department of Cyber Security, University of Uyo. We
+              bridge the gap between classroom learning and real-world digital defense — equipping students with
+              hands-on CTF experience, industry mentorship, and a powerful alumni network.
             </p>
 
             <div className="flex flex-col gap-5 mt-8">
               {pillars.map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 shrink-0 bg-primary/10 border border-primary/30 rounded-lg flex items-center justify-center mt-0.5">
-                    <Icon className="h-5 w-5 text-primary" />
+                  <div className="w-9 h-9 shrink-0 border border-primary/25 bg-primary/5 flex items-center justify-center mt-0.5">
+                    <Icon className="h-4 w-4 text-primary" />
                   </div>
                   <div>
-                    <h4 className="text-[0.95rem] font-semibold text-foreground mb-1">{title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                    <h4 className="font-mono text-sm font-bold text-foreground mb-1">{title}</h4>
+                    <p className="font-mono text-[11px] text-muted-foreground leading-[1.75]">{desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="relative">
-            <div className="relative bg-gradient-to-br from-[rgba(26,74,138,0.4)] to-[rgba(13,31,78,0.6)] border border-primary/20 rounded-2xl p-10 overflow-hidden">
-              <div className="absolute top-0 left-5 right-5 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent" />
-              <div className="flex justify-center mb-8">
-                <BrandLogo size={160} />
+          {/* Skills terminal */}
+          <div>
+            <div className="border border-primary/18 bg-card/60 overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
+                <span className="w-2 h-2 rounded-full bg-destructive/55" />
+                <span className="w-2 h-2 rounded-full bg-brand-ember-bright/45" />
+                <span className="w-2 h-2 rounded-full bg-primary/55" />
+                <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">skills.txt — vim</span>
               </div>
-              <div className="flex flex-wrap gap-2 justify-center">
-                {tags.map((t) => (
-                  <span
-                    key={t}
-                    className="bg-primary/10 border border-primary/25 rounded px-3 py-1 text-xs font-mono text-[#7ECBEF] tracking-tight"
-                  >
-                    {t}
-                  </span>
-                ))}
+              <div className="p-6 font-mono text-xs">
+                <p className="text-primary/50 mb-3">$ grep -r skills ./docssa</p>
+                <p className="text-muted-foreground/45 mb-4 text-[10px]">Found {tags.length} matches in /domains/</p>
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((t) => (
+                    <span
+                      key={t}
+                      className="border border-primary/25 bg-primary/5 px-3 py-1.5 text-[11px] text-primary/85 tracking-tight"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-8 pt-6 border-t border-primary/10 space-y-2 text-[11px]">
+                  <p>
+                    <span className="text-primary/50">STATUS</span>
+                    {"  "}
+                    <span className="text-primary">● ACTIVELY RECRUITING</span>
+                  </p>
+                  <p>
+                    <span className="text-primary/50">LOCATION</span>
+                    {"  "}
+                    <span className="text-muted-foreground">University of Uyo, Nigeria</span>
+                  </p>
+                  <p>
+                    <span className="text-primary/50">FOCUS</span>
+                    {"    "}
+                    <span className="text-muted-foreground">Offensive & Defensive Security</span>
+                  </p>
+                  <p>
+                    <span className="text-primary/50">TOOLS</span>
+                    {"    "}
+                    <span className="text-muted-foreground">Kali, Wireshark, Burp, Python</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <hr className="mx-6 md:mx-12 border-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <hr className="mx-6 md:mx-12 border-0 h-px bg-gradient-to-r from-transparent via-primary/18 to-transparent" />
 
       {/* PROGRAMS */}
-      <section id="programs" className="py-24 px-6 md:px-12 bg-[rgba(13,31,78,0.5)]">
+      <section id="programs" className="py-24 px-6 md:px-12 bg-primary/[0.025]">
         <div className="max-w-2xl mx-auto text-center mb-16">
-          <p className="font-mono text-[11px] text-primary tracking-[0.15em] uppercase mb-3">// What We Do</p>
-          <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.03em]">
+          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 02 — What We Do</p>
+          <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
             Our <span className="text-primary">Programs</span>
           </h2>
-          <p className="text-muted-foreground text-[0.95rem] leading-[1.7] mt-4">
-            From beginner workshops to advanced research, DOCSSA runs programs designed to fast-track your cybersecurity
-            career.
+          <p className="font-mono text-[11px] text-muted-foreground leading-[1.75] mt-4 max-w-lg mx-auto">
+            From beginner workshops to advanced research, DOCSSA runs programs designed to fast-track your
+            cybersecurity career.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {programs.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="brand-card rounded-xl p-8 group relative overflow-hidden cursor-pointer">
-              <Icon className="h-8 w-8 text-primary mb-5" />
-              <h3 className="font-display text-2xl tracking-[0.03em] text-foreground mb-3">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-[1.7]">{desc}</p>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {programs.map(({ icon: Icon, title, tag, desc }) => (
+            <div key={title} className="brand-card group relative overflow-hidden">
+              <div className="flex items-center gap-1.5 px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
+                <span className="w-2 h-2 rounded-full bg-destructive/45" />
+                <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                <span className="w-2 h-2 rounded-full bg-primary/45" />
+                <span className="ml-2 font-mono text-[9px] text-primary/35 tracking-widest">[{tag}]</span>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 border border-primary/25 bg-primary/5 flex items-center justify-center shrink-0">
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+                </div>
+                <h3 className="font-display text-[1.35rem] tracking-[0.04em] text-foreground mb-2.5">{title}</h3>
+                <p className="font-mono text-[11px] text-muted-foreground leading-[1.75]">{desc}</p>
+              </div>
               <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </div>
           ))}
@@ -324,22 +385,24 @@ export default function Welcome() {
       {/* EXECUTIVES */}
       <section id="executives" className="py-24 px-6 md:px-12">
         <div className="max-w-xl mx-auto text-center mb-16">
-          <p className="font-mono text-[11px] text-primary tracking-[0.15em] uppercase mb-3">// Leadership</p>
-          <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.03em]">
+          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 03 — Leadership</p>
+          <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
             The <span className="text-primary">Executive</span> Council
           </h2>
         </div>
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {executives.map((exec, i) => (
             <div
               key={`${exec.role}-${i}`}
-              className="text-center p-8 px-4 bg-[rgba(8,21,64,0.6)] border border-primary/15 rounded-xl hover:border-primary/35 hover:-translate-y-0.5 transition-all"
+              className="text-center p-5 border border-primary/12 bg-card/60 hover:border-primary/38 hover:-translate-y-0.5 transition-all group"
             >
-              <div className="w-[72px] h-[72px] rounded-full mx-auto mb-4 flex items-center justify-center font-display text-2xl tracking-wider text-white bg-gradient-to-br from-[#1A4A8A] to-[#4BAADC]">
+              <div className="font-mono text-[8px] text-primary/35 tracking-widest mb-3 uppercase">[ID VERIFIED]</div>
+              <div className="w-16 h-16 mx-auto mb-3 border border-primary/30 bg-primary/5 flex items-center justify-center font-display text-2xl tracking-wider text-primary group-hover:neon-glow transition-all">
                 {exec.initials}
               </div>
-              <div className="text-[0.95rem] font-semibold text-foreground mb-1">{exec.name}</div>
-              <div className="text-[11px] font-mono text-primary tracking-wide uppercase leading-relaxed">{exec.role}</div>
+              <div className="font-mono text-xs font-bold text-foreground mb-1">{exec.name}</div>
+              <div className="font-mono text-[9px] text-primary tracking-wide uppercase leading-relaxed">{exec.role}</div>
             </div>
           ))}
         </div>
@@ -348,27 +411,34 @@ export default function Welcome() {
       {/* CTA BAND */}
       <div
         id="join"
-        className="relative bg-gradient-to-br from-[#1A4A8A] to-[#081540] border-y border-primary/20 text-center py-20 px-6 overflow-hidden"
+        className="relative border-y border-primary/18 text-center py-24 px-6 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #1A0E00 0%, #0D0906 55%, #180A00 100%)" }}
       >
+        <div className="absolute inset-0 scanlines opacity-18 pointer-events-none" />
+        <div className="absolute inset-0 brand-grid-bg opacity-60" />
         <span
           aria-hidden
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[18vw] text-white/[0.03] tracking-[0.1em] whitespace-nowrap pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[18vw] text-primary/[0.035] tracking-[0.1em] whitespace-nowrap pointer-events-none select-none"
         >
           DOCSSA
         </span>
         <div className="relative">
-          <h2 className="font-display text-4xl md:text-6xl tracking-[0.04em] text-foreground mb-4">
-            Ready to Defend the Digital Frontier?
+          <p className="font-mono text-[10px] text-primary/60 tracking-[0.25em] uppercase mb-5">// Ready to join?</p>
+          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-[0.03em] text-foreground mb-4">
+            DEFEND THE
+            <br />
+            <span className="text-primary neon-text-glow">DIGITAL FRONTIER</span>
           </h2>
-          <p className="text-base text-muted-foreground max-w-lg mx-auto mb-10 leading-[1.75]">
+          <p className="font-mono text-sm text-muted-foreground max-w-lg mx-auto mb-10 leading-[1.8]">
             Join over 200 cybersecurity students building skills, friendships, and careers at Nigeria's premier cyber
             department.
           </p>
           <Link
             to="/signup"
-            className="inline-block bg-primary text-primary-foreground font-bold text-sm uppercase tracking-[0.05em] px-8 py-3.5 rounded hover:bg-[#7ECBEF] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(75,170,220,0.3)] transition-all"
+            className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-10 py-4 hover:bg-brand-ember-bright hover:shadow-[0_8px_32px_rgba(255,136,0,0.4)] transition-all"
           >
-            Apply for Membership
+            <span>Apply for Membership</span>
+            <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         </div>
       </div>
@@ -376,29 +446,32 @@ export default function Welcome() {
       {/* FOOTER */}
       <footer
         id="contact"
-        className="bg-[#081540] border-t border-primary/10 px-6 md:px-12 py-10 flex flex-wrap items-center justify-between gap-6"
+        className="bg-background border-t border-primary/8 px-6 md:px-12 py-8 flex flex-wrap items-center justify-between gap-6"
       >
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full border-2 border-primary flex items-center justify-center bg-card">
-            <span className="font-display text-[10px] tracking-[0.08em] text-primary">DSA</span>
+          <div className="w-7 h-7 border border-primary/40 flex items-center justify-center bg-primary/5">
+            <span className="font-mono text-[8px] tracking-widest text-primary font-bold">DSA</span>
           </div>
-          <span className="font-display text-lg tracking-[0.08em] text-[#7ECBEF]">DOCSSA · UniUyo</span>
+          <span className="font-mono text-sm text-primary/60">DOCSSA · UniUyo</span>
         </div>
-        <div className="flex gap-8">
-          <a href="#about" className="text-xs text-muted-foreground hover:text-[#7ECBEF] transition-colors">
-            About
-          </a>
-          <a href="#programs" className="text-xs text-muted-foreground hover:text-[#7ECBEF] transition-colors">
-            Programs
-          </a>
-          <a href="#contact" className="text-xs text-muted-foreground hover:text-[#7ECBEF] transition-colors">
-            Contact
-          </a>
-          <Link to="/lab" className="text-xs text-muted-foreground hover:text-[#7ECBEF] transition-colors">
+        <div className="flex gap-6">
+          {["About", "Programs", "Contact"].map((l) => (
+            <a
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors tracking-wide"
+            >
+              {l}
+            </a>
+          ))}
+          <Link
+            to="/lab"
+            className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors tracking-wide"
+          >
             Portal
           </Link>
         </div>
-        <div className="text-xs text-muted-foreground font-mono tracking-tight">
+        <div className="font-mono text-[10px] text-muted-foreground/40 tracking-tight">
           © 2026 DOCSSA — Dept. of Cyber Security, University of Uyo
         </div>
       </footer>

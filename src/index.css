@@ -4,49 +4,48 @@
 
 @layer base {
   :root {
-    /* DOCSSA brand palette — deep navy + cyan */
-    --background: 226 78% 14%;        /* navy-deep #081540 */
-    --foreground: 210 67% 96%;        /* off-white #F0F6FC */
+    /* Ember Protocol — warm obsidian + electric amber */
+    --background: 22 40% 4%;           /* #0D0906 warm obsidian */
+    --foreground: 42 45% 89%;          /* #EFE8D8 warm cream */
 
-    --card: 225 71% 18%;              /* navy #0D1F4E */
-    --card-foreground: 210 67% 96%;
+    --card: 22 45% 7%;                 /* #181009 ember dark */
+    --card-foreground: 42 45% 89%;
 
-    --popover: 225 71% 18%;
-    --popover-foreground: 210 67% 96%;
+    --popover: 22 45% 7%;
+    --popover-foreground: 42 45% 89%;
 
-    --primary: 200 68% 58%;           /* cyan #4BAADC */
-    --primary-foreground: 226 78% 14%;
+    --primary: 33 100% 50%;            /* #FF8800 electric amber */
+    --primary-foreground: 22 40% 4%;
 
-    --secondary: 214 69% 32%;         /* blue-mid #1A4A8A */
-    --secondary-foreground: 210 67% 96%;
+    --secondary: 22 55% 13%;           /* ember-deep */
+    --secondary-foreground: 42 45% 89%;
 
-    --muted: 225 71% 22%;
-    --muted-foreground: 210 42% 68%;  /* text-muted #8BACCF */
+    --muted: 22 40% 11%;
+    --muted-foreground: 37 21% 51%;    /* #9C8868 warm muted */
 
-    --accent: 200 68% 58%;
-    --accent-foreground: 226 78% 14%;
+    --accent: 33 100% 50%;
+    --accent-foreground: 22 40% 4%;
 
-    --destructive: 0 78% 60%;
+    --destructive: 9 88% 53%;          /* #F03B1A */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 200 68% 58% / 0.18;
-    --input: 225 71% 22%;
-    --ring: 200 68% 58%;
+    --border: 33 100% 50% / 0.14;
+    --input: 22 40% 11%;
+    --ring: 33 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 226 78% 12%;
-    --sidebar-foreground: 210 42% 68%;
-    --sidebar-primary: 200 68% 58%;
-    --sidebar-primary-foreground: 226 78% 14%;
-    --sidebar-accent: 225 71% 22%;
-    --sidebar-accent-foreground: 210 67% 96%;
-    --sidebar-border: 200 68% 58% / 0.15;
-    --sidebar-ring: 200 68% 58%;
+    --sidebar-background: 22 40% 3%;
+    --sidebar-foreground: 37 21% 51%;
+    --sidebar-primary: 33 100% 50%;
+    --sidebar-primary-foreground: 22 40% 4%;
+    --sidebar-accent: 22 40% 11%;
+    --sidebar-accent-foreground: 42 45% 89%;
+    --sidebar-border: 33 100% 50% / 0.10;
+    --sidebar-ring: 33 100% 50%;
 
-    --neon-glow: 0 0 8px hsl(200 68% 58% / 0.4), 0 0 20px hsl(200 68% 58% / 0.2);
-    --neon-glow-strong: 0 0 10px hsl(200 68% 58% / 0.6), 0 0 30px hsl(200 68% 58% / 0.3),
-      0 0 60px hsl(200 68% 58% / 0.1);
+    --neon-glow: 0 0 10px rgba(255, 136, 0, 0.4), 0 0 25px rgba(255, 136, 0, 0.2);
+    --neon-glow-strong: 0 0 12px rgba(255, 136, 0, 0.6), 0 0 35px rgba(255, 136, 0, 0.3), 0 0 70px rgba(255, 136, 0, 0.1);
   }
 }
 
@@ -56,15 +55,23 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 }
 
 @layer utilities {
-  .font-mono-code {
-    font-family: 'Space Mono', 'Fira Code', monospace;
+  /* CRT scanline overlay */
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.10) 2px,
+      rgba(0, 0, 0, 0.10) 4px
+    );
   }
 
+  /* Amber neon glow */
   .neon-glow {
     box-shadow: var(--neon-glow);
   }
@@ -74,48 +81,58 @@
   }
 
   .neon-text-glow {
-    text-shadow: 0 0 10px hsl(200 68% 58% / 0.5), 0 0 20px hsl(200 68% 58% / 0.3);
+    text-shadow: 0 0 12px rgba(255, 136, 0, 0.55), 0 0 30px rgba(255, 136, 0, 0.25);
   }
 
-  /* DOCSSA brand utilities */
+  /* Amber hex grid */
   .brand-grid-bg {
     background-image:
-      linear-gradient(rgba(75, 170, 220, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(75, 170, 220, 0.06) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(rgba(255, 136, 0, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 136, 0, 0.045) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
+  /* Radial glows */
   .brand-glow-primary {
-    background: radial-gradient(circle, rgba(27, 74, 138, 0.45) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 100, 0, 0.32) 0%, transparent 70%);
   }
 
   .brand-glow-secondary {
-    background: radial-gradient(circle, rgba(75, 170, 220, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 136, 0, 0.10) 0%, transparent 70%);
   }
 
+  /* Frosted obsidian glass */
   .brand-glass {
-    background: rgba(8, 21, 64, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(13, 9, 6, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
+  /* Tactical card */
   .brand-card {
-    background: rgba(8, 21, 64, 0.7);
-    border: 1px solid rgba(75, 170, 220, 0.15);
-    transition: all 0.25s ease;
+    background: rgba(13, 9, 6, 0.80);
+    border: 1px solid rgba(255, 136, 0, 0.12);
+    transition: all 0.2s ease;
   }
 
   .brand-card:hover {
-    border-color: rgba(75, 170, 220, 0.4);
-    transform: translateY(-4px);
-    background: rgba(26, 74, 138, 0.3);
+    border-color: rgba(255, 136, 0, 0.42);
+    transform: translateY(-3px);
+    background: rgba(49, 32, 15, 0.45);
+    box-shadow: 0 8px 32px rgba(255, 100, 0, 0.12);
   }
 
+  /* Gradient text */
   .brand-text-gradient {
-    background: linear-gradient(135deg, #7ECBEF 0%, #4BAADC 100%);
+    background: linear-gradient(135deg, #FFB347 0%, #FF8800 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+  }
+
+  /* Mono code utility */
+  .font-mono-code {
+    font-family: 'JetBrains Mono', monospace;
   }
 }

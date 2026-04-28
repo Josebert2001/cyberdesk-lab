@@ -1,5 +1,22 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { FlaskConical, Gamepad2, MessageCircle, BookOpen, Menu, X, Zap, Home, GraduationCap, FolderOpen, Trophy, Map, Info, Users, Layers, LogOut } from "lucide-react";
+import {
+  FlaskConical,
+  Gamepad2,
+  MessageCircle,
+  BookOpen,
+  Menu,
+  X,
+  Zap,
+  Home,
+  GraduationCap,
+  FolderOpen,
+  Trophy,
+  Map,
+  Info,
+  Users,
+  Layers,
+  LogOut,
+} from "lucide-react";
 import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
 import { Progress } from "@/components/ui/progress";
@@ -19,9 +36,7 @@ interface NavGroup {
 const navGroups: NavGroup[] = [
   {
     label: "",
-    items: [
-      { title: "Home", path: "/welcome", icon: Home },
-    ],
+    items: [{ title: "Home", path: "/welcome", icon: Home }],
   },
   {
     label: "Learn",
@@ -68,37 +83,37 @@ export function AppSidebar() {
     navigate("/login", { replace: true });
   };
 
-  const displayName = profile?.name || user?.email?.split("@")[0] || "Student";
+  const displayName = profile?.name || user?.email?.split("@")[0] || "student";
 
   const sidebarContent = (
-    <div className="flex flex-col h-full">
-      <div className="p-6 border-b border-primary/10">
+    <div className="flex flex-col h-full bg-sidebar">
+      {/* Header */}
+      <div className="px-5 py-5 border-b border-sidebar-border">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-full border-2 border-primary flex items-center justify-center bg-card">
-            <span className="font-display text-[11px] tracking-[0.08em] text-primary">DSA</span>
+          <div className="w-8 h-8 border border-primary/50 flex items-center justify-center bg-primary/5 shrink-0">
+            <span className="font-mono text-[9px] tracking-widest text-primary font-bold">DSA</span>
           </div>
           <div>
-            <h1 className="font-display text-xl tracking-[0.08em] text-primary leading-none">
-              DOCSSA
-            </h1>
-            <p className="text-[10px] font-mono text-muted-foreground tracking-wider mt-1">
-              UNIUYO · CYBER SEC
+            <h1 className="font-display text-lg tracking-[0.12em] text-primary font-bold leading-none">DOCSSA</h1>
+            <p className="font-mono text-[9px] text-muted-foreground/40 tracking-widest mt-0.5 uppercase">
+              UniUyo · Cyber Sec
             </p>
           </div>
         </div>
         {user && (
-          <p className="text-xs text-muted-foreground/70 font-mono mt-3 truncate">
-            &gt; {displayName}
+          <p className="font-mono text-[10px] text-muted-foreground/50 mt-3 truncate tracking-wide">
+            <span className="text-primary/40">&gt;</span> {displayName}@docssa
           </p>
         )}
       </div>
 
-      <nav className="flex-1 px-3 space-y-4 overflow-y-auto">
+      {/* Navigation */}
+      <nav className="flex-1 px-3 py-4 space-y-5 overflow-y-auto">
         {navGroups.map((group) => (
           <div key={group.label || "home"}>
             {group.label && (
-              <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/50 px-4 mb-1">
-                {group.label}
+              <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-primary/38 px-3 mb-1.5">
+                [{group.label}]
               </p>
             )}
             <div className="space-y-0.5">
@@ -109,13 +124,13 @@ export function AppSidebar() {
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-2.5 rounded-md text-sm transition-all duration-200 ${
+                    className={`flex items-center gap-3 px-3 py-2 text-[11px] transition-all duration-150 border-l-2 ${
                       isActive
-                        ? "text-primary border-l-2 border-primary bg-primary/5 font-medium"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                        ? "text-primary border-primary bg-primary/5 font-bold font-mono"
+                        : "text-muted-foreground hover:text-foreground hover:bg-primary/[0.04] font-mono border-transparent"
                     }`}
                   >
-                    <item.icon className={`h-4 w-4 shrink-0 ${isActive ? "text-primary" : ""}`} />
+                    <item.icon className={`h-3.5 w-3.5 shrink-0 ${isActive ? "text-primary" : ""}`} />
                     <span>{item.title}</span>
                   </NavLink>
                 );
@@ -125,42 +140,48 @@ export function AppSidebar() {
         ))}
       </nav>
 
+      {/* XP section */}
       <div className="px-4 pb-2">
         <div
-          className={`rounded-lg border border-border bg-card p-4 transition-all duration-300 ${
+          className={`border border-primary/12 bg-card/50 p-3.5 transition-all duration-300 ${
             rankUp ? "neon-glow-strong border-primary" : ""
           }`}
         >
-          <div className="flex items-center gap-2 mb-2">
-            <Zap className={`h-4 w-4 text-primary ${rankUp ? "animate-pulse" : ""}`} />
-            <span className={`text-xs font-mono font-bold text-primary ${rankUp ? "neon-text-glow" : ""}`}>
+          <div className="flex items-center gap-2 mb-2.5">
+            <Zap className={`h-3.5 w-3.5 text-primary ${rankUp ? "animate-pulse" : ""}`} />
+            <span
+              className={`font-mono text-[10px] font-bold text-primary tracking-widest uppercase ${
+                rankUp ? "neon-text-glow" : ""
+              }`}
+            >
               {rank.title}
             </span>
           </div>
-          <Progress value={progress} className="h-2 mb-1.5" />
-          <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+          <Progress value={progress} className="h-1.5 mb-1.5" />
+          <div className="flex justify-between font-mono text-[9px] text-muted-foreground/50">
             <span>{xp} XP</span>
             {nextRank ? <span>{nextRank.minXP} XP</span> : <span>MAX</span>}
           </div>
           {rankUp && (
-            <div className="mt-2 text-center text-xs font-mono text-primary neon-text-glow animate-fade-in font-bold">
-              RANK UP!
+            <div className="mt-2 text-center font-mono text-[10px] text-primary neon-text-glow animate-fade-in font-bold tracking-widest">
+              [RANK UP!]
             </div>
           )}
         </div>
       </div>
 
-      <div className="px-4 pb-4 pt-2 space-y-3">
+      {/* Footer */}
+      <div className="px-4 pb-4 pt-2 space-y-2">
         {user && (
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-md text-sm text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors font-mono"
+            className="w-full flex items-center gap-3 px-3 py-2 font-mono text-[10px] text-muted-foreground/50 hover:text-destructive hover:bg-destructive/5 transition-colors"
           >
-            <LogOut className="h-4 w-4 shrink-0" />
-            <span>Logout</span>
+            <LogOut className="h-3.5 w-3.5 shrink-0" />
+            <span>logout</span>
           </button>
         )}
-        <p className="text-[10px] text-muted-foreground/70 font-mono px-2 tracking-wider uppercase">
+        <p className="font-mono text-[9px] text-muted-foreground/25 px-3 tracking-widest uppercase">
           DOCSSA · UniUyo
         </p>
       </div>
@@ -171,10 +192,10 @@ export function AppSidebar() {
     <>
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed top-4 left-4 z-50 md:hidden p-2 rounded-md bg-card border border-border text-foreground"
+        className="fixed top-4 left-4 z-50 md:hidden p-2 bg-card border border-primary/20 text-foreground"
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
-        {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
       </button>
 
       {mobileOpen && (
@@ -185,7 +206,7 @@ export function AppSidebar() {
       )}
 
       <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-60 bg-sidebar border-r border-border transition-transform duration-300 md:translate-x-0 ${
+        className={`fixed top-0 left-0 z-40 h-screen w-60 bg-sidebar border-r border-sidebar-border transition-transform duration-300 md:translate-x-0 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         } md:static md:block`}
       >

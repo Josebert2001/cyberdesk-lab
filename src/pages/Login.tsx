@@ -42,65 +42,85 @@ export default function Login() {
   return (
     <div className="relative min-h-screen bg-background flex items-center justify-center p-6 overflow-hidden">
       <MatrixRain />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background" />
+      <div className="absolute inset-0 brand-grid-bg opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/70 to-background pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-md">
-        <Link to="/welcome" className="flex items-center gap-3 justify-center mb-8">
-          <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center bg-card">
-            <span className="font-display text-xs tracking-[0.08em] text-primary">DSA</span>
+      <div className="relative z-10 w-full max-w-sm animate-fade-in">
+        <Link to="/welcome" className="flex items-center gap-2.5 justify-center mb-8">
+          <div className="w-8 h-8 border border-primary/50 flex items-center justify-center bg-primary/5">
+            <span className="font-mono text-[9px] tracking-widest text-primary font-bold">DSA</span>
           </div>
-          <span className="font-display text-2xl tracking-[0.08em] text-[#7ECBEF]">DOCSSA</span>
+          <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
         </Link>
 
-        <div className="bg-card border border-border rounded-lg p-6 font-mono">
-          <div className="flex gap-2 mb-4">
-            <span className="w-3 h-3 rounded-full bg-destructive" />
-            <span className="w-3 h-3 rounded-full bg-amber-500" />
-            <span className="w-3 h-3 rounded-full bg-primary" />
+        <div className="border border-primary/20 bg-card/90 backdrop-blur-sm overflow-hidden">
+          {/* Terminal chrome */}
+          <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
+            <span className="w-2.5 h-2.5 rounded-full bg-destructive/65" />
+            <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
+            <span className="w-2.5 h-2.5 rounded-full bg-primary/65" />
+            <span className="ml-2 font-mono text-[9px] text-muted-foreground/55 tracking-wider">auth — secure login</span>
           </div>
 
-          <h1 className="text-xl font-bold text-foreground mb-1">&gt; login_</h1>
-          <p className="text-xs text-muted-foreground mb-6">Authenticate to enter the portal.</p>
+          <div className="p-6">
+            <h1 className="font-display text-3xl tracking-[0.06em] text-foreground mb-0.5">&gt; login_</h1>
+            <p className="font-mono text-[10px] text-muted-foreground/60 mb-6 tracking-wide">
+              Authenticate to enter the portal.
+            </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="email" className="text-xs">EMAIL</Label>
-              <Input
-                id="email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 font-mono"
-                autoComplete="email"
-              />
-            </div>
-            <div>
-              <Label htmlFor="password" className="text-xs">PASSWORD</Label>
-              <Input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 font-mono"
-                autoComplete="current-password"
-              />
-            </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Label htmlFor="email" className="font-mono text-[9px] tracking-widest text-primary/55 uppercase">
+                  EMAIL
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1.5 font-mono text-sm bg-background/50"
+                  autoComplete="email"
+                />
+              </div>
+              <div>
+                <Label htmlFor="password" className="font-mono text-[9px] tracking-widest text-primary/55 uppercase">
+                  PASSWORD
+                </Label>
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1.5 font-mono text-sm bg-background/50"
+                  autoComplete="current-password"
+                />
+              </div>
 
-            {error && (
-              <p className="text-xs text-destructive font-mono">&gt; ERROR: {error}</p>
-            )}
+              {error && (
+                <p className="font-mono text-[10px] text-destructive">
+                  <span className="text-destructive/60">&gt;</span> ERROR: {error}
+                </p>
+              )}
 
-            <Button type="submit" variant="neon" className="w-full font-mono" disabled={loading}>
-              {loading ? "Authenticating..." : "Login"}
-            </Button>
-          </form>
+              <Button
+                type="submit"
+                variant="neon"
+                className="w-full font-mono text-[10px] uppercase tracking-widest mt-2"
+                disabled={loading}
+              >
+                {loading ? "Authenticating..." : "Login →"}
+              </Button>
+            </form>
 
-          <p className="text-xs text-muted-foreground mt-6 text-center">
-            No account?{" "}
-            <Link to="/signup" className="text-primary hover:underline">Sign up</Link>
-          </p>
+            <p className="font-mono text-[10px] text-muted-foreground/50 mt-6 text-center">
+              No account?{" "}
+              <Link to="/signup" className="text-primary hover:text-brand-ember-bright transition-colors">
+                Sign up
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

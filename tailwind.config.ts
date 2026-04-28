@@ -15,9 +15,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Outfit", "system-ui", "sans-serif"],
-        display: ["'Bebas Neue'", "Impact", "sans-serif"],
-        mono: ["'Space Mono'", "'Fira Code'", "monospace"],
+        sans: ["'JetBrains Mono'", "monospace"],
+        display: ["'Rajdhani'", "Impact", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,16 +64,17 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         brand: {
-          navy: "#0D1F4E",
-          "navy-deep": "#081540",
-          "blue-mid": "#1A4A8A",
-          "blue-steel": "#2B6FBF",
-          cyan: "#4BAADC",
-          "cyan-light": "#7ECBEF",
-          "cyan-pale": "#C8EAFA",
-          "off-white": "#F0F6FC",
-          gold: "#E8C84A",
-          "text-muted": "#8BACCF",
+          obsidian: "#0D0906",
+          "obsidian-card": "#181009",
+          ember: "#FF8800",
+          "ember-bright": "#FFB347",
+          "ember-pale": "#FFECC8",
+          "ember-deep": "#C25B0A",
+          crimson: "#C23B22",
+          steel: "#6B7A8D",
+          cream: "#EFE8D8",
+          "cream-dim": "#C8B99A",
+          "text-muted": "#9C8868",
         },
       },
       borderRadius: {
@@ -104,7 +105,18 @@ export default {
         },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-14px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "amber-pulse": {
+          "0%, 100%": { boxShadow: "0 0 8px rgba(255,136,0,0.3)" },
+          "50%": { boxShadow: "0 0 22px rgba(255,136,0,0.7), 0 0 45px rgba(255,136,0,0.2)" },
+        },
+        flicker: {
+          "0%, 89%, 100%": { opacity: "1" },
+          "90%": { opacity: "0.85" },
+          "91%": { opacity: "1" },
+          "94%": { opacity: "0.88" },
+          "95%": { opacity: "1" },
         },
       },
       animation: {
@@ -114,17 +126,19 @@ export default {
         "slide-in-right": "slide-in-right 0.3s ease-out",
         "pulse-dot": "pulse-dot 1.8s ease-in-out infinite",
         float: "float 5s ease-in-out infinite",
+        "amber-pulse": "amber-pulse 2.5s ease-in-out infinite",
+        flicker: "flicker 6s linear infinite",
       },
       backgroundImage: {
         "brand-grid":
-          "linear-gradient(rgba(75,170,220,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(75,170,220,0.06) 1px, transparent 1px)",
+          "linear-gradient(rgba(255,136,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,136,0,0.045) 1px, transparent 1px)",
         "brand-glow-primary":
-          "radial-gradient(circle, rgba(27,74,138,0.45) 0%, transparent 70%)",
+          "radial-gradient(circle, rgba(255,100,0,0.32) 0%, transparent 70%)",
         "brand-glow-secondary":
-          "radial-gradient(circle, rgba(75,170,220,0.15) 0%, transparent 70%)",
+          "radial-gradient(circle, rgba(255,136,0,0.10) 0%, transparent 70%)",
       },
       backgroundSize: {
-        "grid-60": "60px 60px",
+        "grid-40": "40px 40px",
       },
     },
   },
