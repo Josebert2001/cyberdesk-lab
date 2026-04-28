@@ -80,6 +80,9 @@ describe("Safe localStorage helpers", () => {
   beforeEach(() => {
     localStorage.clear();
     mockInvoke.mockReset();
+    vi.resetModules();
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
   });
 
   describe("safeJsonParse", () => {
@@ -142,11 +145,18 @@ describe("Safe localStorage helpers", () => {
 });
 
 describe("Gemini service error handling", () => {
+  beforeEach(() => {
+    mockInvoke.mockReset();
+    vi.resetModules();
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+  });
+
   it("analyzeWithGemini throws a friendly error when the proxy is unavailable", async () => {
     mockInvoke.mockResolvedValue({ data: null, error: new Error("offline") });
     const { analyzeWithGemini } = await import("@/lib/gemini");
     await expect(analyzeWithGemini("test")).rejects.toThrow(
-      "AI service is unavailable right now"
+      "AI service could not be reached"
     );
   });
 
@@ -168,5 +178,47 @@ describe("Gemini service error handling", () => {
       example: "ping localhost",
       exam_summary: "short summary",
     });
+  });
+
+  it("falls back to direct Gemini when the proxy route is missing and a browser key exists", async () => {
+    mockInvoke.mockResolvedValue({ data: null, error: new Error("404 Not Found") });
+
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        candidates: [
+          {
+            content: {
+              parts: [
+                {
+                  text: JSON.stringify({
+                    answer: "Fallback answer",
+                    example: "nmap -sV localhost",
+                    exam_summary: "Fallback summary",
+                  }),
+                },
+              ],
+            },
+          },
+        ],
+      }),
+    });
+
+    vi.stubEnv("VITE_GEMINI_API_KEY", "test-browser-key");
+    vi.stubGlobal("fetch", fetchMock);
+
+    const { chatWithGemini } = await import("@/lib/gemini-chat");
+    await expect(chatWithGemini([{ role: "user", text: "hello" }])).resolves.toEqual({
+      answer: "Fallback answer",
+      example: "nmap -sV localhost",
+      exam_summary: "Fallback summary",
+    });
+  });
+
+  it("reports a missing backend route clearly when no fallback key is configured", async () => {
+    mockInvoke.mockResolvedValue({ data: null, error: new Error("404 Not Found") });
+
+    const { analyzeWithGemini } = await import("@/lib/gemini");
+    await expect(analyzeWithGemini("test")).rejects.toThrow("AI backend route was not found");
   });
 });
