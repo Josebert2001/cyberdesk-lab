@@ -47,9 +47,7 @@ export default function Login() {
 
       <div className="relative z-10 w-full max-w-sm animate-fade-in">
         <Link to="/welcome" className="flex items-center gap-2.5 justify-center mb-8">
-          <div className="w-8 h-8 border border-primary/50 flex items-center justify-center bg-primary/5">
-            <span className="font-mono text-[9px] tracking-widest text-primary font-bold">DSA</span>
-          </div>
+          <img src="/docssa.svg" alt="DOCSSA" className="h-10 w-10" />
           <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
         </Link>
 

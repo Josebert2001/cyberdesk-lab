@@ -90,9 +90,7 @@ export function AppSidebar() {
       {/* Header */}
       <div className="px-5 py-5 border-b border-sidebar-border">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 border border-primary/50 flex items-center justify-center bg-primary/5 shrink-0">
-            <span className="font-mono text-[9px] tracking-widest text-primary font-bold">DSA</span>
-          </div>
+          <img src="/docssa.svg" alt="DOCSSA" className="h-9 w-9 shrink-0" />
           <div>
             <h1 className="font-display text-lg tracking-[0.12em] text-primary font-bold leading-none">DOCSSA</h1>
             <p className="font-mono text-[9px] text-muted-foreground/40 tracking-widest mt-0.5 uppercase">

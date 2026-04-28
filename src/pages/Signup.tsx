@@ -68,11 +68,9 @@ export default function Signup() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background" />
 
       <div className="relative z-10 w-full max-w-md">
-        <Link to="/welcome" className="flex items-center gap-3 justify-center mb-8">
-          <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center bg-card">
-            <span className="font-display text-xs tracking-[0.08em] text-primary">DSA</span>
-          </div>
-          <span className="font-display text-2xl tracking-[0.08em] text-[#7ECBEF]">DOCSSA</span>
+        <Link to="/welcome" className="flex items-center gap-2.5 justify-center mb-8">
+          <img src="/docssa.svg" alt="DOCSSA" className="h-10 w-10" />
+          <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
         </Link>
 
         <div className="bg-card border border-border rounded-lg p-6 font-mono">
