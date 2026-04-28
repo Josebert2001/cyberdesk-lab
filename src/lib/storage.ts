@@ -23,6 +23,8 @@ export function safeGetNumber(key: string, fallback: number): number {
   }
 }
 
+const STORAGE_PREFIX = "cyberdesk";
+
 interface ExamNote {
   id: number;
   topic: string;
@@ -30,13 +32,47 @@ interface ExamNote {
   date: string;
 }
 
-export function saveToExamPrep(topic: string, bullets: string[]) {
-  const existing = safeJsonParse<ExamNote[]>("cyberdesk_exam_notes", []);
+export function getScopedStorageKey(key: string, userId?: string | null): string {
+  return `${STORAGE_PREFIX}:${userId ?? "guest"}:${key}`;
+}
+
+export function safeScopedJsonParse<T>(key: string, userId: string | null | undefined, fallback: T): T {
+  return safeJsonParse(getScopedStorageKey(key, userId), fallback);
+}
+
+export function safeSetScopedJson<T>(key: string, userId: string | null | undefined, value: T) {
+  localStorage.setItem(getScopedStorageKey(key, userId), JSON.stringify(value));
+}
+
+export function safeGetScopedNumber(key: string, userId: string | null | undefined, fallback: number): number {
+  return safeGetNumber(getScopedStorageKey(key, userId), fallback);
+}
+
+export function safeSetScopedNumber(key: string, userId: string | null | undefined, value: number) {
+  localStorage.setItem(getScopedStorageKey(key, userId), String(value));
+}
+
+export function safeGetScopedBoolean(key: string, userId: string | null | undefined, fallback = false): boolean {
+  try {
+    const raw = localStorage.getItem(getScopedStorageKey(key, userId));
+    if (raw === null) return fallback;
+    return raw === "true";
+  } catch {
+    return fallback;
+  }
+}
+
+export function safeSetScopedBoolean(key: string, userId: string | null | undefined, value: boolean) {
+  localStorage.setItem(getScopedStorageKey(key, userId), String(value));
+}
+
+export function saveToExamPrep(userId: string | null | undefined, topic: string, bullets: string[]) {
+  const existing = safeScopedJsonParse<ExamNote[]>("exam_notes", userId, []);
   existing.push({
     id: Date.now(),
     topic,
     bullets,
     date: new Date().toLocaleDateString(),
   });
-  localStorage.setItem("cyberdesk_exam_notes", JSON.stringify(existing));
+  safeSetScopedJson("exam_notes", userId, existing);
 }

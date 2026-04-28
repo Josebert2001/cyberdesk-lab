@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Trophy, Bookmark, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/sonner";
+import { safeScopedJsonParse, safeSetScopedJson } from "@/lib/storage";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface Opportunity {
   id: number;
@@ -37,32 +39,25 @@ const typeStyles: Record<Opportunity["type"], string> = {
 const FILTERS = ["All", "Hackathons", "Internships", "Scholarships", "Competitions", "Bookmarked"] as const;
 type Filter = (typeof FILTERS)[number];
 
-function getBookmarks(): number[] {
-  try {
-    const raw = localStorage.getItem("cyb_bookmarked_opps");
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    localStorage.removeItem("cyb_bookmarked_opps");
-    return [];
-  }
+function getBookmarks(userId: string | null | undefined): number[] {
+  return safeScopedJsonParse<number[]>("bookmarked_opps", userId, []);
 }
 
-function saveBookmarks(ids: number[]) {
-  localStorage.setItem("cyb_bookmarked_opps", JSON.stringify(ids));
+function saveBookmarks(userId: string | null | undefined, ids: number[]) {
+  safeSetScopedJson("bookmarked_opps", userId, ids);
 }
 
 export default function Opportunities() {
+  const { user } = useAuth();
   const [filter, setFilter] = useState<Filter>("All");
   const [search, setSearch] = useState("");
-  const [bookmarks, setBookmarks] = useState<number[]>(getBookmarks);
+  const [bookmarks, setBookmarks] = useState<number[]>(() => getBookmarks(user?.id));
 
   function toggleBookmark(id: number) {
     setBookmarks((prev) => {
       const isBookmarked = prev.includes(id);
       const next = isBookmarked ? prev.filter((b) => b !== id) : [...prev, id];
-      saveBookmarks(next);
+      saveBookmarks(user?.id, next);
       toast(isBookmarked ? "Bookmark removed" : "Bookmarked", { duration: 2000 });
       return next;
     });

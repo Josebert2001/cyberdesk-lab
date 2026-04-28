@@ -26,6 +26,11 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 
+const routerFuture: NonNullable<Parameters<typeof BrowserRouter>[0]["future"]> = {
+  v7_startTransition: true,
+  v7_relativeSplatPath: true,
+};
+
 const protect = (el: JSX.Element) => (
   <AuthGuard>
     <Layout>{el}</Layout>
@@ -37,9 +42,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true } as any}
-      >
+      <BrowserRouter future={routerFuture}>
         <ScrollToTop />
         <AuthProvider>
           <XPProvider>

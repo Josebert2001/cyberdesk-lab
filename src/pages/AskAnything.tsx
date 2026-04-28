@@ -4,6 +4,7 @@ import { chatWithGemini, ChatAiResponse } from "@/lib/gemini-chat";
 import { useXPContext } from "@/components/XPContext";
 import { saveToExamPrep } from "@/lib/storage";
 import { toast } from "@/components/ui/sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ChatMessage {
   id: number;
@@ -12,7 +13,7 @@ interface ChatMessage {
   aiData?: ChatAiResponse;
 }
 
-function AiMessage({ msg }: { msg: ChatMessage }) {
+function AiMessage({ msg, userId }: { msg: ChatMessage; userId: string | null | undefined }) {
   const [examOpen, setExamOpen] = useState(false);
   const [saved, setSaved] = useState(false);
   const d = msg.aiData;
@@ -50,7 +51,7 @@ function AiMessage({ msg }: { msg: ChatMessage }) {
         onClick={() => {
           const bullets = [d.exam_summary || d.answer.slice(0, 100)];
           if (d.example) bullets.push(d.example);
-          saveToExamPrep(d.answer.slice(0, 60) + "...", bullets);
+          saveToExamPrep(userId, d.answer.slice(0, 60) + "...", bullets);
           setSaved(true);
           toast("Saved to Exam Prep");
         }}
@@ -72,6 +73,7 @@ const AskAnything = () => {
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { addXP } = useXPContext();
+  const { user } = useAuth();
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -142,7 +144,7 @@ const AskAnything = () => {
             </div>
           ) : (
             <div key={msg.id}>
-              <AiMessage msg={msg} />
+              <AiMessage msg={msg} userId={user?.id} />
             </div>
           )
         )}

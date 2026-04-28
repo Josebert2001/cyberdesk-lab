@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { saveToExamPrep } from "@/lib/storage";
 import { toast } from "@/components/ui/sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 const LOADING_TEXTS = [
   "Analyzing...",
@@ -66,6 +67,7 @@ function CopyButton({ text }: { text: string }) {
 
 export function AiPanel() {
   const { isOpen, isLoading, analysis, error, close } = useAiPanel();
+  const { user } = useAuth();
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
@@ -181,7 +183,7 @@ export function AiPanel() {
                 className="font-mono w-full"
                 disabled={saved}
                 onClick={() => {
-                  saveToExamPrep(analysis.concept, analysis.exam_bullets);
+                  saveToExamPrep(user?.id, analysis.concept, analysis.exam_bullets);
                   setSaved(true);
                   toast("Saved to Exam Prep");
                 }}

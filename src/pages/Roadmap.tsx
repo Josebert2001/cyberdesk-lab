@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Map, Check, ExternalLink } from "lucide-react";
+import { getScopedStorageKey, safeGetScopedBoolean, safeSetScopedBoolean } from "@/lib/storage";
+import { useAuth } from "@/contexts/AuthContext";
 
 const categoryStyles: Record<string, string> = {
   Foundation: "bg-blue-500/10 text-blue-400 border-blue-500/30",
@@ -91,29 +93,30 @@ const levels: Level[] = [
   },
 ];
 
-function storageKey(levelId: string, idx: number) {
-  return `cyb_roadmap_${levelId}_${idx}`;
+function storageKey(userId: string | null | undefined, levelId: string, idx: number) {
+  return getScopedStorageKey(`roadmap_${levelId}_${idx}`, userId);
 }
 
 export default function Roadmap() {
+  const { user } = useAuth();
   const [activeLevel, setActiveLevel] = useState("100L");
   const level = levels.find((l) => l.id === activeLevel)!;
 
   const [done, setDone] = useState<boolean[]>(() =>
-    level.milestones.map((_, i) => localStorage.getItem(storageKey(activeLevel, i)) === "true")
+    level.milestones.map((_, i) => safeGetScopedBoolean(`roadmap_${activeLevel}_${i}`, user?.id))
   );
 
   function switchLevel(id: string) {
     setActiveLevel(id);
     const lv = levels.find((l) => l.id === id)!;
-    setDone(lv.milestones.map((_, i) => localStorage.getItem(storageKey(id, i)) === "true"));
+    setDone(lv.milestones.map((_, i) => safeGetScopedBoolean(`roadmap_${id}_${i}`, user?.id)));
   }
 
   function toggleDone(idx: number) {
     setDone((prev) => {
       const next = [...prev];
       next[idx] = !next[idx];
-      localStorage.setItem(storageKey(activeLevel, idx), String(next[idx]));
+      safeSetScopedBoolean(`roadmap_${activeLevel}_${idx}`, user?.id, next[idx]);
       return next;
     });
   }

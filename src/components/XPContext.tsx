@@ -1,43 +1,76 @@
-import { createContext, useContext, ReactNode, useEffect, useRef } from "react";
-import { useXP } from "@/hooks/useXP";
+import { createContext, useCallback, useContext, useEffect, useRef, type ReactNode } from "react";
+import { toast } from "sonner";
+import { getRank, useXP } from "@/hooks/useXP";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 
-type XPContextType = ReturnType<typeof useXP>;
+type XPState = ReturnType<typeof useXP>;
+type XPContextType = Omit<XPState, "addXP"> & {
+  addXP: (amount: number) => Promise<void>;
+};
 
 const XPContext = createContext<XPContextType | null>(null);
 
 export function XPProvider({ children }: { children: ReactNode }) {
-  const xp = useXP();
-  const { user, profile } = useAuth();
+  const { user, profile, refreshProfile } = useAuth();
+  const xp = useXP(user?.id);
   const initializedRef = useRef(false);
-  const writeTimerRef = useRef<number | null>(null);
 
-  // Hydrate local XP from cloud on login — cloud is always authoritative.
   useEffect(() => {
-    if (!user || !profile || initializedRef.current) return;
+    if (!user || !profile) {
+      initializedRef.current = false;
+      return;
+    }
+    if (initializedRef.current) return;
     xp.forceSetXP(profile.xp);
     initializedRef.current = true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, profile]);
+  }, [profile, user, xp]);
 
-  // Debounced write-back to profile
-  useEffect(() => {
-    if (!user) return;
-    if (writeTimerRef.current) window.clearTimeout(writeTimerRef.current);
-    writeTimerRef.current = window.setTimeout(() => {
-      supabase
-        .from("profiles")
-        .update({ xp: xp.xp, rank: xp.rank.title })
-        .eq("id", user.id)
-        .then(() => {});
-    }, 800);
-    return () => {
-      if (writeTimerRef.current) window.clearTimeout(writeTimerRef.current);
-    };
-  }, [xp.xp, xp.rank.title, user]);
+  const addXP = useCallback(async (amount: number) => {
+    if (amount <= 0) return;
+    if (!user) {
+      toast("You need to be logged in to earn XP.");
+      return;
+    }
 
-  return <XPContext.Provider value={xp}>{children}</XPContext.Provider>;
+    const previousXp = xp.xp;
+    const { data, error } = await supabase.rpc("award_xp", { xp_delta: amount });
+
+    if (error) {
+      console.error("award_xp error:", error.message);
+      toast("Could not save XP right now.", {
+        description: "Your progress was not changed. Please try again.",
+      });
+      await refreshProfile();
+      return;
+    }
+
+    const latest = data?.[0];
+    const nextXp = latest?.xp ?? previousXp + amount;
+    const previousRank = getRank(previousXp);
+    const nextRank = getRank(nextXp);
+
+    xp.forceSetXP(nextXp);
+
+    if (nextRank.title !== previousRank.title) {
+      toast(`Rank Up: ${nextRank.title}!`, {
+        description: `You've reached ${nextXp} XP`,
+      });
+      return;
+    }
+
+    toast(`+${amount} XP`, {
+      description: `Total: ${nextXp} XP`,
+      duration: 2000,
+    });
+  }, [refreshProfile, user, xp]);
+
+  const value: XPContextType = {
+    ...xp,
+    addXP,
+  };
+
+  return <XPContext.Provider value={value}>{children}</XPContext.Provider>;
 }
 
 export function useXPContext(): XPContextType {

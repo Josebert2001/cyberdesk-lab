@@ -13,7 +13,7 @@ const CHARS = {
 
 function generatePassword(): string {
   const all = CHARS.upper + CHARS.lower + CHARS.num + CHARS.special;
-  let pwd = [
+  const pwd = [
     CHARS.upper[Math.floor(Math.random() * CHARS.upper.length)],
     CHARS.lower[Math.floor(Math.random() * CHARS.lower.length)],
     CHARS.num[Math.floor(Math.random() * CHARS.num.length)],

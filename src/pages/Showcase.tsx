@@ -17,6 +17,15 @@ import { useState } from "react";
 import { Layers, ThumbsUp, ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import {
+  safeGetScopedBoolean,
+  safeGetScopedNumber,
+  safeScopedJsonParse,
+  safeSetScopedBoolean,
+  safeSetScopedJson,
+  safeSetScopedNumber,
+} from "@/lib/storage";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Category = "Security Tools" | "Web Apps" | "Research" | "Forensics" | "AI & ML";
 
@@ -122,36 +131,37 @@ type Filter = (typeof FILTERS)[number];
 const LEVELS = ["100L", "200L", "300L", "400L"];
 const CATEGORIES: Category[] = ["Security Tools", "Web Apps", "Research", "Forensics", "AI & ML"];
 
-function getLikes(id: string): number {
-  return parseInt(localStorage.getItem(`cyb_likes_${id}`) || "0", 10);
+function getLikes(userId: string | null | undefined, id: string): number {
+  return safeGetScopedNumber(`showcase_likes_${id}`, userId, 0);
 }
-function setLikes(id: string, n: number) {
-  localStorage.setItem(`cyb_likes_${id}`, String(n));
+function setLikes(userId: string | null | undefined, id: string, n: number) {
+  safeSetScopedNumber(`showcase_likes_${id}`, userId, n);
 }
-function hasLiked(id: string): boolean {
-  return localStorage.getItem(`cyb_liked_${id}`) === "true";
+function hasLiked(userId: string | null | undefined, id: string): boolean {
+  return safeGetScopedBoolean(`showcase_liked_${id}`, userId);
 }
-function markLiked(id: string) {
-  localStorage.setItem(`cyb_liked_${id}`, "true");
+function markLiked(userId: string | null | undefined, id: string) {
+  safeSetScopedBoolean(`showcase_liked_${id}`, userId, true);
 }
 
-function getSubmitted(): Project[] {
-  return JSON.parse(localStorage.getItem("cyb_showcase_submitted") || "[]");
+function getSubmitted(userId: string | null | undefined): Project[] {
+  return safeScopedJsonParse<Project[]>("showcase_submitted", userId, []);
 }
-function saveSubmitted(projects: Project[]) {
-  localStorage.setItem("cyb_showcase_submitted", JSON.stringify(projects));
+function saveSubmitted(userId: string | null | undefined, projects: Project[]) {
+  safeSetScopedJson("showcase_submitted", userId, projects);
 }
 
 export default function Showcase() {
   const { toast } = useToast();
+  const { user } = useAuth();
   const [filter, setFilter] = useState<Filter>("All");
   const [search, setSearch] = useState("");
-  const [submitted, setSubmitted] = useState<Project[]>(getSubmitted);
+  const [submitted, setSubmitted] = useState<Project[]>(() => getSubmitted(user?.id));
   const [likes, setLikesState] = useState<Record<string, number>>(() =>
-    Object.fromEntries([...SEEDED, ...getSubmitted()].map((p) => [p.id, getLikes(p.id)]))
+    Object.fromEntries([...SEEDED, ...getSubmitted(user?.id)].map((p) => [p.id, getLikes(user?.id, p.id)]))
   );
   const [liked, setLikedState] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries([...SEEDED, ...getSubmitted()].map((p) => [p.id, hasLiked(p.id)]))
+    Object.fromEntries([...SEEDED, ...getSubmitted(user?.id)].map((p) => [p.id, hasLiked(user?.id, p.id)]))
   );
 
   const [showForm, setShowForm] = useState(false);
@@ -172,8 +182,8 @@ export default function Showcase() {
   function handleLike(id: string) {
     if (liked[id]) return;
     const next = (likes[id] || 0) + 1;
-    setLikes(id, next);
-    markLiked(id);
+    setLikes(user?.id, id, next);
+    markLiked(user?.id, id);
     setLikesState((prev) => ({ ...prev, [id]: next }));
     setLikedState((prev) => ({ ...prev, [id]: true }));
   }
@@ -195,7 +205,7 @@ export default function Showcase() {
     };
     const next = [...submitted, newProject];
     setSubmitted(next);
-    saveSubmitted(next);
+    saveSubmitted(user?.id, next);
     setLikesState((prev) => ({ ...prev, [newProject.id]: 0 }));
     setLikedState((prev) => ({ ...prev, [newProject.id]: false }));
     setForm({ title: "", author: "", level: "100L", category: "Security Tools", desc: "", projectUrl: "", githubUrl: "", tags: "" });

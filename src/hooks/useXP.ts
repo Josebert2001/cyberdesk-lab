@@ -1,8 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-import { safeGetNumber } from "@/lib/storage";
-import { toast } from "sonner";
-
-const XP_KEY = "cyberdesk_xp";
+import { safeGetScopedNumber, safeSetScopedNumber } from "@/lib/storage";
 
 interface Rank {
   title: string;
@@ -39,38 +36,34 @@ export function getProgressPercent(xp: number): number {
   return Math.min(100, Math.round((progress / range) * 100));
 }
 
-export function useXP() {
-  const [xp, setXp] = useState(() => safeGetNumber(XP_KEY, 0));
+export function useXP(userId?: string | null) {
+  const [xp, setXp] = useState(() => safeGetScopedNumber("xp", userId, 0));
   const [rankUp, setRankUp] = useState(false);
   const prevRankRef = useRef(getRank(xp).title);
+  const prevStorageOwnerRef = useRef(userId ?? "guest");
 
   useEffect(() => {
-    localStorage.setItem(XP_KEY, String(xp));
+    const nextOwner = userId ?? "guest";
+    if (prevStorageOwnerRef.current === nextOwner) return;
+    prevStorageOwnerRef.current = nextOwner;
+    const storedXp = safeGetScopedNumber("xp", userId, 0);
+    prevRankRef.current = getRank(storedXp).title;
+    setRankUp(false);
+    setXp(storedXp);
+  }, [userId]);
+
+  useEffect(() => {
+    safeSetScopedNumber("xp", userId, xp);
     const newRank = getRank(xp).title;
     if (newRank !== prevRankRef.current) {
       prevRankRef.current = newRank;
       setRankUp(true);
       setTimeout(() => setRankUp(false), 2000);
     }
-  }, [xp]);
+  }, [userId, xp]);
 
   const addXP = useCallback((amount: number) => {
-    setXp((prev) => {
-      const newXp = prev + amount;
-      const oldRank = getRank(prev);
-      const newRank = getRank(newXp);
-      if (newRank.title !== oldRank.title) {
-        toast(`Rank Up: ${newRank.title}!`, {
-          description: `You've reached ${newXp} XP`,
-        });
-      } else {
-        toast(`+${amount} XP`, {
-          description: `Total: ${newXp} XP`,
-          duration: 2000,
-        });
-      }
-      return newXp;
-    });
+    setXp((prev) => prev + amount);
   }, []);
 
   // Sets XP directly without showing a toast — used for cloud hydration.

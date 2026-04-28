@@ -1,8 +1,9 @@
 import { BookOpen, Trash2, FlaskConical, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
-import { safeJsonParse } from "@/lib/storage";
+import { safeScopedJsonParse, safeSetScopedJson } from "@/lib/storage";
 import { Link } from "react-router-dom";
 import { toast } from "@/components/ui/sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ExamNote {
   id: number;
@@ -12,16 +13,17 @@ interface ExamNote {
 }
 
 const ExamPrep = () => {
+  const { user } = useAuth();
   const [notes, setNotes] = useState<ExamNote[]>([]);
 
   useEffect(() => {
-    setNotes(safeJsonParse<ExamNote[]>("cyberdesk_exam_notes", []));
-  }, []);
+    setNotes(safeScopedJsonParse<ExamNote[]>("exam_notes", user?.id, []));
+  }, [user?.id]);
 
   const handleDelete = (id: number) => {
     const updated = notes.filter((n) => n.id !== id);
     setNotes(updated);
-    localStorage.setItem("cyberdesk_exam_notes", JSON.stringify(updated));
+    safeSetScopedJson("exam_notes", user?.id, updated);
     toast("Note deleted");
   };
 

@@ -1,6 +1,18 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { getRank, getNextRank, getProgressPercent, RANKS } from "@/hooks/useXP";
-import { safeJsonParse, safeGetNumber } from "@/lib/storage";
+import { getScopedStorageKey, safeGetNumber, safeJsonParse } from "@/lib/storage";
+
+const { mockInvoke } = vi.hoisted(() => ({
+  mockInvoke: vi.fn(),
+}));
+
+vi.mock("@/integrations/supabase/client", () => ({
+  supabase: {
+    functions: {
+      invoke: mockInvoke,
+    },
+  },
+}));
 
 describe("XP Rank Calculation", () => {
   it("returns Script Kiddie for 0 XP", () => {
@@ -67,6 +79,7 @@ describe("XP Rank Calculation", () => {
 describe("Safe localStorage helpers", () => {
   beforeEach(() => {
     localStorage.clear();
+    mockInvoke.mockReset();
   });
 
   describe("safeJsonParse", () => {
@@ -121,26 +134,39 @@ describe("Safe localStorage helpers", () => {
       expect(safeGetNumber("test", 0)).toBe(0);
     });
   });
+
+  it("builds user-scoped storage keys", () => {
+    expect(getScopedStorageKey("exam_notes", "user-123")).toBe("cyberdesk:user-123:exam_notes");
+    expect(getScopedStorageKey("exam_notes", null)).toBe("cyberdesk:guest:exam_notes");
+  });
 });
 
 describe("Gemini service error handling", () => {
-  const originalEnv = import.meta.env.VITE_GEMINI_API_KEY;
-
-  it("analyzeWithGemini throws friendly error when API key is missing", async () => {
-    vi.stubEnv("VITE_GEMINI_API_KEY", "");
+  it("analyzeWithGemini throws a friendly error when the proxy is unavailable", async () => {
+    mockInvoke.mockResolvedValue({ data: null, error: new Error("offline") });
     const { analyzeWithGemini } = await import("@/lib/gemini");
     await expect(analyzeWithGemini("test")).rejects.toThrow(
-      "AI features require a Gemini API key"
+      "AI service is unavailable right now"
     );
-    vi.unstubAllEnvs();
   });
 
-  it("chatWithGemini throws friendly error when API key is missing", async () => {
-    vi.stubEnv("VITE_GEMINI_API_KEY", "");
+  it("chatWithGemini parses a JSON response from the proxy", async () => {
+    mockInvoke.mockResolvedValue({
+      data: {
+        text: JSON.stringify({
+          answer: "hello",
+          example: "ping localhost",
+          exam_summary: "short summary",
+        }),
+      },
+      error: null,
+    });
+
     const { chatWithGemini } = await import("@/lib/gemini-chat");
-    await expect(chatWithGemini([{ role: "user", text: "hello" }])).rejects.toThrow(
-      "AI features require a Gemini API key"
-    );
-    vi.unstubAllEnvs();
+    await expect(chatWithGemini([{ role: "user", text: "hello" }])).resolves.toEqual({
+      answer: "hello",
+      example: "ping localhost",
+      exam_summary: "short summary",
+    });
   });
 });
