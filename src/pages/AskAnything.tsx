@@ -1,10 +1,13 @@
-import { Send, ChevronDown, ChevronUp, Save, BookOpen, Loader2 } from "lucide-react";
+import { Send, ChevronDown, ChevronUp, Save, BookOpen, Loader2, Trash2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { chatWithGemini, ChatAiResponse } from "@/lib/gemini-chat";
 import { useXPContext } from "@/components/XPContext";
-import { saveToExamPrep } from "@/lib/storage";
+import { safeScopedJsonParse, safeSetScopedJson, saveToExamPrep } from "@/lib/storage";
 import { toast } from "@/components/ui/sonner";
 import { useAuth } from "@/contexts/AuthContext";
+
+const CHAT_STORAGE_KEY = "ask_chat";
+const MAX_STORED_MESSAGES = 50;
 
 interface ChatMessage {
   id: number;
@@ -75,9 +78,29 @@ const AskAnything = () => {
   const { addXP } = useXPContext();
   const { user } = useAuth();
 
+  // Load persisted conversation on mount.
+  useEffect(() => {
+    const stored = safeScopedJsonParse<ChatMessage[]>(CHAT_STORAGE_KEY, user?.id, []);
+    if (stored.length > 0) setMessages(stored);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
+
+  // Persist conversation whenever it changes.
+  useEffect(() => {
+    if (messages.length > 0) {
+      safeSetScopedJson(CHAT_STORAGE_KEY, user?.id, messages.slice(-MAX_STORED_MESSAGES));
+    }
+  }, [messages, user?.id]);
+
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages]);
+
+  function clearHistory() {
+    setMessages([]);
+    safeSetScopedJson(CHAT_STORAGE_KEY, user?.id, []);
+    toast("Conversation cleared");
+  }
 
   const handleSend = async () => {
     const text = input.trim();
@@ -118,13 +141,25 @@ const AskAnything = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="p-6 md:px-12 md:pt-8 pb-2">
-        <h1 className="text-2xl font-bold text-foreground mb-1">
-          Ask CyberDesk Anything
-        </h1>
-        <p className="text-muted-foreground text-sm">
-          Cybersecurity, hacking, programming, networking, MATLAB — anything.
-        </p>
+      <div className="p-6 md:px-12 md:pt-8 pb-2 flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground mb-1">
+            Ask CyberDesk Anything
+          </h1>
+          <p className="text-muted-foreground text-sm">
+            Cybersecurity, hacking, programming, networking, MATLAB — anything.
+          </p>
+        </div>
+        {messages.length > 0 && (
+          <button
+            onClick={clearHistory}
+            className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-destructive transition-colors mt-1 shrink-0"
+            aria-label="Clear conversation"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+            Clear
+          </button>
+        )}
       </div>
 
       {/* Chat area */}

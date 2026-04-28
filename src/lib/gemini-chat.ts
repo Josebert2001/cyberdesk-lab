@@ -1,10 +1,13 @@
+import { z } from "zod";
 import { cleanGeminiJson, invokeGeminiProxy, type GeminiChatMessage } from "@/lib/gemini-proxy";
 
-export interface ChatAiResponse {
-  answer: string;
-  example: string;
-  exam_summary: string;
-}
+const ChatAiResponseSchema = z.object({
+  answer: z.string(),
+  example: z.string().default(""),
+  exam_summary: z.string().default(""),
+});
+
+export type ChatAiResponse = z.infer<typeof ChatAiResponseSchema>;
 
 export async function chatWithGemini(conversationHistory: GeminiChatMessage[]): Promise<ChatAiResponse> {
   const rawText = await invokeGeminiProxy({
@@ -13,7 +16,8 @@ export async function chatWithGemini(conversationHistory: GeminiChatMessage[]): 
   });
 
   try {
-    return JSON.parse(cleanGeminiJson(rawText)) as ChatAiResponse;
+    const parsed = JSON.parse(cleanGeminiJson(rawText));
+    return ChatAiResponseSchema.parse(parsed);
   } catch {
     return { answer: rawText, example: "", exam_summary: "" };
   }
