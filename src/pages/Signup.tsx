@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+﻿import { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export default function Signup() {
     }
 
     if (data.session) {
-      // Email confirmation disabled — straight to portal
+      // Email confirmation disabled â€” straight to portal
       navigate("/lab", { replace: true });
     } else {
       setSuccess(true);
@@ -69,7 +69,7 @@ export default function Signup() {
 
       <div className="relative z-10 w-full max-w-md">
         <Link to="/welcome" className="flex items-center gap-2.5 justify-center mb-8">
-          <img src="/docssa.svg" alt="DOCSSA" className="h-10 w-10" />
+          <img src="/logo-256.png" alt="DOCSSA" className="h-10 w-10" />
           <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
         </Link>
 
@@ -164,3 +164,4 @@ export default function Signup() {
     </div>
   );
 }
+

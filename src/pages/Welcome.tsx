@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import {
   Shield,
   Zap,
@@ -40,7 +40,7 @@ const programs = [
     icon: Code2,
     title: "Skills Bootcamp",
     tag: "training",
-    desc: "Intensive short courses on networking, Linux, Python for security, and cloud security fundamentals — fully free for DOCSSA members.",
+    desc: "Intensive short courses on networking, Linux, Python for security, and cloud security fundamentals â€” fully free for DOCSSA members.",
   },
   {
     icon: Microscope,
@@ -52,13 +52,13 @@ const programs = [
     icon: Briefcase,
     title: "Industry Connect",
     tag: "career",
-    desc: "Monthly guest lectures and internship pipelines with Lagos, Abuja, and remote cybersecurity firms — helping you land your first role.",
+    desc: "Monthly guest lectures and internship pipelines with Lagos, Abuja, and remote cybersecurity firms â€” helping you land your first role.",
   },
   {
     icon: Zap,
     title: "Hackathon Squad",
     tag: "competition",
-    desc: "Team formation and coaching for national hackathons — DOCSSA members have placed in multiple regional tech competitions.",
+    desc: "Team formation and coaching for national hackathons â€” DOCSSA members have placed in multiple regional tech competitions.",
   },
   {
     icon: BookOpen,
@@ -93,7 +93,7 @@ export default function Welcome() {
       <nav className="fixed top-0 left-0 right-0 z-50 brand-glass border-b border-primary/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
           <Link to="/welcome" className="flex items-center gap-3">
-            <img src="/docssa.svg" alt="DOCSSA" className="h-9 w-9 shrink-0" />
+            <img src="/logo-256.png" alt="DOCSSA" className="h-9 w-9 shrink-0" />
             <div className="leading-none">
               <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
               <span className="hidden sm:inline font-mono text-[9px] text-muted-foreground/40 ml-2 tracking-widest">// UNIUYO</span>
@@ -149,7 +149,7 @@ export default function Welcome() {
             <div className="inline-flex items-center gap-2 border border-primary/30 bg-primary/5 px-3 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot" />
               <span className="font-mono text-[10px] text-primary tracking-widest uppercase">
-                System Online · UniUyo · Est. 2024
+                System Online Â· UniUyo Â· Est. 2024
               </span>
             </div>
 
@@ -164,7 +164,7 @@ export default function Welcome() {
             <div className="mt-8 mb-10">
               <p className="font-mono text-[10px] text-primary/45 mb-2 tracking-widest">// mission statement</p>
               <p className="font-mono text-sm text-muted-foreground leading-[1.85] max-w-lg">
-                The Department of Cyber Security Students Association at UniUyo — building the next generation of
+                The Department of Cyber Security Students Association at UniUyo â€” building the next generation of
                 digital defenders, ethical hackers, and cybersecurity leaders across Nigeria.
               </p>
             </div>
@@ -193,7 +193,7 @@ export default function Welcome() {
                 <span className="w-2.5 h-2.5 rounded-full bg-destructive/70" />
                 <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
                 <span className="w-2.5 h-2.5 rounded-full bg-primary/70" />
-                <span className="ml-2 font-mono text-[9px] text-muted-foreground/60 tracking-wider">docssa_portal — bash</span>
+                <span className="ml-2 font-mono text-[9px] text-muted-foreground/60 tracking-wider">docssa_portal â€” bash</span>
               </div>
               <div className="p-5 font-mono text-xs space-y-1.5">
                 <p>
@@ -201,7 +201,7 @@ export default function Welcome() {
                   <span className="text-muted-foreground">connect --host docssa.uniuyo.ng</span>
                 </p>
                 <p className="text-muted-foreground/50 text-[10px]">Establishing secure connection...</p>
-                <p className="text-primary text-[10px]">✓ Connection established.</p>
+                <p className="text-primary text-[10px]">âœ“ Connection established.</p>
                 <div className="mt-4">
                   <p>
                     <span className="text-primary">$</span>{" "}
@@ -223,7 +223,7 @@ export default function Welcome() {
                   </p>
                   <p>
                     <span className="text-primary/55">[STAT]</span>{" "}
-                    <span className="text-primary font-bold">● ONLINE</span>
+                    <span className="text-primary font-bold">â— ONLINE</span>
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-primary/10 space-y-1.5 text-[11px]">
@@ -236,7 +236,7 @@ export default function Welcome() {
                     </p>
                   ))}
                 </div>
-                <p className="mt-4 text-primary text-base leading-none animate-pulse-dot">█</p>
+                <p className="mt-4 text-primary text-base leading-none animate-pulse-dot">â–ˆ</p>
               </div>
             </div>
           </div>
@@ -263,7 +263,7 @@ export default function Welcome() {
       <section id="about" className="py-24 px-6 md:px-12">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 01 — Who We Are</p>
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 01 â€” Who We Are</p>
             <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
               Nigeria's Boldest{" "}
               <span className="text-primary">Cyber</span>
@@ -272,7 +272,7 @@ export default function Welcome() {
             </h2>
             <p className="font-mono text-sm text-muted-foreground leading-[1.85] mt-6">
               DOCSSA is the official student association of the Department of Cyber Security, University of Uyo. We
-              bridge the gap between classroom learning and real-world digital defense — equipping students with
+              bridge the gap between classroom learning and real-world digital defense â€” equipping students with
               hands-on CTF experience, industry mentorship, and a powerful alumni network.
             </p>
 
@@ -298,13 +298,13 @@ export default function Welcome() {
                 <span className="w-2 h-2 rounded-full bg-destructive/55" />
                 <span className="w-2 h-2 rounded-full bg-brand-ember-bright/45" />
                 <span className="w-2 h-2 rounded-full bg-primary/55" />
-                <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">skills.txt — vim</span>
+                <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">skills.txt â€” vim</span>
               </div>
               <div className="p-6 font-mono text-xs">
                 <p className="text-primary/50 mb-3">$ grep -r skills ./docssa</p>
                 <p className="text-muted-foreground/45 mb-4 text-[10px]">Found {tags.length} matches in /domains/</p>
                 <div className="flex justify-center mb-6">
-                  <img src="/docssa.svg" alt="DOCSSA" className="h-28 w-28 opacity-90" />
+                  <img src="/logo-256.png" alt="DOCSSA" className="h-28 w-28 opacity-90" />
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {tags.map((t) => (
@@ -320,7 +320,7 @@ export default function Welcome() {
                   <p>
                     <span className="text-primary/50">STATUS</span>
                     {"  "}
-                    <span className="text-primary">● ACTIVELY RECRUITING</span>
+                    <span className="text-primary">â— ACTIVELY RECRUITING</span>
                   </p>
                   <p>
                     <span className="text-primary/50">LOCATION</span>
@@ -349,7 +349,7 @@ export default function Welcome() {
       {/* PROGRAMS */}
       <section id="programs" className="py-24 px-6 md:px-12 bg-primary/[0.025]">
         <div className="max-w-2xl mx-auto text-center mb-16">
-          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 02 — What We Do</p>
+          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 02 â€” What We Do</p>
           <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
             Our <span className="text-primary">Programs</span>
           </h2>
@@ -386,7 +386,7 @@ export default function Welcome() {
       {/* EXECUTIVES */}
       <section id="executives" className="py-24 px-6 md:px-12">
         <div className="max-w-xl mx-auto text-center mb-16">
-          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 03 — Leadership</p>
+          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 03 â€” Leadership</p>
           <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
             The <span className="text-primary">Executive</span> Council
           </h2>
@@ -450,8 +450,8 @@ export default function Welcome() {
         className="bg-background border-t border-primary/8 px-6 md:px-12 py-8 flex flex-wrap items-center justify-between gap-6"
       >
         <div className="flex items-center gap-3">
-          <img src="/docssa.svg" alt="DOCSSA" className="h-8 w-8 shrink-0" />
-          <span className="font-mono text-sm text-primary/60">DOCSSA · UniUyo</span>
+          <img src="/logo-256.png" alt="DOCSSA" className="h-8 w-8 shrink-0" />
+          <span className="font-mono text-sm text-primary/60">DOCSSA Â· UniUyo</span>
         </div>
         <div className="flex gap-6">
           {["About", "Programs", "Contact"].map((l) => (
@@ -471,9 +471,10 @@ export default function Welcome() {
           </Link>
         </div>
         <div className="font-mono text-[10px] text-muted-foreground/40 tracking-tight">
-          © 2026 DOCSSA — Dept. of Cyber Security, University of Uyo
+          Â© 2026 DOCSSA â€” Dept. of Cyber Security, University of Uyo
         </div>
       </footer>
     </div>
   );
 }
+

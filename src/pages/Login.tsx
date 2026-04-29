@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+﻿import { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -47,7 +47,7 @@ export default function Login() {
 
       <div className="relative z-10 w-full max-w-sm animate-fade-in">
         <Link to="/welcome" className="flex items-center gap-2.5 justify-center mb-8">
-          <img src="/docssa.svg" alt="DOCSSA" className="h-10 w-10" />
+          <img src="/logo-256.png" alt="DOCSSA" className="h-10 w-10" />
           <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
         </Link>
 
@@ -57,7 +57,7 @@ export default function Login() {
             <span className="w-2.5 h-2.5 rounded-full bg-destructive/65" />
             <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
             <span className="w-2.5 h-2.5 rounded-full bg-primary/65" />
-            <span className="ml-2 font-mono text-[9px] text-muted-foreground/55 tracking-wider">auth — secure login</span>
+            <span className="ml-2 font-mono text-[9px] text-muted-foreground/55 tracking-wider">auth â€” secure login</span>
           </div>
 
           <div className="p-6">
@@ -108,7 +108,7 @@ export default function Login() {
                 className="w-full font-mono text-[10px] uppercase tracking-widest mt-2"
                 disabled={loading}
               >
-                {loading ? "Authenticating..." : "Login →"}
+                {loading ? "Authenticating..." : "Login â†’"}
               </Button>
             </form>
 
@@ -124,3 +124,4 @@ export default function Login() {
     </div>
   );
 }
+
