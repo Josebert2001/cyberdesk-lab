@@ -1,4 +1,5 @@
-﻿import { Link } from "react-router-dom";
+﻿import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Shield,
   Zap,
@@ -9,6 +10,8 @@ import {
   Briefcase,
   Code2,
   ChevronRight,
+  Menu,
+  X,
 } from "lucide-react";
 
 const pillars = [
@@ -86,6 +89,8 @@ const executives = [
 ];
 
 export default function Welcome() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
 
@@ -122,12 +127,55 @@ export default function Welcome() {
             </Link>
             <Link
               to="/signup"
-              className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] font-bold px-5 py-2.5 bg-primary text-primary-foreground hover:bg-brand-ember-bright transition-all"
+              className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] font-bold px-5 py-2.5 bg-primary text-primary-foreground hover:bg-brand-ember-bright transition-all"
             >
               Join <ChevronRight className="h-3 w-3" />
             </Link>
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile menu panel */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-primary/10 bg-sidebar/98 backdrop-blur-sm">
+            <div className="px-6 py-5 space-y-1">
+              {["about", "programs", "executives", "contact"].map((link) => (
+                <a
+                  key={link}
+                  href={`#${link}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-3 border-b border-primary/8 font-mono text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {link}
+                  <ChevronRight className="h-3.5 w-3.5 opacity-40" />
+                </a>
+              ))}
+              <div className="pt-4 flex flex-col gap-3">
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center border border-primary/30 text-primary font-mono text-xs uppercase tracking-widest py-3 hover:bg-primary/5 transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest font-bold py-3 hover:bg-brand-ember-bright transition-colors"
+                >
+                  Join Now →
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* HERO */}
