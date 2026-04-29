@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Shield,
@@ -12,80 +12,181 @@ import {
   ChevronRight,
   Menu,
   X,
+  Eye,
+  Lock,
+  Brain,
+  Users,
+  Globe,
+  FlaskConical,
+  MapPin,
+  Mail,
 } from "lucide-react";
 
-const pillars = [
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Programmes", href: "#programmes" },
+  { label: "Staff", href: "#staff" },
+  { label: "Research", href: "#research" },
+  { label: "Student Body", href: "#student-body" },
+  { label: "Contact", href: "#contact" },
+];
+
+const heroStats = [
+  { num: "B.Sc.", label: "Degree Awarded" },
+  { num: "4 Yrs", label: "UTME Duration" },
+  { num: "3 Yrs", label: "Direct Entry" },
+  { num: "Computing", label: "Our Faculty" },
+];
+
+const objectives = [
   {
-    icon: Shield,
-    title: "Ethical Hacking & CTF",
-    desc: "Regular Capture The Flag competitions that sharpen practical offensive and defensive security skills.",
+    code: "01",
+    tag: "detect_prevent",
+    title: "Detect & Prevent",
+    subtitle: "Cyber-Fraud Detection & Prevention",
+    icon: Eye,
+    desc: "Produce graduates with a requisite foundation in cybersecurity knowledge, skills and strategies to detect and prevent cyber-fraud at organisational and national scale.",
   },
   {
-    icon: GraduationCap,
-    title: "Academic Excellence",
-    desc: "Study groups, past question banks, and peer mentorship to ensure no student falls behind.",
+    code: "02",
+    tag: "analyse_develop",
+    title: "Analyse & Develop",
+    subtitle: "Threat Analysis & Detective Coding",
+    icon: Code2,
+    desc: "Empower graduates to analyse cybersecurity threats, attacks and risks for organisations — with the capacity to develop detective codes and supportive software agents.",
   },
   {
+    code: "03",
+    tag: "protect_investigate",
+    title: "Protect & Investigate",
+    subtitle: "Cryptography & Digital Forensics",
+    icon: Lock,
+    desc: "Develop graduates with knowledge of cryptography, steganography, and digital forensic science techniques for privacy protection and cybercrime detection.",
+  },
+  {
+    code: "04",
+    tag: "think_strategise",
+    title: "Think & Strategise",
+    subtitle: "Cyber Intelligence & Strategy",
+    icon: Brain,
+    desc: "Produce graduates who can think critically about cyber intelligence security issues, and develop and implement tactical strategies drawing on national and international case studies.",
+  },
+  {
+    code: "05",
+    tag: "lead_employ",
+    title: "Lead & Employ",
+    subtitle: "Professional Practice & Entrepreneurship",
     icon: Briefcase,
-    title: "Industry Connections",
-    desc: "Seminars, hackathons, and partnerships with tech companies across Nigeria and Africa.",
+    desc: "Prepare graduates for self-employment, cybersecurity-based job placement, and professional practice in government agencies and private industries across Nigeria and Africa.",
+  },
+  {
+    code: "06",
+    tag: "understand_impact",
+    title: "Understand Impact",
+    subtitle: "Cybercrime Impact & Business Security",
+    icon: Shield,
+    desc: "Equip graduates to understand the impact of cybercrime on business and the public, and implement specific security practices and techniques to enhance systems security.",
   },
 ];
 
-const programs = [
+const programmes = [
   {
-    icon: Swords,
-    title: "CTF Competitions",
-    tag: "offensive_sec",
-    desc: "Internal and inter-university Capture The Flag competitions covering web exploitation, cryptography, forensics, and reverse engineering.",
-  },
-  {
-    icon: Code2,
-    title: "Skills Bootcamp",
-    tag: "training",
-    desc: "Intensive short courses on networking, Linux, Python for security, and cloud security fundamentals â€” fully free for DOCSSA members.",
-  },
-  {
-    icon: Microscope,
-    title: "Research Cluster",
-    tag: "research",
-    desc: "Faculty-supervised research groups publishing on AI security, threat intelligence, and digital forensics for African contexts.",
-  },
-  {
-    icon: Briefcase,
-    title: "Industry Connect",
-    tag: "career",
-    desc: "Monthly guest lectures and internship pipelines with Lagos, Abuja, and remote cybersecurity firms â€” helping you land your first role.",
+    icon: GraduationCap,
+    tag: "utme_entry",
+    title: "B.Sc. Cybersecurity — UTME",
+    duration: "4 Years",
+    desc: "Four-year undergraduate degree programme. Full immersion in cybersecurity theory, practice, and professional ethics.",
+    requirements: [
+      "English Language (Credit)",
+      "Mathematics (Credit)",
+      "Physics (Credit)",
+      "Two other Science subjects",
+      "Valid JAMB UTME Score",
+    ],
   },
   {
     icon: Zap,
-    title: "Hackathon Squad",
-    tag: "competition",
-    desc: "Team formation and coaching for national hackathons â€” DOCSSA members have placed in multiple regional tech competitions.",
+    tag: "direct_entry",
+    title: "B.Sc. Cybersecurity — Direct Entry",
+    duration: "3 Years (200L)",
+    desc: "Three-year route for candidates entering at 200 Level with prior tertiary qualifications in a relevant science field.",
+    requirements: [
+      "University/ND/NCE credit level",
+      "Five SSC credits in Science subjects",
+      "English Language (Credit)",
+      "Mathematics (Credit)",
+      "Physics (Credit)",
+    ],
+  },
+  {
+    icon: Microscope,
+    tag: "postgraduate",
+    title: "Postgraduate Research",
+    duration: "MPhil / PhD — Upcoming",
+    desc: "Postgraduate research pathways in emerging areas of cybersecurity, digital forensics, and AI security — to be announced.",
+    requirements: [
+      "Details to be announced",
+      "Digital Forensics track",
+      "AI Security track",
+      "Cybercrime Law track",
+    ],
+  },
+];
+
+const staffRoles = [
+  { initials: "UE", role: "Head of Department", specialisation: "Department of Cybersecurity", isHOD: true },
+  { initials: "SL", role: "Senior Lecturer", specialisation: "Network Security · Cryptography", isHOD: false },
+  { initials: "SL", role: "Senior Lecturer", specialisation: "Digital Forensics · Cyber Law", isHOD: false },
+  { initials: "L2", role: "Lecturer II", specialisation: "Ethical Hacking · Penetration Testing", isHOD: false },
+  { initials: "L2", role: "Lecturer II", specialisation: "Information Security · Risk Management", isHOD: false },
+  { initials: "L2", role: "Lecturer II", specialisation: "Cloud Security · IoT Security", isHOD: false },
+];
+
+const researchAreas = [
+  {
+    icon: Shield,
+    title: "Threat Intelligence & Cyber Defence",
+    status: "Active",
+    desc: "Investigating proactive cyber threat intelligence frameworks tailored to the Nigerian enterprise and government environment, including critical national information infrastructure protection.",
+  },
+  {
+    icon: FlaskConical,
+    title: "Digital Forensics & Cybercrime Investigation",
+    status: "Active",
+    desc: "Developing forensic science methodologies for gathering, analysing, and presenting digital evidence in a legally admissible manner for Nigerian courts and organisations.",
+  },
+  {
+    icon: Lock,
+    title: "Cryptography & Data Privacy",
+    status: "Active",
+    desc: "Research into cryptographic techniques, steganography, and privacy-preserving mechanisms for protecting sensitive data in corporate and government systems across Africa.",
+  },
+  {
+    icon: Brain,
+    title: "AI & Machine Learning for Security",
+    status: "Emerging",
+    desc: "Exploring AI-powered anomaly detection, intrusion detection systems, and automated threat response frameworks suited to the African network infrastructure context.",
+  },
+  {
+    icon: Globe,
+    title: "IoT Security & Privacy",
+    status: "Emerging",
+    desc: "Addressing security vulnerabilities in Internet of Things deployments across smart agriculture, healthcare, and energy systems in Nigeria and Sub-Saharan Africa.",
   },
   {
     icon: BookOpen,
-    title: "Exam Prep Hub",
-    tag: "academic",
-    desc: "Past question banks, CBT practice tools, and peer-led revision sessions to keep your GPA strong while you skill up.",
+    title: "Cybercrime Law & Countermeasures",
+    status: "Emerging",
+    desc: "Interdisciplinary research at the intersection of Nigerian cybercrime law, ethics of professional cybersecurity practice, and the legal framework governing digital evidence.",
   },
 ];
 
-const tags = ["Cybersecurity", "UniUyo", "CTF", "Ethical Hacking", "Python", "Networking", "Nigeria", "OSINT"];
-
-const stats = [
-  { num: "200+", label: "Active Members" },
-  { num: "12", label: "Programs Yearly" },
-  { num: "5", label: "Exec Portfolios" },
-  { num: "1st", label: "CyberSec Dept" },
-];
-
-const executives = [
-  { initials: "PR", name: "President", role: "Executive President" },
-  { initials: "VP", name: "Vice President", role: "Vice President" },
-  { initials: "SG", name: "Sec. General", role: "Secretary General" },
-  { initials: "FO", name: "Treasurer", role: "Financial Officer" },
-  { initials: "PR", name: "PRO", role: "Public Relations" },
+const docsssaActivities = [
+  { icon: Swords, label: "CTF Competitions & Ethical Hacking Events" },
+  { icon: Code2, label: "Skills Bootcamps & Industry Workshops" },
+  { icon: BookOpen, label: "Academic Support & Exam Preparation" },
+  { icon: Users, label: "Hackathon Teams & National Competitions" },
+  { icon: Briefcase, label: "Industry Networking & Internship Pipelines" },
 ];
 
 export default function Welcome() {
@@ -105,14 +206,14 @@ export default function Welcome() {
             </div>
           </Link>
 
-          <ul className="hidden md:flex items-center gap-8 list-none">
-            {["about", "programs", "executives", "contact"].map((link) => (
-              <li key={link}>
+          <ul className="hidden lg:flex items-center gap-7 list-none">
+            {navLinks.map(({ label, href }) => (
+              <li key={href}>
                 <a
-                  href={`#${link}`}
+                  href={href}
                   className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground hover:text-primary transition-colors"
                 >
-                  {link}
+                  {label}
                 </a>
               </li>
             ))}
@@ -125,16 +226,15 @@ export default function Welcome() {
             >
               Login
             </Link>
-            <Link
-              to="/signup"
+            <a
+              href="#contact"
               className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] font-bold px-5 py-2.5 bg-primary text-primary-foreground hover:bg-brand-ember-bright transition-all"
             >
-              Join <ChevronRight className="h-3 w-3" />
-            </Link>
-            {/* Mobile hamburger */}
+              Apply Now <ChevronRight className="h-3 w-3" />
+            </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
+              className="lg:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -144,16 +244,16 @@ export default function Welcome() {
 
         {/* Mobile menu panel */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-primary/10 bg-sidebar/98 backdrop-blur-sm">
+          <div className="lg:hidden border-t border-primary/10 bg-sidebar/98 backdrop-blur-sm">
             <div className="px-6 py-5 space-y-1">
-              {["about", "programs", "executives", "contact"].map((link) => (
+              {navLinks.map(({ label, href }) => (
                 <a
-                  key={link}
-                  href={`#${link}`}
+                  key={href}
+                  href={href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-between py-3 border-b border-primary/8 font-mono text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
                 >
-                  {link}
+                  {label}
                   <ChevronRight className="h-3.5 w-3.5 opacity-40" />
                 </a>
               ))}
@@ -165,13 +265,13 @@ export default function Welcome() {
                 >
                   Login
                 </Link>
-                <Link
-                  to="/signup"
+                <a
+                  href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full text-center bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest font-bold py-3 hover:bg-brand-ember-bright transition-colors"
                 >
-                  Join Now →
-                </Link>
+                  Apply Now →
+                </a>
               </div>
             </div>
           </div>
@@ -192,90 +292,89 @@ export default function Welcome() {
         />
 
         <div className="relative z-10 max-w-7xl w-full mx-auto grid md:grid-cols-[1fr_360px] gap-12 lg:gap-20 items-center">
-          {/* Left: Main content */}
+          {/* Left */}
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 border border-primary/30 bg-primary/5 px-3 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot" />
               <span className="font-mono text-[10px] text-primary tracking-widest uppercase">
-                System Online Â· UniUyo Â· Est. 2024
+                Faculty of Computing · University of Uyo
               </span>
             </div>
 
-            <h1 className="font-display text-[4.5rem] sm:text-[6rem] md:text-[7rem] lg:text-[8.5rem] leading-[0.88] tracking-[0.02em] text-foreground">
-              DEFEND.
+            <h1 className="font-display text-[3.5rem] sm:text-[5rem] md:text-[5.5rem] lg:text-[7rem] leading-[0.9] tracking-[0.02em] text-foreground">
+              DEPARTMENT
               <br />
-              <span className="text-primary neon-text-glow">INNOVATE.</span>
+              <span className="text-primary neon-text-glow">OF CYBER</span>
               <br />
-              LEAD.
+              SECURITY
             </h1>
 
             <div className="mt-8 mb-10">
-              <p className="font-mono text-[10px] text-primary/45 mb-2 tracking-widest">// mission statement</p>
+              <p className="font-mono text-[10px] text-primary/45 mb-2 tracking-widest">// mission</p>
               <p className="font-mono text-sm text-muted-foreground leading-[1.85] max-w-lg">
-                The Department of Cyber Security Students Association at UniUyo â€” building the next generation of
-                digital defenders, ethical hackers, and cybersecurity leaders across Nigeria.
+                Building Nigeria's next generation of digital defenders. We equip graduates with the knowledge, skills,
+                and ethical grounding to protect organisations, critical infrastructure, and cyberspace — nationally
+                and globally.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Link
-                to="/signup"
+              <a
+                href="#programmes"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-7 py-3.5 hover:bg-brand-ember-bright hover:shadow-[0_6px_24px_rgba(255,136,0,0.35)] transition-all"
               >
-                <span>Enlist Now</span>
+                Explore Programmes
                 <ChevronRight className="h-3.5 w-3.5" />
-              </Link>
+              </a>
               <a
-                href="#programs"
+                href="#about"
                 className="inline-flex items-center gap-2 border border-primary/35 text-primary font-mono text-xs uppercase tracking-[0.1em] px-7 py-3.5 hover:border-primary hover:bg-primary/5 transition-all"
               >
-                Our Programs
+                About the Department
               </a>
             </div>
           </div>
 
-          {/* Right: Terminal HUD panel */}
+          {/* Right: Terminal HUD */}
           <div className="hidden md:block animate-fade-in" style={{ animationDelay: "0.15s" }}>
             <div className="border border-primary/20 bg-card/85 backdrop-blur-sm overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
                 <span className="w-2.5 h-2.5 rounded-full bg-destructive/70" />
                 <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
                 <span className="w-2.5 h-2.5 rounded-full bg-primary/70" />
-                <span className="ml-2 font-mono text-[9px] text-muted-foreground/60 tracking-wider">docssa_portal â€” bash</span>
+                <span className="ml-2 font-mono text-[9px] text-muted-foreground/60 tracking-wider">dept_portal — bash</span>
               </div>
               <div className="p-5 font-mono text-xs space-y-1.5">
                 <p>
                   <span className="text-primary">$</span>{" "}
-                  <span className="text-muted-foreground">connect --host docssa.uniuyo.ng</span>
+                  <span className="text-muted-foreground">connect --host dept.cybersec.uniuyo.edu.ng</span>
                 </p>
                 <p className="text-muted-foreground/50 text-[10px]">Establishing secure connection...</p>
-                <p className="text-primary text-[10px]">âœ“ Connection established.</p>
-                <div className="mt-4">
-                  <p>
-                    <span className="text-primary">$</span>{" "}
-                    <span className="text-muted-foreground">status --verbose</span>
-                  </p>
-                </div>
-                <div className="mt-2 space-y-1 text-[11px]">
+                <p className="text-primary text-[10px]">✓ Connection established.</p>
+                <div className="mt-4 space-y-1 text-[11px]">
                   <p>
                     <span className="text-primary/55">[DEPT]</span>{" "}
-                    <span className="text-foreground">CYBER_SECURITY</span>
+                    <span className="text-foreground">CYBERSECURITY</span>
+                  </p>
+                  <p>
+                    <span className="text-primary/55">[FACULTY]</span>{" "}
+                    <span className="text-foreground">COMPUTING</span>
                   </p>
                   <p>
                     <span className="text-primary/55">[UNIV]</span>{" "}
                     <span className="text-foreground">UNIVERSITY_OF_UYO</span>
                   </p>
                   <p>
-                    <span className="text-primary/55">[YEAR]</span>{" "}
-                    <span className="text-foreground">EST._2024</span>
+                    <span className="text-primary/55">[HOD]</span>{" "}
+                    <span className="text-foreground">U.O._EKONG</span>
                   </p>
                   <p>
-                    <span className="text-primary/55">[STAT]</span>{" "}
-                    <span className="text-primary font-bold">â— ONLINE</span>
+                    <span className="text-primary/55">[STATUS]</span>{" "}
+                    <span className="text-primary font-bold">● ONLINE</span>
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-primary/10 space-y-1.5 text-[11px]">
-                  {stats.map((s) => (
+                  {heroStats.map((s) => (
                     <p key={s.label}>
                       <span className="text-primary/55">
                         [{s.label.toUpperCase().replace(/ /g, "_")}]
@@ -284,7 +383,7 @@ export default function Welcome() {
                     </p>
                   ))}
                 </div>
-                <p className="mt-4 text-primary text-base leading-none animate-pulse-dot">â–ˆ</p>
+                <p className="mt-4 text-primary text-base leading-none animate-pulse-dot">█</p>
               </div>
             </div>
           </div>
@@ -294,9 +393,9 @@ export default function Welcome() {
       {/* STATS BAR */}
       <div className="bg-primary/[0.04] border-y border-primary/12 py-8 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((s) => (
+          {heroStats.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-display text-[2.8rem] leading-none tracking-[0.04em] text-primary neon-text-glow">
+              <div className="font-display text-[2.4rem] leading-none tracking-[0.04em] text-primary neon-text-glow">
                 {s.num}
               </div>
               <div className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase mt-1.5">
@@ -307,83 +406,83 @@ export default function Welcome() {
         </div>
       </div>
 
+      {/* UNIVERSITY VISION BANNER */}
+      <div className="border-y border-primary/10 bg-primary/[0.03] py-10 px-6 md:px-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="font-mono text-[9px] text-primary/40 tracking-[0.25em] uppercase mb-4">// University of Uyo — Vision</p>
+          <blockquote className="font-mono text-sm md:text-base text-muted-foreground leading-[1.9] italic border-l-2 border-primary/40 pl-6 text-left max-w-3xl mx-auto">
+            "To be a centre of academic excellence by utilizing the available human and technological resources for
+            teaching, research, community service and sustainable development."
+          </blockquote>
+          <p className="font-mono text-[10px] text-primary/50 tracking-widest mt-4">— University of Uyo</p>
+        </div>
+      </div>
+
       {/* ABOUT */}
       <section id="about" className="py-24 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-          <div>
-            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 01 â€” Who We Are</p>
-            <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
-              Nigeria's Boldest{" "}
-              <span className="text-primary">Cyber</span>
-              <br />
-              Student Body
-            </h2>
-            <p className="font-mono text-sm text-muted-foreground leading-[1.85] mt-6">
-              DOCSSA is the official student association of the Department of Cyber Security, University of Uyo. We
-              bridge the gap between classroom learning and real-world digital defense â€” equipping students with
-              hands-on CTF experience, industry mentorship, and a powerful alumni network.
-            </p>
+        <div className="max-w-6xl mx-auto">
+          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 01 — About the Department</p>
+          <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em] mb-16">
+            Shaping the Cyber <span className="text-primary">Defenders</span>
+            <br />
+            of Tomorrow
+          </h2>
 
-            <div className="flex flex-col gap-5 mt-8">
-              {pillars.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="flex items-start gap-4">
-                  <div className="w-9 h-9 shrink-0 border border-primary/25 bg-primary/5 flex items-center justify-center mt-0.5">
-                    <Icon className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-mono text-sm font-bold text-foreground mb-1">{title}</h4>
-                    <p className="font-mono text-[11px] text-muted-foreground leading-[1.75]">{desc}</p>
-                  </div>
-                </div>
-              ))}
+          <div className="grid md:grid-cols-[1fr_340px] gap-16 items-start">
+            <div>
+              <p className="font-mono text-sm text-muted-foreground leading-[1.85] mb-6">
+                The Department of Cybersecurity at the University of Uyo is one of the pioneering departments within
+                the Faculty of Computing. It was established to address the growing national and global demand for
+                qualified cybersecurity professionals capable of protecting digital infrastructure and responding to
+                evolving cyber threats.
+              </p>
+
+              <blockquote className="border-l-2 border-primary/50 pl-5 mb-8">
+                <p className="font-mono text-[11px] text-muted-foreground/80 leading-[1.9] italic">
+                  "The philosophy of this programme is to build capacity and develop human capital in the field of
+                  cybersecurity, to safeguard business transactions, corporate assets, critical infrastructure and
+                  all cyber operations in cyberspace, nationally and globally."
+                </p>
+              </blockquote>
+
+              <p className="font-mono text-sm text-muted-foreground leading-[1.85]">
+                Our graduates leave equipped to think critically about cyber intelligence issues, develop and implement
+                security strategies, and pursue careers in government agencies, private enterprise, consultancy, or
+                entrepreneurship. We place particular emphasis on practical, hands-on learning alongside rigorous
+                academic theory.
+              </p>
             </div>
-          </div>
 
-          {/* Skills terminal */}
-          <div>
+            {/* Info terminal */}
             <div className="border border-primary/18 bg-card/60 overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
                 <span className="w-2 h-2 rounded-full bg-destructive/55" />
                 <span className="w-2 h-2 rounded-full bg-brand-ember-bright/45" />
                 <span className="w-2 h-2 rounded-full bg-primary/55" />
-                <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">skills.txt â€” vim</span>
+                <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">dept_info.txt</span>
               </div>
-              <div className="p-6 font-mono text-xs">
-                <p className="text-primary/50 mb-3">$ grep -r skills ./docssa</p>
-                <p className="text-muted-foreground/45 mb-4 text-[10px]">Found {tags.length} matches in /domains/</p>
-                <div className="flex justify-center mb-6">
-                  <img src="/logo-256.png" alt="DOCSSA" className="h-28 w-28 opacity-90 brand-logo" />
+              <div className="p-6 font-mono text-[11px] space-y-3">
+                <div className="flex justify-center mb-4">
+                  <img src="/logo-256.png" alt="DOCSSA" className="h-20 w-20 opacity-90 brand-logo" />
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {tags.map((t) => (
-                    <span
-                      key={t}
-                      className="border border-primary/25 bg-primary/5 px-3 py-1.5 text-[11px] text-primary/85 tracking-tight"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-8 pt-6 border-t border-primary/10 space-y-2 text-[11px]">
-                  <p>
-                    <span className="text-primary/50">STATUS</span>
-                    {"  "}
-                    <span className="text-primary">â— ACTIVELY RECRUITING</span>
+                {[
+                  { label: "HOD", value: "Uyinomen O. Ekong" },
+                  { label: "DEAN", value: "Prof. Uduak A. Umoh" },
+                  { label: "FACULTY", value: "Faculty of Computing" },
+                  { label: "LOCATION", value: "Ikpa Road, Uyo, AKS" },
+                  { label: "ACCREDITATION", value: "NUC Approved" },
+                  { label: "WEBSITE", value: "uniuyo.edu.ng" },
+                ].map(({ label, value }) => (
+                  <p key={label}>
+                    <span className="text-primary/50">[{label}]</span>{" "}
+                    <span className="text-muted-foreground">{value}</span>
                   </p>
-                  <p>
-                    <span className="text-primary/50">LOCATION</span>
-                    {"  "}
-                    <span className="text-muted-foreground">University of Uyo, Nigeria</span>
-                  </p>
-                  <p>
-                    <span className="text-primary/50">FOCUS</span>
-                    {"    "}
-                    <span className="text-muted-foreground">Offensive & Defensive Security</span>
-                  </p>
-                  <p>
-                    <span className="text-primary/50">TOOLS</span>
-                    {"    "}
-                    <span className="text-muted-foreground">Kali, Wireshark, Burp, Python</span>
+                ))}
+                <div className="pt-3 border-t border-primary/10">
+                  <p className="text-[10px] text-muted-foreground/40">
+                    Alongside: Computer Science · Data Science
+                    <br />
+                    Information Technology · Software Engineering
                   </p>
                 </div>
               </div>
@@ -394,72 +493,255 @@ export default function Welcome() {
 
       <hr className="mx-6 md:mx-12 border-0 h-px bg-gradient-to-r from-transparent via-primary/18 to-transparent" />
 
-      {/* PROGRAMS */}
-      <section id="programs" className="py-24 px-6 md:px-12 bg-primary/[0.025]">
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 02 â€” What We Do</p>
-          <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
-            Our <span className="text-primary">Programs</span>
-          </h2>
-          <p className="font-mono text-[11px] text-muted-foreground leading-[1.75] mt-4 max-w-lg mx-auto">
-            From beginner workshops to advanced research, DOCSSA runs programs designed to fast-track your
-            cybersecurity career.
-          </p>
-        </div>
+      {/* PROGRAMME OBJECTIVES */}
+      <section className="py-24 px-6 md:px-12 bg-primary/[0.025]">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 02 — Programme Objectives</p>
+            <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
+              What Our Graduates <span className="text-primary">Are Built</span> to Do
+            </h2>
+          </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {programs.map(({ icon: Icon, title, tag, desc }) => (
-            <div key={title} className="brand-card group relative overflow-hidden">
-              <div className="flex items-center gap-1.5 px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
-                <span className="w-2 h-2 rounded-full bg-destructive/45" />
-                <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
-                <span className="w-2 h-2 rounded-full bg-primary/45" />
-                <span className="ml-2 font-mono text-[9px] text-primary/35 tracking-widest">[{tag}]</span>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 border border-primary/25 bg-primary/5 flex items-center justify-center shrink-0">
-                    <Icon className="h-4 w-4 text-primary" />
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {objectives.map(({ code, tag, title, subtitle, icon: Icon, desc }) => (
+              <div key={code} className="brand-card group relative overflow-hidden">
+                <div className="flex items-center gap-1.5 px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
+                  <span className="w-2 h-2 rounded-full bg-destructive/45" />
+                  <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                  <span className="w-2 h-2 rounded-full bg-primary/45" />
+                  <span className="ml-2 font-mono text-[9px] text-primary/35 tracking-widest">[{tag}]</span>
                 </div>
-                <h3 className="font-display text-[1.35rem] tracking-[0.04em] text-foreground mb-2.5">{title}</h3>
-                <p className="font-mono text-[11px] text-muted-foreground leading-[1.75]">{desc}</p>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-8 h-8 border border-primary/25 bg-primary/5 flex items-center justify-center shrink-0">
+                      <Icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="font-display text-4xl text-primary/10 tracking-widest">{code}</span>
+                  </div>
+                  <h3 className="font-display text-[1.25rem] tracking-[0.04em] text-primary mb-1">{title}</h3>
+                  <p className="font-mono text-[9px] text-primary/50 tracking-wide uppercase mb-3">{subtitle}</p>
+                  <p className="font-mono text-[11px] text-muted-foreground leading-[1.75]">{desc}</p>
+                </div>
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </div>
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* EXECUTIVES */}
-      <section id="executives" className="py-24 px-6 md:px-12">
-        <div className="max-w-xl mx-auto text-center mb-16">
-          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 03 â€” Leadership</p>
-          <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
-            The <span className="text-primary">Executive</span> Council
-          </h2>
-        </div>
+      <hr className="mx-6 md:mx-12 border-0 h-px bg-gradient-to-r from-transparent via-primary/18 to-transparent" />
 
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {executives.map((exec, i) => (
-            <div
-              key={`${exec.role}-${i}`}
-              className="text-center p-5 border border-primary/12 bg-card/60 hover:border-primary/38 hover:-translate-y-0.5 transition-all group"
-            >
-              <div className="font-mono text-[8px] text-primary/35 tracking-widest mb-3 uppercase">[ID VERIFIED]</div>
-              <div className="w-16 h-16 mx-auto mb-3 border border-primary/30 bg-primary/5 flex items-center justify-center font-display text-2xl tracking-wider text-primary group-hover:neon-glow transition-all">
-                {exec.initials}
+      {/* ACADEMIC PROGRAMMES */}
+      <section id="programmes" className="py-24 px-6 md:px-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 03 — Academic Programmes</p>
+            <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
+              Degrees & <span className="text-primary">Entry Routes</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {programmes.map(({ icon: Icon, tag, title, duration, desc, requirements }) => (
+              <div key={tag} className="border border-primary/15 bg-card/60 hover:border-primary/38 transition-all group flex flex-col">
+                <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
+                  <span className="w-2 h-2 rounded-full bg-destructive/45" />
+                  <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                  <span className="w-2 h-2 rounded-full bg-primary/45" />
+                  <span className="ml-2 font-mono text-[9px] text-primary/40 tracking-widest">[{tag}]</span>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-9 h-9 border border-primary/25 bg-primary/5 flex items-center justify-center shrink-0">
+                      <Icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="font-mono text-[9px] text-primary/60 tracking-widest border border-primary/20 px-2 py-1">{duration}</span>
+                  </div>
+                  <h3 className="font-display text-[1.2rem] tracking-[0.03em] text-foreground mb-2">{title}</h3>
+                  <p className="font-mono text-[11px] text-muted-foreground leading-[1.75] mb-5">{desc}</p>
+                  <div className="mt-auto pt-4 border-t border-primary/8">
+                    <p className="font-mono text-[9px] text-primary/40 tracking-widest uppercase mb-2">Requirements</p>
+                    <ul className="space-y-1">
+                      {requirements.map((r) => (
+                        <li key={r} className="font-mono text-[10px] text-muted-foreground/70 flex gap-2">
+                          <span className="text-primary/40 shrink-0">→</span>
+                          {r}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div className="font-mono text-xs font-bold text-foreground mb-1">{exec.name}</div>
-              <div className="font-mono text-[9px] text-primary tracking-wide uppercase leading-relaxed">{exec.role}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ACADEMIC STAFF */}
+      <section id="staff" className="py-24 px-6 md:px-12 bg-primary/[0.025]">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 04 — Academic Staff</p>
+            <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
+              Meet Our <span className="text-primary">Faculty</span>
+            </h2>
+          </div>
+
+          {/* HOD Spotlight */}
+          <div className="border border-primary/25 bg-card/70 p-6 md:p-8 mb-8 grid md:grid-cols-[auto_1fr] gap-6 items-start">
+            <div className="w-20 h-20 border-2 border-primary/50 bg-primary/8 flex items-center justify-center font-display text-3xl tracking-wider text-primary neon-text-glow shrink-0">
+              UE
             </div>
-          ))}
+            <div>
+              <div className="font-mono text-[9px] text-primary/40 tracking-widest uppercase mb-1">[Head of Department]</div>
+              <h3 className="font-display text-2xl tracking-[0.05em] text-foreground mb-1">Uyinomen O. Ekong</h3>
+              <p className="font-mono text-[10px] text-primary/60 tracking-wide uppercase mb-4">
+                HOD, Department of Cybersecurity
+              </p>
+              <blockquote className="border-l-2 border-primary/30 pl-4">
+                <p className="font-mono text-[11px] text-muted-foreground/80 leading-[1.85] italic">
+                  "Our department is committed to producing graduates who will be at the forefront of securing Nigeria's
+                  digital future — with integrity, technical excellence, and global perspective."
+                </p>
+              </blockquote>
+            </div>
+          </div>
+
+          {/* Staff grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {staffRoles.filter((s) => !s.isHOD).map((s, i) => (
+              <div
+                key={i}
+                className="text-center p-5 border border-primary/12 bg-card/60 hover:border-primary/38 hover:-translate-y-0.5 transition-all group"
+              >
+                <div className="font-mono text-[8px] text-primary/35 tracking-widest mb-3 uppercase">[{s.role}]</div>
+                <div className="w-14 h-14 mx-auto mb-3 border border-primary/25 bg-primary/5 flex items-center justify-center font-display text-xl tracking-wider text-primary/60">
+                  {s.initials}
+                </div>
+                <div className="font-mono text-[9px] text-muted-foreground/50 leading-relaxed tracking-tight">
+                  {s.specialisation}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="font-mono text-[10px] text-muted-foreground/30 tracking-widest text-center mt-6">
+            * Staff profiles with names and photos to be updated
+          </p>
+        </div>
+      </section>
+
+      {/* RESEARCH FOCUS */}
+      <section id="research" className="py-24 px-6 md:px-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 05 — Research</p>
+            <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
+              Areas of Research <span className="text-primary">& Inquiry</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {researchAreas.map(({ icon: Icon, title, status, desc }) => (
+              <div key={title} className="brand-card group relative overflow-hidden">
+                <div className="flex items-center gap-1.5 px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
+                  <span className="w-2 h-2 rounded-full bg-destructive/45" />
+                  <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                  <span className="w-2 h-2 rounded-full bg-primary/45" />
+                  <span className={`ml-auto font-mono text-[8px] tracking-widest px-2 py-0.5 border ${
+                    status === "Active"
+                      ? "border-primary/30 text-primary bg-primary/5"
+                      : "border-muted-foreground/20 text-muted-foreground/50"
+                  }`}>
+                    {status}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <div className="w-8 h-8 border border-primary/25 bg-primary/5 flex items-center justify-center mb-4">
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <h3 className="font-display text-[1.1rem] tracking-[0.03em] text-foreground mb-3">{title}</h3>
+                  <p className="font-mono text-[11px] text-muted-foreground leading-[1.75]">{desc}</p>
+                </div>
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STUDENT BODY / DOCSSA */}
+      <section id="student-body" className="py-24 px-6 md:px-12 bg-primary/[0.025]">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+          <div>
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 06 — Student Body</p>
+            <h2 className="font-display text-4xl md:text-5xl leading-none tracking-[0.02em] mb-6">
+              DOCSSA — <span className="text-primary">Inside</span>
+              <br />
+              the Department
+            </h2>
+
+            <p className="font-mono text-[11px] text-muted-foreground/60 uppercase tracking-widest mb-3">
+              Department of Cyber Security Students Association
+            </p>
+            <p className="font-mono text-sm text-muted-foreground leading-[1.85] mb-4">
+              DOCSSA is the official student body operating <em>within</em> the Department of Cybersecurity at the
+              University of Uyo. It exists to complement the department's academic mission by building community,
+              running extracurricular programmes, and preparing students for the professional world.
+            </p>
+            <p className="font-mono text-sm text-muted-foreground leading-[1.85]">
+              As a departmental association — not a separate entity — DOCSSA activities are coordinated under the
+              oversight of the department and contribute directly to student life, skills development, and industry
+              engagement.
+            </p>
+
+            <div className="mt-8">
+              <Link
+                to="/signup"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-7 py-3.5 hover:bg-brand-ember-bright hover:shadow-[0_6px_24px_rgba(255,136,0,0.35)] transition-all"
+              >
+                Join DOCSSA <ChevronRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Activities terminal */}
+          <div className="border border-primary/18 bg-card/60 overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
+              <span className="w-2 h-2 rounded-full bg-destructive/55" />
+              <span className="w-2 h-2 rounded-full bg-brand-ember-bright/45" />
+              <span className="w-2 h-2 rounded-full bg-primary/55" />
+              <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">docssa_activities.sh</span>
+            </div>
+            <div className="p-6 font-mono text-xs">
+              <p className="text-primary/50 mb-4">$ cat DOCSSA_ACTIVITIES</p>
+              <div className="space-y-4">
+                {docsssaActivities.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-start gap-3">
+                    <div className="w-7 h-7 shrink-0 border border-primary/25 bg-primary/5 flex items-center justify-center mt-0.5">
+                      <Icon className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <p className="text-muted-foreground leading-[1.75] text-[11px]">{label}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-5 border-t border-primary/10 text-[11px] space-y-1">
+                <p>
+                  <span className="text-primary/50">[PORTAL]</span>{" "}
+                  <Link to="/lab" className="text-primary hover:underline">cyberdesk-lab.vercel.app</Link>
+                </p>
+                <p>
+                  <span className="text-primary/50">[STATUS]</span>{" "}
+                  <span className="text-primary">● ACTIVELY RECRUITING</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA BAND */}
       <div
-        id="join"
         className="relative border-y border-primary/18 text-center py-24 px-6 overflow-hidden"
         style={{ background: "linear-gradient(135deg, #1A0E00 0%, #0D0906 55%, #180A00 100%)" }}
       >
@@ -469,61 +751,109 @@ export default function Welcome() {
           aria-hidden
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[18vw] text-primary/[0.035] tracking-[0.1em] whitespace-nowrap pointer-events-none select-none"
         >
-          DOCSSA
+          UNIUYO
         </span>
         <div className="relative">
-          <p className="font-mono text-[10px] text-primary/60 tracking-[0.25em] uppercase mb-5">// Ready to join?</p>
+          <p className="font-mono text-[10px] text-primary/60 tracking-[0.25em] uppercase mb-5">// Ready to apply?</p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-[0.03em] text-foreground mb-4">
             DEFEND THE
             <br />
             <span className="text-primary neon-text-glow">DIGITAL FRONTIER</span>
           </h2>
           <p className="font-mono text-sm text-muted-foreground max-w-lg mx-auto mb-10 leading-[1.8]">
-            Join over 200 cybersecurity students building skills, friendships, and careers at Nigeria's premier cyber
-            department.
+            Join Nigeria's premier cybersecurity department and build the skills, knowledge, and network to protect
+            the digital world — locally and globally.
           </p>
-          <Link
-            to="/signup"
-            className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-10 py-4 hover:bg-brand-ember-bright hover:shadow-[0_8px_32px_rgba(255,136,0,0.4)] transition-all"
-          >
-            <span>Apply for Membership</span>
-            <ChevronRight className="h-3.5 w-3.5" />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-10 py-4 hover:bg-brand-ember-bright hover:shadow-[0_8px_32px_rgba(255,136,0,0.4)] transition-all"
+            >
+              Apply via JAMB <ChevronRight className="h-3.5 w-3.5" />
+            </a>
+            <Link
+              to="/signup"
+              className="inline-flex items-center gap-3 border border-primary/35 text-primary font-mono text-xs uppercase tracking-[0.1em] px-10 py-4 hover:border-primary hover:bg-primary/5 transition-all"
+            >
+              Join DOCSSA Portal
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* FOOTER */}
-      <footer
-        id="contact"
-        className="bg-background border-t border-primary/8 px-6 md:px-12 py-8 flex flex-wrap items-center justify-between gap-6"
-      >
-        <div className="flex items-center gap-3">
-          <img src="/logo-256.png" alt="DOCSSA" className="h-8 w-8 shrink-0 brand-logo" />
-          <span className="font-mono text-sm text-primary/60">DOCSSA Â· UniUyo</span>
+      {/* FOOTER / CONTACT */}
+      <footer id="contact" className="bg-background border-t border-primary/8 px-6 md:px-12 py-16">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_auto_auto] gap-12">
+          {/* Dept info */}
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <img src="/logo-256.png" alt="DOCSSA" className="h-10 w-10 shrink-0 brand-logo" />
+              <div>
+                <div className="font-display text-lg tracking-[0.1em] text-primary">DOCSSA</div>
+                <div className="font-mono text-[9px] text-muted-foreground/50 tracking-widest">Dept. of Cybersecurity · UniUyo</div>
+              </div>
+            </div>
+            <div className="font-mono text-[11px] text-muted-foreground/60 space-y-1.5">
+              <div className="flex items-start gap-2">
+                <MapPin className="h-3 w-3 text-primary/40 mt-0.5 shrink-0" />
+                <span>Ikpa Road, Uyo, Akwa Ibom State, Nigeria</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-3 w-3 text-primary/40 shrink-0" />
+                <span>cybersecurity@uniuyo.edu.ng</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <p className="font-mono text-[9px] text-primary/40 tracking-[0.2em] uppercase mb-4">Quick Links</p>
+            <ul className="space-y-2">
+              {[
+                { label: "University Website", href: "#" },
+                { label: "Faculty of Computing", href: "#" },
+                { label: "JAMB Portal", href: "#" },
+                { label: "Student Portal", href: "#" },
+                { label: "Academic Calendar", href: "#" },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className="font-mono text-[10px] text-muted-foreground/50 hover:text-primary transition-colors tracking-wide">
+                    → {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Department nav */}
+          <div>
+            <p className="font-mono text-[9px] text-primary/40 tracking-[0.2em] uppercase mb-4">Department</p>
+            <ul className="space-y-2">
+              {navLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <a href={href} className="font-mono text-[10px] text-muted-foreground/50 hover:text-primary transition-colors tracking-wide">
+                    {label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <Link to="/lab" className="font-mono text-[10px] text-primary/60 hover:text-primary transition-colors tracking-wide">
+                  DOCSSA Portal →
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="flex gap-6">
-          {["About", "Programs", "Contact"].map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors tracking-wide"
-            >
-              {l}
-            </a>
-          ))}
-          <Link
-            to="/lab"
-            className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors tracking-wide"
-          >
-            Portal
-          </Link>
-        </div>
-        <div className="font-mono text-[10px] text-muted-foreground/40 tracking-tight">
-          Â© 2026 DOCSSA â€” Dept. of Cyber Security, University of Uyo
+
+        <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-primary/8 flex flex-wrap items-center justify-between gap-4">
+          <div className="font-mono text-[10px] text-muted-foreground/30 tracking-tight">
+            © 2025 Department of Cybersecurity, University of Uyo. All rights reserved.
+          </div>
+          <div className="font-mono text-[10px] text-muted-foreground/25 tracking-tight">
+            UNIUYO · Faculty of Computing · Cybersecurity
+          </div>
         </div>
       </footer>
     </div>
   );
 }
-
-
