@@ -90,7 +90,7 @@ export function AppSidebar() {
       {/* Header */}
       <div className="px-5 py-5 border-b border-sidebar-border">
         <div className="flex items-center gap-2.5">
-          <img src="/logo-256.png" alt="DOCSSA" className="h-9 w-9 shrink-0" />
+          <img src="/logo-256.png" alt="DOCSSA" className="h-9 w-9 shrink-0 brand-logo" />
           <div>
             <h1 className="font-display text-lg tracking-[0.12em] text-primary font-bold leading-none">DOCSSA</h1>
             <p className="font-mono text-[9px] text-muted-foreground/40 tracking-widest mt-0.5 uppercase">
@@ -213,4 +213,5 @@ export function AppSidebar() {
     </>
   );
 }
+
 

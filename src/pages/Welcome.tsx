@@ -93,7 +93,7 @@ export default function Welcome() {
       <nav className="fixed top-0 left-0 right-0 z-50 brand-glass border-b border-primary/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
           <Link to="/welcome" className="flex items-center gap-3">
-            <img src="/logo-256.png" alt="DOCSSA" className="h-9 w-9 shrink-0" />
+            <img src="/logo-256.png" alt="DOCSSA" className="h-9 w-9 shrink-0 brand-logo" />
             <div className="leading-none">
               <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
               <span className="hidden sm:inline font-mono text-[9px] text-muted-foreground/40 ml-2 tracking-widest">// UNIUYO</span>
@@ -304,7 +304,7 @@ export default function Welcome() {
                 <p className="text-primary/50 mb-3">$ grep -r skills ./docssa</p>
                 <p className="text-muted-foreground/45 mb-4 text-[10px]">Found {tags.length} matches in /domains/</p>
                 <div className="flex justify-center mb-6">
-                  <img src="/logo-256.png" alt="DOCSSA" className="h-28 w-28 opacity-90" />
+                  <img src="/logo-256.png" alt="DOCSSA" className="h-28 w-28 opacity-90 brand-logo" />
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {tags.map((t) => (
@@ -450,7 +450,7 @@ export default function Welcome() {
         className="bg-background border-t border-primary/8 px-6 md:px-12 py-8 flex flex-wrap items-center justify-between gap-6"
       >
         <div className="flex items-center gap-3">
-          <img src="/logo-256.png" alt="DOCSSA" className="h-8 w-8 shrink-0" />
+          <img src="/logo-256.png" alt="DOCSSA" className="h-8 w-8 shrink-0 brand-logo" />
           <span className="font-mono text-sm text-primary/60">DOCSSA Â· UniUyo</span>
         </div>
         <div className="flex gap-6">
@@ -477,4 +477,5 @@ export default function Welcome() {
     </div>
   );
 }
+
 

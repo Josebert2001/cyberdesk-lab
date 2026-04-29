@@ -135,4 +135,9 @@
   .font-mono-code {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  /* Recolor logo PNG from source blue (~210°) to site orange (#FF8800, hue 33°) */
+  .brand-logo {
+    filter: hue-rotate(183deg) saturate(1.8) brightness(1.1);
+  }
 }

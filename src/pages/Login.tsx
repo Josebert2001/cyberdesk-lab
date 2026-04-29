@@ -47,7 +47,7 @@ export default function Login() {
 
       <div className="relative z-10 w-full max-w-sm animate-fade-in">
         <Link to="/welcome" className="flex items-center gap-2.5 justify-center mb-8">
-          <img src="/logo-256.png" alt="DOCSSA" className="h-10 w-10" />
+          <img src="/logo-256.png" alt="DOCSSA" className="h-10 w-10 brand-logo" />
           <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
         </Link>
 
@@ -124,4 +124,5 @@ export default function Login() {
     </div>
   );
 }
+
 
