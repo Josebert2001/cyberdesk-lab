@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 .env
 .vercel
+
+# Claude Code local settings (may contain tokens)
+.claude/settings.local.json
+
+# Supabase temp files
+supabase/.temp/

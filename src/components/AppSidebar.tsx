@@ -16,6 +16,7 @@ import {
   Users,
   Layers,
   LogOut,
+  Beaker,
 } from "lucide-react";
 import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
@@ -66,6 +67,8 @@ const navGroups: NavGroup[] = [
     label: "Department",
     items: [
       { title: "About", path: "/about", icon: Info },
+      { title: "Programmes", path: "/programmes", icon: GraduationCap },
+      { title: "Research", path: "/research", icon: Beaker },
       { title: "Staff", path: "/staff", icon: Users },
     ],
   },

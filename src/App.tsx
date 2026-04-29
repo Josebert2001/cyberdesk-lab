@@ -21,6 +21,8 @@ import Resources from "./pages/Resources";
 import About from "./pages/About";
 import Staff from "./pages/Staff";
 import Showcase from "./pages/Showcase";
+import Programmes from "./pages/Programmes";
+import Research from "./pages/Research";
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -61,6 +63,8 @@ const App = () => (
                 <Route path="/roadmap" element={protect(<Roadmap />)} />
                 <Route path="/resources" element={protect(<Resources />)} />
                 <Route path="/about" element={protect(<About />)} />
+                <Route path="/programmes" element={protect(<Programmes />)} />
+                <Route path="/research" element={protect(<Research />)} />
                 <Route path="/staff" element={protect(<Staff />)} />
                 <Route path="/showcase" element={protect(<Showcase />)} />
                 <Route path="*" element={<NotFound />} />

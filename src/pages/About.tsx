@@ -1,18 +1,19 @@
-import { Info } from "lucide-react";
+import { Info, BookOpen } from "lucide-react";
 
 const stats = [
-  { value: "4 Years", label: "Programme Duration" },
-  { value: "200+", label: "Students Enrolled" },
-  { value: "5", label: "Core Objectives" },
-  { value: "100%", label: "Career-Focused" },
+  { value: "4 Yrs", label: "UTME Duration" },
+  { value: "3 Yrs", label: "Direct Entry" },
+  { value: "6", label: "Core Objectives" },
+  { value: "6", label: "Research Areas" },
 ];
 
 const objectives = [
-  "Produce graduates with foundation knowledge of cybersecurity skills to detect and prevent cyber-fraud.",
-  "Empower graduates to analyse cybersecurity threats and develop detective codes and software agents to address them.",
-  "Develop knowledge of cryptography, steganography and digital forensic techniques for cybercrime detection.",
-  "Produce graduates who can think critically about cyber intelligence and implement strategic cybersecurity tactics.",
-  "Prepare graduates for self-employment, job placement and professional practice in government and industry.",
+  { num: "01", title: "Detect & Prevent", desc: "Produce graduates with requisite foundation in cybersecurity knowledge, skills and strategies to detect and prevent cyber-fraud at organisational and national scale." },
+  { num: "02", title: "Analyse & Develop", desc: "Empower graduates to analyse cybersecurity threats, attacks and risks for organisations — with capacity to develop detective codes and supportive software agents." },
+  { num: "03", title: "Protect & Investigate", desc: "Develop graduates with knowledge of cryptography, steganography, and digital forensic science techniques for privacy protection and cybercrime detection." },
+  { num: "04", title: "Think & Strategise", desc: "Produce graduates who can think critically about cyber intelligence security issues, and develop and implement tactical strategies drawing on national and international case studies." },
+  { num: "05", title: "Lead & Employ", desc: "Prepare graduates for self-employment, cybersecurity-based job placement, and professional practice in government agencies and private industries across Nigeria and Africa." },
+  { num: "06", title: "Understand Impact", desc: "Equip graduates to understand the impact of cybercrime on business and the public, and implement specific security practices and techniques to enhance systems security." },
 ];
 
 export default function About() {
@@ -35,95 +36,114 @@ export default function About() {
         </p>
       </div>
 
-      {/* SECTION 2 — HOD Message */}
+      {/* SECTION 2 — University Vision */}
+      <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 italic text-center space-y-2">
+        <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest">University Vision</p>
+        <p className="text-foreground/90 text-base leading-relaxed">
+          "To be a centre of academic excellence by utilizing the available human and technological resources for teaching, research, community service and sustainable development."
+        </p>
+        <p className="text-xs text-muted-foreground font-mono">— University of Uyo</p>
+      </div>
+
+      {/* SECTION 3 — HOD Message */}
       <div className="bg-card border border-border rounded-lg p-6 border-l-4 border-l-primary relative overflow-hidden">
         <span className="absolute top-4 right-6 text-6xl text-primary/10 font-serif leading-none select-none">"</span>
         <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-3">
           Head of Department
         </p>
-        <p className="text-foreground font-bold text-lg mb-4">Dr. Uyinomen O. Ekong</p>
+        <p className="text-foreground font-bold text-lg mb-4">Uyinomen O. Ekong</p>
         <p className="text-foreground/80 leading-relaxed text-sm md:text-base italic">
-          "Welcome to the Department of Cybersecurity. Our mission is to equip you with the knowledge, skills and ethical grounding to defend cyberspace — locally and globally. Make the most of every resource this platform offers."
+          Our department is committed to producing graduates who will be at the forefront of securing Nigeria's digital future — with integrity, technical excellence, and global perspective.
         </p>
       </div>
 
-      {/* SECTION 3 — Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left: About the Programme */}
+      {/* SECTION 4 — Overview */}
+      <div className="space-y-6">
         <div className="space-y-4">
           <h2 className="text-foreground font-bold text-xl font-mono border-b border-border pb-2">
-            About the Programme
+            Shaping the Cyber Defenders of Tomorrow
           </h2>
           <p className="text-foreground/80 text-sm leading-relaxed">
-            Recent developments in computing, network technologies, internet, and cloud technologies have generated
-            the need for reliability and secure exchange of digital information vital to most human activities such
-            as banking, medicine, infrastructure management and elections.
+            The Department of Cybersecurity at the University of Uyo is one of the pioneering departments within the Faculty of Computing. It was established to address the growing national and global demand for qualified cybersecurity professionals capable of protecting digital infrastructure and responding to evolving cyber threats.
           </p>
+          <div className="bg-card border border-border rounded-lg p-5 border-l-4 border-l-primary">
+            <p className="text-foreground/80 text-sm leading-relaxed italic">
+              "The philosophy of this programme is to build capacity and develop human capital in the field of cybersecurity, to safeguard business transactions, corporate assets, critical infrastructure and all cyber operations in cyberspace, nationally and globally."
+            </p>
+          </div>
           <p className="text-foreground/80 text-sm leading-relaxed">
-            As the use of information technology expands, so do the potential consequences of cyber-attacks, and
-            the need for a skilled workforce to prevent and defend against them. The pool of available talent to
-            build and certify secure applications is inadequate to meet the growing global demand.
-          </p>
-          <p className="text-foreground/80 text-sm leading-relaxed">
-            This programme equips students with knowledge and skills to minimise and prevent cybersecurity threats,
-            gather and analyse digital evidence, and understand the impact of cybercrime on business and the public.
+            Our graduates leave equipped to think critically about cyber intelligence issues, develop and implement security strategies, and pursue careers in government agencies, private enterprise, consultancy, or entrepreneurship. We place particular emphasis on practical, hands-on learning alongside rigorous academic theory.
           </p>
         </div>
 
-        {/* Right: Philosophy + Objectives */}
-        <div className="space-y-6">
-          <div className="space-y-3">
-            <h2 className="text-foreground font-bold text-xl font-mono border-b border-border pb-2">
-              Programme Philosophy
-            </h2>
-            <p className="text-foreground/80 text-sm leading-relaxed">
-              The philosophy of this programme is to build capacity and develop human capital in the field of
-              cybersecurity, to safeguard business transactions, corporate assets, critical infrastructure and all
-              cyber operations in cyberspace — nationally and globally.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div className="space-y-1">
+            <p className="text-xs font-mono text-primary uppercase tracking-widest">Head of Department</p>
+            <p className="text-foreground font-bold">Uyinomen O. Ekong</p>
           </div>
-
-          <div className="space-y-3">
-            <h3 className="text-foreground font-bold text-base font-mono">Programme Objectives</h3>
-            <div className="space-y-2">
-              {objectives.map((obj, i) => (
-                <div key={i} className="flex gap-3 bg-card border border-border rounded-lg p-3">
-                  <span className="text-primary font-mono font-bold text-sm shrink-0 w-5">{i + 1}.</span>
-                  <p className="text-foreground/80 text-sm leading-relaxed">{obj}</p>
-                </div>
-              ))}
-            </div>
+          <div className="space-y-1">
+            <p className="text-xs font-mono text-primary uppercase tracking-widest">Faculty Dean</p>
+            <p className="text-foreground font-bold">Prof. Uduak A. Umoh</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-mono text-primary uppercase tracking-widest">Faculty</p>
+            <p className="text-foreground font-bold">Faculty of Computing</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-mono text-primary uppercase tracking-widest">Accreditation</p>
+            <p className="text-foreground font-bold">National Universities Commission (NUC)</p>
           </div>
         </div>
       </div>
 
-      {/* SECTION 4 — Admission Requirements */}
+      {/* SECTION 5 — Programme Objectives */}
+      <div className="space-y-4">
+        <h2 className="text-foreground font-bold text-xl font-mono border-b border-border pb-2">
+          Programme Objectives: What Our Graduates Are Built to Do
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {objectives.map((obj) => (
+            <div key={obj.num} className="bg-card border border-border rounded-lg p-5 space-y-2">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl font-mono font-bold text-primary shrink-0">{obj.num}</span>
+                <div className="flex-1">
+                  <p className="text-foreground font-bold text-sm">{obj.title}</p>
+                </div>
+              </div>
+              <p className="text-foreground/80 text-xs leading-relaxed">{obj.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* SECTION 6 — Admission Requirements */}
       <div className="space-y-4">
         <h2 className="text-foreground font-bold text-xl font-mono border-b border-border pb-2">
           Admission Requirements
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="bg-card border border-border rounded-lg p-5 space-y-3">
-            <p className="text-xs font-mono text-primary uppercase tracking-widest">4-Year Programme (UTME)</p>
-            <p className="text-foreground/80 text-sm leading-relaxed">
-              UTME score + five SSC credit passes including English Language, Mathematics, Physics and any other
-              relevant Science subjects in not more than two sittings.
-            </p>
+            <p className="text-xs font-mono text-primary uppercase tracking-widest">🎓 UTME Entry — 4 Years</p>
+            <p className="text-foreground font-bold text-sm mb-2">Requirements:</p>
+            <ul className="text-foreground/80 text-sm space-y-1 leading-relaxed">
+              <li>→ English Language (Credit)</li>
+              <li>→ Mathematics (Credit)</li>
+              <li>→ Physics (Credit)</li>
+              <li>→ Two other Science subjects</li>
+              <li>→ Valid JAMB UTME Score</li>
+            </ul>
           </div>
           <div className="bg-card border border-border rounded-lg p-5 space-y-3">
-            <p className="text-xs font-mono text-primary uppercase tracking-widest">3-Year Programme (Direct Entry)</p>
+            <p className="text-xs font-mono text-primary uppercase tracking-widest">⚡ Direct Entry — 3 Years</p>
+            <p className="text-foreground font-bold text-sm mb-2">Requirements:</p>
             <p className="text-foreground/80 text-sm leading-relaxed">
-              Minimum credit at University/National Diploma or NCE with five SSC credit passes in relevant Science
-              subjects including English Language, Mathematics and Physics.
+              Minimum of a credit at University/ND/NCE level with five SSC credit passes in relevant Science subjects including English Language, Mathematics, and Physics.
             </p>
           </div>
         </div>
-        <p className="text-center text-xs font-mono text-muted-foreground">
-          Minimum duration: 4 academic sessions (UTME) · 3 academic sessions (Direct Entry)
-        </p>
       </div>
 
-      {/* SECTION 5 — Stats */}
+      {/* SECTION 7 — Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {stats.map(({ value, label }) => (
           <div key={label} className="bg-card border border-border rounded-lg p-5 text-center">
