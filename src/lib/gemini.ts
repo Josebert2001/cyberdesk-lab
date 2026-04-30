@@ -21,7 +21,9 @@ export async function analyzeWithGemini(userPrompt: string): Promise<AiAnalysis>
   try {
     const parsed = JSON.parse(cleanGeminiJson(rawText));
     return AiAnalysisSchema.parse(parsed);
-  } catch {
-    throw new Error("AI returned an unexpected format. Please try again.");
+  } catch (e) {
+    console.error("AI response:", rawText);
+    console.error("Parse error:", e);
+    throw new Error(`AI returned an unexpected format. Please try again. (${e instanceof Error ? e.message : "unknown error"})`);
   }
 }
