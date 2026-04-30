@@ -1,6 +1,7 @@
 import { Send, Loader2, Trash2, Save, BookOpen } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { useChat, type Message } from "ai/react";
+import { useChat } from "@ai-sdk/react";
+import { HttpChatTransport, type UIMessage } from "ai";
 import { useXPContext } from "@/components/XPContext";
 import { safeScopedJsonParse, safeSetScopedJson, saveToExamPrep } from "@/lib/storage";
 import { toast } from "@/components/ui/sonner";
@@ -8,6 +9,13 @@ import { useAuth } from "@/contexts/AuthContext";
 
 const CHAT_STORAGE_KEY = "ask_chat";
 const MAX_STORED_MESSAGES = 50;
+
+function getMessageText(msg: UIMessage): string {
+  for (const part of msg.parts) {
+    if (part.type === "text") return part.text;
+  }
+  return "";
+}
 
 function AiMessage({ content, userId }: { content: string; userId: string | null | undefined }) {
   const [saved, setSaved] = useState(false);
@@ -42,32 +50,31 @@ const AskAnything = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { addXP } = useXPContext();
   const { user } = useAuth();
+  const [input, setInput] = useState("");
 
-  // Build the endpoint URL for the cyber-tutor edge function
   const CYBER_TUTOR_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/cyber-tutor`;
 
-  // Initialize useChat with the cyber-tutor endpoint
-  const { messages, input, setInput, handleSubmit, isLoading, setMessages, append, error } = useChat({
-    api: CYBER_TUTOR_URL,
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-      apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
-    },
+  const { messages, sendMessage, status, setMessages } = useChat({
+    transport: new HttpChatTransport({
+      url: CYBER_TUTOR_URL,
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+      },
+    }),
     onFinish: () => {
       addXP(5);
     },
   });
 
+  const isLoading = status === "submitted" || status === "streaming";
+  const hasError = status === "error";
+
   // Load persisted conversation on mount
   useEffect(() => {
-    const stored = safeScopedJsonParse<Message[]>(CHAT_STORAGE_KEY, user?.id, []);
+    const stored = safeScopedJsonParse<UIMessage[]>(CHAT_STORAGE_KEY, user?.id, []);
     if (stored.length > 0) {
-      // Migrate old numeric IDs to strings if needed
-      const migratedMessages = stored.map((msg) => ({
-        ...msg,
-        id: typeof msg.id === "number" ? String(msg.id) : msg.id,
-      }));
-      setMessages(migratedMessages);
+      setMessages(stored);
     }
   }, [user?.id, setMessages]);
 
@@ -78,10 +85,17 @@ const AskAnything = () => {
     }
   }, [messages, user?.id]);
 
-  // Auto-scroll to bottom on new messages
+  // Auto-scroll on new messages
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, isLoading]);
+
+  const submit = () => {
+    const text = input.trim();
+    if (!text || isLoading) return;
+    sendMessage({ text });
+    setInput("");
+  };
 
   const clearHistory = () => {
     setMessages([]);
@@ -92,7 +106,7 @@ const AskAnything = () => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e as unknown as React.FormEvent);
+      submit();
     }
   };
 
@@ -129,12 +143,12 @@ const AskAnything = () => {
           msg.role === "user" ? (
             <div key={msg.id} className="flex justify-end">
               <div className="bg-primary/15 border border-primary/20 rounded-lg rounded-tr-none px-4 py-3 max-w-[80%]">
-                <p className="text-foreground text-sm">{msg.content}</p>
+                <p className="text-foreground text-sm">{getMessageText(msg)}</p>
               </div>
             </div>
           ) : (
             <div key={msg.id}>
-              <AiMessage content={msg.content} userId={user?.id} />
+              <AiMessage content={getMessageText(msg)} userId={user?.id} />
             </div>
           )
         )}
@@ -150,10 +164,12 @@ const AskAnything = () => {
           </div>
         )}
 
-        {error && (
+        {hasError && (
           <div className="flex items-start">
             <div className="bg-destructive/10 border border-destructive/30 rounded-lg rounded-tl-none px-4 py-3">
-              <p className="text-destructive text-xs font-mono">Error: {error.message}</p>
+              <p className="text-destructive text-xs font-mono">
+                Connection error. Check your network and try again.
+              </p>
             </div>
           </div>
         )}
@@ -161,7 +177,10 @@ const AskAnything = () => {
 
       {/* Input bar */}
       <div className="p-4 md:px-12 md:py-5 border-t border-border">
-        <form onSubmit={handleSubmit} className="flex gap-3 max-w-3xl mx-auto">
+        <form
+          onSubmit={(e) => { e.preventDefault(); submit(); }}
+          className="flex gap-3 max-w-3xl mx-auto"
+        >
           <input
             type="text"
             value={input}
