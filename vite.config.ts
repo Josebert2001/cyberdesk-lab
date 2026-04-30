@@ -19,20 +19,31 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          "vendor-react": ["react", "react-dom", "react-router-dom"],
-          "vendor-supabase": ["@supabase/supabase-js"],
-          "vendor-ui": [
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-tooltip",
-            "@radix-ui/react-tabs",
-            "@radix-ui/react-select",
-            "@radix-ui/react-popover",
-            "@radix-ui/react-progress",
-            "@radix-ui/react-scroll-area",
-          ],
-          "vendor-charts": ["recharts"],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (["react/", "react-dom/", "react-router-dom/", "scheduler/"].some(p => id.includes("/node_modules/" + p))) {
+              return "vendor-react";
+            }
+            if (id.includes("/@supabase/")) return "vendor-supabase";
+            if (id.includes("/@radix-ui/")) return "vendor-ui";
+            if (id.includes("/ai/") || id.includes("/@ai-sdk/")) return "vendor-ai";
+            if (id.includes("/recharts/") || id.includes("/d3") || id.includes("/victory")) return "vendor-charts";
+            if (
+              id.includes("/zod/") ||
+              id.includes("/date-fns/") ||
+              id.includes("/clsx/") ||
+              id.includes("/class-variance-authority/") ||
+              id.includes("/tailwind-merge/") ||
+              id.includes("/sonner/") ||
+              id.includes("/cmdk/") ||
+              id.includes("/vaul/") ||
+              id.includes("/input-otp/") ||
+              id.includes("/embla-carousel") ||
+              id.includes("/@hookform/")
+            ) {
+              return "vendor-misc";
+            }
+          }
         },
       },
     },
