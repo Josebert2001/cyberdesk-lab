@@ -64,17 +64,16 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         brand: {
-          obsidian: "#0D0906",
-          "obsidian-card": "#181009",
-          ember: "#FF8800",
-          "ember-bright": "#FFB347",
-          "ember-pale": "#FFECC8",
-          "ember-deep": "#C25B0A",
-          crimson: "#C23B22",
+          navy: "#0A1428",
+          "navy-card": "#0F1E3A",
+          "navy-mid": "#162040",
+          gold: "#FFB800",
+          "gold-bright": "#FFD966",
+          "gold-pale": "#FFF3CC",
+          "gold-deep": "#CC9200",
+          white: "#F0F4FF",
           steel: "#6B7A8D",
-          cream: "#EFE8D8",
-          "cream-dim": "#C8B99A",
-          "text-muted": "#9C8868",
+          "text-muted": "#7A90A8",
         },
       },
       borderRadius: {
@@ -107,9 +106,9 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
-        "amber-pulse": {
-          "0%, 100%": { boxShadow: "0 0 8px rgba(255,136,0,0.3)" },
-          "50%": { boxShadow: "0 0 22px rgba(255,136,0,0.7), 0 0 45px rgba(255,136,0,0.2)" },
+        "gold-pulse": {
+          "0%, 100%": { boxShadow: "0 0 8px rgba(255,184,0,0.3)" },
+          "50%": { boxShadow: "0 0 22px rgba(255,184,0,0.7), 0 0 45px rgba(255,184,0,0.2)" },
         },
         flicker: {
           "0%, 89%, 100%": { opacity: "1" },
@@ -126,16 +125,16 @@ export default {
         "slide-in-right": "slide-in-right 0.3s ease-out",
         "pulse-dot": "pulse-dot 1.8s ease-in-out infinite",
         float: "float 5s ease-in-out infinite",
-        "amber-pulse": "amber-pulse 2.5s ease-in-out infinite",
+        "gold-pulse": "gold-pulse 2.5s ease-in-out infinite",
         flicker: "flicker 6s linear infinite",
       },
       backgroundImage: {
         "brand-grid":
-          "linear-gradient(rgba(255,136,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,136,0,0.045) 1px, transparent 1px)",
+          "linear-gradient(rgba(255,184,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,184,0,0.04) 1px, transparent 1px)",
         "brand-glow-primary":
-          "radial-gradient(circle, rgba(255,100,0,0.32) 0%, transparent 70%)",
+          "radial-gradient(circle, rgba(30,80,200,0.35) 0%, transparent 70%)",
         "brand-glow-secondary":
-          "radial-gradient(circle, rgba(255,136,0,0.10) 0%, transparent 70%)",
+          "radial-gradient(circle, rgba(255,184,0,0.10) 0%, transparent 70%)",
       },
       backgroundSize: {
         "grid-40": "40px 40px",

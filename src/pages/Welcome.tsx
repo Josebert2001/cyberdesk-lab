@@ -469,7 +469,7 @@ export default function Welcome() {
                   { label: "HOD", value: "Uyinomen O. Ekong" },
                   { label: "DEAN", value: "Prof. Uduak A. Umoh" },
                   { label: "FACULTY", value: "Faculty of Computing" },
-                  { label: "LOCATION", value: "Ikpa Road, Uyo, AKS" },
+                  { label: "LOCATION", value: "Waniba Road, Uyo, AKS" },
                   { label: "ACCREDITATION", value: "NUC Approved" },
                   { label: "WEBSITE", value: "uniuyo.edu.ng" },
                 ].map(({ label, value }) => (
@@ -796,7 +796,7 @@ export default function Welcome() {
             <div className="font-mono text-[11px] text-muted-foreground/60 space-y-1.5">
               <div className="flex items-start gap-2">
                 <MapPin className="h-3 w-3 text-primary/40 mt-0.5 shrink-0" />
-                <span>Ikpa Road, Uyo, Akwa Ibom State, Nigeria</span>
+                <span>Waniba Road, Uyo, Akwa Ibom State, Nigeria</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-3 w-3 text-primary/40 shrink-0" />

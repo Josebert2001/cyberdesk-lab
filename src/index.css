@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    /* Ember Protocol — warm obsidian + electric amber */
-    --background: 22 40% 4%;           /* #0D0906 warm obsidian */
-    --foreground: 42 45% 89%;          /* #EFE8D8 warm cream */
+    /* UniUyo Protocol — royal navy + gold + white */
+    --background: 220 55% 8%;          /* #0A1428 deep navy */
+    --foreground: 210 40% 96%;         /* #F0F4FF near-white */
 
-    --card: 22 45% 7%;                 /* #181009 ember dark */
-    --card-foreground: 42 45% 89%;
+    --card: 220 52% 12%;               /* #0F1E3A navy card */
+    --card-foreground: 210 40% 96%;
 
-    --popover: 22 45% 7%;
-    --popover-foreground: 42 45% 89%;
+    --popover: 220 52% 12%;
+    --popover-foreground: 210 40% 96%;
 
-    --primary: 33 100% 50%;            /* #FF8800 electric amber */
-    --primary-foreground: 22 40% 4%;
+    --primary: 45 100% 50%;            /* #FFB800 gold */
+    --primary-foreground: 220 55% 8%;
 
-    --secondary: 22 55% 13%;           /* ember-deep */
-    --secondary-foreground: 42 45% 89%;
+    --secondary: 220 45% 18%;          /* navy-mid */
+    --secondary-foreground: 210 40% 96%;
 
-    --muted: 22 40% 11%;
-    --muted-foreground: 37 21% 51%;    /* #9C8868 warm muted */
+    --muted: 220 45% 15%;
+    --muted-foreground: 215 20% 58%;   /* blue-grey muted */
 
-    --accent: 33 100% 50%;
-    --accent-foreground: 22 40% 4%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 220 55% 8%;
 
-    --destructive: 9 88% 53%;          /* #F03B1A */
+    --destructive: 4 86% 58%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 33 100% 50% / 0.14;
-    --input: 22 40% 11%;
-    --ring: 33 100% 50%;
+    --border: 45 100% 50% / 0.18;
+    --input: 220 45% 15%;
+    --ring: 45 100% 50%;
 
     --radius: 0.25rem;
 
-    --sidebar-background: 22 40% 3%;
-    --sidebar-foreground: 37 21% 51%;
-    --sidebar-primary: 33 100% 50%;
-    --sidebar-primary-foreground: 22 40% 4%;
-    --sidebar-accent: 22 40% 11%;
-    --sidebar-accent-foreground: 42 45% 89%;
-    --sidebar-border: 33 100% 50% / 0.10;
-    --sidebar-ring: 33 100% 50%;
+    --sidebar-background: 220 60% 6%;
+    --sidebar-foreground: 215 20% 58%;
+    --sidebar-primary: 45 100% 50%;
+    --sidebar-primary-foreground: 220 55% 8%;
+    --sidebar-accent: 220 45% 15%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 45 100% 50% / 0.12;
+    --sidebar-ring: 45 100% 50%;
 
-    --neon-glow: 0 0 10px rgba(255, 136, 0, 0.4), 0 0 25px rgba(255, 136, 0, 0.2);
-    --neon-glow-strong: 0 0 12px rgba(255, 136, 0, 0.6), 0 0 35px rgba(255, 136, 0, 0.3), 0 0 70px rgba(255, 136, 0, 0.1);
+    --neon-glow: 0 0 10px rgba(255, 184, 0, 0.45), 0 0 25px rgba(255, 184, 0, 0.2);
+    --neon-glow-strong: 0 0 12px rgba(255, 184, 0, 0.65), 0 0 35px rgba(255, 184, 0, 0.3), 0 0 70px rgba(255, 184, 0, 0.12);
   }
 }
 
@@ -66,12 +66,12 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(0, 0, 0, 0.10) 2px,
-      rgba(0, 0, 0, 0.10) 4px
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 4px
     );
   }
 
-  /* Amber neon glow */
+  /* Gold neon glow */
   .neon-glow {
     box-shadow: var(--neon-glow);
   }
@@ -81,50 +81,50 @@
   }
 
   .neon-text-glow {
-    text-shadow: 0 0 12px rgba(255, 136, 0, 0.55), 0 0 30px rgba(255, 136, 0, 0.25);
+    text-shadow: 0 0 12px rgba(255, 184, 0, 0.6), 0 0 30px rgba(255, 184, 0, 0.28);
   }
 
-  /* Amber hex grid */
+  /* Navy + gold grid */
   .brand-grid-bg {
     background-image:
-      linear-gradient(rgba(255, 136, 0, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 136, 0, 0.045) 1px, transparent 1px);
+      linear-gradient(rgba(255, 184, 0, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 184, 0, 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
   /* Radial glows */
   .brand-glow-primary {
-    background: radial-gradient(circle, rgba(255, 100, 0, 0.32) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(30, 80, 200, 0.35) 0%, transparent 70%);
   }
 
   .brand-glow-secondary {
-    background: radial-gradient(circle, rgba(255, 136, 0, 0.10) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 184, 0, 0.10) 0%, transparent 70%);
   }
 
-  /* Frosted obsidian glass */
+  /* Frosted navy glass */
   .brand-glass {
-    background: rgba(13, 9, 6, 0.92);
+    background: rgba(10, 20, 40, 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
-  /* Tactical card */
+  /* Navy card */
   .brand-card {
-    background: rgba(13, 9, 6, 0.80);
-    border: 1px solid rgba(255, 136, 0, 0.12);
+    background: rgba(10, 20, 40, 0.80);
+    border: 1px solid rgba(255, 184, 0, 0.14);
     transition: all 0.2s ease;
   }
 
   .brand-card:hover {
-    border-color: rgba(255, 136, 0, 0.42);
+    border-color: rgba(255, 184, 0, 0.45);
     transform: translateY(-3px);
-    background: rgba(49, 32, 15, 0.45);
-    box-shadow: 0 8px 32px rgba(255, 100, 0, 0.12);
+    background: rgba(20, 45, 90, 0.55);
+    box-shadow: 0 8px 32px rgba(255, 184, 0, 0.10);
   }
 
-  /* Gradient text */
+  /* Gradient text — gold */
   .brand-text-gradient {
-    background: linear-gradient(135deg, #FFB347 0%, #FF8800 100%);
+    background: linear-gradient(135deg, #FFD966 0%, #FFB800 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -136,8 +136,8 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Recolor logo PNG from source blue (~210°) to site orange (#FF8800, hue 33°) */
+  /* Logo: already blue — keep original colour, just boost brightness for navy bg */
   .brand-logo {
-    filter: hue-rotate(183deg) saturate(1.8) brightness(1.1);
+    filter: brightness(1.15) saturate(1.1);
   }
 }

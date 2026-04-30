@@ -27,10 +27,10 @@ export function MatrixRain() {
     window.addEventListener("resize", resize);
 
     const draw = () => {
-      ctx.fillStyle = "rgba(13, 9, 6, 0.10)";
+      ctx.fillStyle = "rgba(10, 20, 40, 0.10)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "rgba(255, 136, 0, 0.22)";
+      ctx.fillStyle = "rgba(255, 184, 0, 0.22)";
       ctx.font = `${fontSize}px 'JetBrains Mono', monospace`;
 
       for (let i = 0; i < drops.length; i++) {
