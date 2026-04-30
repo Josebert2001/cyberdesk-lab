@@ -118,72 +118,83 @@ export function AiPanel() {
                 <p className="text-foreground font-semibold text-lg">{analysis.concept}</p>
               </section>
 
-              <section>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
-                    How It Works
-                  </h3>
-                  <CopyButton text={analysis.how_it_works} />
-                </div>
-                <p className="text-foreground/80 text-sm leading-relaxed">{analysis.how_it_works}</p>
-              </section>
+              {analysis.how_it_works && (
+                <section>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                      How It Works
+                    </h3>
+                    <CopyButton text={analysis.how_it_works} />
+                  </div>
+                  <p className="text-foreground/80 text-sm leading-relaxed">{analysis.how_it_works}</p>
+                </section>
+              )}
 
-              <section>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
-                    Live Example
-                  </h3>
-                  <CopyButton text={analysis.demonstration} />
-                </div>
-                <div className="bg-background border border-border rounded-lg p-4 font-mono text-primary text-sm whitespace-pre-wrap neon-text-glow">
-                  {analysis.demonstration}
-                </div>
-              </section>
+              {analysis.demonstration && (
+                <section>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                      Live Example
+                    </h3>
+                    <CopyButton text={analysis.demonstration} />
+                  </div>
+                  <div className="bg-background border border-border rounded-lg p-4 font-mono text-primary text-sm whitespace-pre-wrap neon-text-glow">
+                    {analysis.demonstration}
+                  </div>
+                </section>
+              )}
 
-              <section>
-                <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
-                  Try This Next
-                </h3>
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-sm text-foreground">
-                  {analysis.challenge}
-                </div>
-              </section>
-
-              <section>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
-                    Defend Against It
+              {analysis.challenge && (
+                <section>
+                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest mb-2">
+                    Try This Next
                   </h3>
-                  <CopyButton text={analysis.defense} />
-                </div>
-                <p className="text-foreground/80 text-sm leading-relaxed">{analysis.defense}</p>
-              </section>
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-sm text-foreground">
+                    {analysis.challenge}
+                  </div>
+                </section>
+              )}
 
-              <section>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
-                    Exam Bullets
-                  </h3>
-                  <CopyButton text={analysis.exam_bullets.join("\n")} />
-                </div>
-                <div className="space-y-2">
-                  {analysis.exam_bullets.map((bullet, i) => (
-                    <div
-                      key={i}
-                      className="bg-primary/10 border border-primary/20 rounded-lg px-4 py-3 text-sm text-primary font-mono"
-                    >
-                      {bullet}
-                    </div>
-                  ))}
-                </div>
-              </section>
+              {analysis.defense && (
+                <section>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                      Defend Against It
+                    </h3>
+                    <CopyButton text={analysis.defense} />
+                  </div>
+                  <p className="text-foreground/80 text-sm leading-relaxed">{analysis.defense}</p>
+                </section>
+              )}
+
+              {analysis.exam_bullets.length > 0 && (
+                <section>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                      Exam Bullets
+                    </h3>
+                    <CopyButton text={analysis.exam_bullets.join("\n")} />
+                  </div>
+                  <div className="space-y-2">
+                    {analysis.exam_bullets.map((bullet, i) => (
+                      <div
+                        key={i}
+                        className="bg-primary/10 border border-primary/20 rounded-lg px-4 py-3 text-sm text-primary font-mono"
+                      >
+                        {bullet}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               <Button
                 variant={saved ? "secondary" : "neon"}
                 className="font-mono w-full"
                 disabled={saved}
                 onClick={() => {
-                  saveToExamPrep(user?.id, analysis.concept, analysis.exam_bullets);
+                  const bullets = analysis.exam_bullets.length > 0 ? analysis.exam_bullets : [analysis.concept];
+                  saveToExamPrep(user?.id, analysis.concept, bullets);
                   setSaved(true);
                   toast("Saved to Exam Prep");
                 }}

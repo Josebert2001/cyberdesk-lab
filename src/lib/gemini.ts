@@ -3,11 +3,11 @@ import { cleanGeminiJson, invokeGeminiProxy } from "@/lib/gemini-proxy";
 
 const AiAnalysisSchema = z.object({
   concept: z.string(),
-  how_it_works: z.string(),
-  demonstration: z.string(),
-  challenge: z.string(),
-  defense: z.string(),
-  exam_bullets: z.array(z.string()),
+  how_it_works: z.string().optional().default(""),
+  demonstration: z.string().optional().default(""),
+  challenge: z.string().optional().default(""),
+  defense: z.string().optional().default(""),
+  exam_bullets: z.array(z.string()).optional().default([]),
 });
 
 export type AiAnalysis = z.infer<typeof AiAnalysisSchema>;
