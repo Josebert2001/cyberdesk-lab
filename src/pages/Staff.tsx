@@ -1,16 +1,6 @@
 import { useState } from "react";
 import { Users, Building2 } from "lucide-react";
 
-const principalOfficers = [
-  { role: "Vice Chancellor", name: "Prof. Nyaudoh U. Ndaeyo", initials: "NN" },
-  { role: "DVC (Admin)", name: "Prof. Aniekan Offiong", initials: "AO" },
-  { role: "DVC (Academic)", name: "Prof. Anthonia Maurice Essien", initials: "AM" },
-  { role: "Registrar", name: "Mrs. Blosson Okorie", initials: "BO" },
-  { role: "Bursar", name: "Mrs. Mfon N. Bassey", initials: "MB" },
-  { role: "Acting Librarian", name: "Dr. Mary M. Bassey", initials: "MM" },
-  { role: "Dean, Faculty of Computing", name: "Prof. Uduak A. Umoh", initials: "UA" },
-  { role: "HOD, Cybersecurity", name: "Prof. Uyinomen O. Ekong", initials: "UE" },
-];
 
 type StaffType = "Lecturers" | "Admin" | "Director";
 
@@ -126,22 +116,95 @@ export default function Staff() {
         </p>
       </div>
 
-      {/* University Principal Officers */}
+      {/* University Principal Officers — 4-tier hierarchy */}
       <div className="mb-10">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-5">
           <Building2 className="h-5 w-5 text-primary" />
           <h2 className="text-lg font-bold font-mono text-foreground">University Principal Officers</h2>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {principalOfficers.map(({ role, name, initials }) => (
-            <div key={role} className="bg-card border border-border p-3 text-center hover:border-primary/40 transition-colors">
-              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                <span className="text-primary font-mono font-bold text-sm">{initials}</span>
+
+        {/* Tier 1: University Executive */}
+        <div className="mb-4">
+          <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-brand-gold/70 mb-2.5">
+            [01] University Executive
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { role: "Vice Chancellor", name: "Prof. Nyaudoh U. Ndaeyo", initials: "NN" },
+              { role: "DVC (Administration)", name: "Prof. Aniekan Offiong", initials: "AO" },
+              { role: "DVC (Academic)", name: "Prof. Anthonia Maurice Essien", initials: "AM" },
+            ].map(({ role, name, initials }) => (
+              <div key={role} className="bg-card border border-brand-gold/40 p-4 hover:border-brand-gold/70 transition-colors">
+                <div className="w-10 h-10 mb-3 rounded-full bg-brand-gold/10 border border-brand-gold/40 flex items-center justify-center">
+                  <span className="font-mono font-bold text-sm text-brand-gold">{initials}</span>
+                </div>
+                <p className="font-mono text-[10px] text-brand-gold/70 uppercase tracking-widest leading-tight mb-1">{role}</p>
+                <p className="text-sm text-foreground font-bold leading-snug">{name}</p>
               </div>
-              <p className="text-[10px] font-mono text-primary/70 uppercase tracking-widest leading-tight mb-1">{role}</p>
-              <p className="text-xs text-foreground font-bold leading-snug">{name}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        {/* Tier 2: Principal Administrative Officers */}
+        <div className="mb-4 ml-0 sm:ml-4">
+          <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-primary/60 mb-2.5">
+            [02] Principal Administrative Officers
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { role: "Registrar", name: "Mrs. Blosson Okorie", initials: "BO" },
+              { role: "Bursar", name: "Mrs. Mfon N. Bassey", initials: "MB" },
+              { role: "Acting Librarian", name: "Dr. Mary M. Bassey", initials: "MM" },
+            ].map(({ role, name, initials }) => (
+              <div key={role} className="bg-card border border-primary/30 p-4 hover:border-primary/55 transition-colors">
+                <div className="w-10 h-10 mb-3 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                  <span className="font-mono font-bold text-sm text-primary">{initials}</span>
+                </div>
+                <p className="font-mono text-[10px] text-primary/55 uppercase tracking-widest leading-tight mb-1">{role}</p>
+                <p className="text-sm text-foreground font-bold leading-snug">{name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tier 3: Faculty of Computing */}
+        <div className="mb-4 ml-0 sm:ml-8">
+          <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground/50 mb-2.5">
+            [03] Faculty of Computing
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md">
+            {[
+              { role: "Dean, Faculty of Computing", name: "Prof. Uduak A. Umoh", initials: "UU" },
+            ].map(({ role, name, initials }) => (
+              <div key={role} className="bg-card border border-border p-4 hover:border-muted-foreground/30 transition-colors">
+                <div className="w-10 h-10 mb-3 rounded-full bg-muted/30 border border-border flex items-center justify-center">
+                  <span className="font-mono font-bold text-sm text-muted-foreground">{initials}</span>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground/55 uppercase tracking-widest leading-tight mb-1">{role}</p>
+                <p className="text-sm text-foreground font-bold leading-snug">{name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tier 4: Department */}
+        <div className="ml-0 sm:ml-12">
+          <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-brand-gold/70 mb-2.5">
+            [04] Department of Cybersecurity
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-sm">
+            {[
+              { role: "Head of Department", name: "Prof. Uyinomen O. Ekong", initials: "UE" },
+            ].map(({ role, name, initials }) => (
+              <div key={role} className="bg-card border border-brand-gold/50 p-4 hover:border-brand-gold transition-colors">
+                <div className="w-10 h-10 mb-3 rounded-full bg-brand-gold/10 border border-brand-gold/50 flex items-center justify-center">
+                  <span className="font-mono font-bold text-sm text-brand-gold">{initials}</span>
+                </div>
+                <p className="font-mono text-[10px] text-brand-gold/70 uppercase tracking-widest leading-tight mb-1">{role}</p>
+                <p className="text-sm text-foreground font-bold leading-snug">{name}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
