@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
 
 // System prompts isolated via systemInstruction — never mixed with user content.
 const ANALYSIS_SYSTEM_PROMPT = `You are CyberDesk AI, a penetration testing instructor and ethical hacking mentor for university cybersecurity students.
@@ -113,38 +113,10 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY");
     const geminiApiKey = Deno.env.get("GEMINI_API_KEY");
 
-    if (!supabaseUrl || !supabaseAnonKey || !geminiApiKey) {
-      return jsonResponse(500, { error: "Missing function configuration." });
-    }
-
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
-      return jsonResponse(401, { error: "Missing authorization header." });
-    }
-
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-      global: { headers: { Authorization: authHeader } },
-    });
-
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return jsonResponse(401, { error: "Authentication required." });
-    }
-
-    // Rate limiting: max RATE_LIMIT_PER_MINUTE requests per minute per user.
-    const windowStart = new Date(Date.now() - 60_000).toISOString();
-    const { count, error: countError } = await supabase
-      .from("ai_requests")
-      .select("*", { count: "exact", head: true })
-      .eq("user_id", user.id)
-      .gte("created_at", windowStart);
-
-    if (!countError && (count ?? 0) >= RATE_LIMIT_PER_MINUTE) {
-      return jsonResponse(429, { error: "Too many requests. Please wait a moment before trying again." });
+    if (!geminiApiKey) {
+      return jsonResponse(500, { error: "Missing GEMINI_API_KEY environment variable." });
     }
 
     const rawBody = await req.json();
@@ -153,9 +125,6 @@ Deno.serve(async (req) => {
       return jsonResponse(400, { error: validation.error });
     }
     const body = validation.data;
-
-    // Record this request for rate limiting (fire-and-forget — don't block on error).
-    supabase.from("ai_requests").insert({ user_id: user.id }).then(() => {});
 
     // Build request using systemInstruction so user content never touches the system prompt.
     const systemPrompt = body.mode === "analysis" ? ANALYSIS_SYSTEM_PROMPT : CHAT_SYSTEM_PROMPT;
