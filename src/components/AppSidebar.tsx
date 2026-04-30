@@ -15,6 +15,10 @@ import {
   Layers,
   LogOut,
   ExternalLink,
+  Info,
+  Users,
+  Beaker,
+  Microscope,
 } from "lucide-react";
 import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
@@ -58,6 +62,15 @@ const navGroups: NavGroup[] = [
       { title: "Opportunities", path: "/opportunities", icon: Trophy },
       { title: "Roadmap", path: "/roadmap", icon: Map },
       { title: "Resources", path: "/resources", icon: FolderOpen },
+    ],
+  },
+  {
+    label: "Department",
+    items: [
+      { title: "About UniUyo", path: "/about", icon: Info },
+      { title: "Programmes", path: "/programmes", icon: BookOpen },
+      { title: "Staff", path: "/staff", icon: Users },
+      { title: "Research", path: "/research", icon: Microscope },
     ],
   },
 ];
