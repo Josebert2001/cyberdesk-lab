@@ -202,17 +202,17 @@ async function invokeGeminiDirect(body: GeminiRequestBody): Promise<string> {
 }
 
 export async function invokeGeminiProxy(body: GeminiRequestBody): Promise<string> {
+  if (DIRECT_GEMINI_API_KEY) {
+    try {
+      return await invokeGeminiDirect(body);
+    } catch (directError) {
+      throw buildAiError(directError);
+    }
+  }
+
   try {
     return await invokeGeminiFunction(body);
   } catch (functionError) {
-    if (DIRECT_GEMINI_API_KEY) {
-      try {
-        return await invokeGeminiDirect(body);
-      } catch (fallbackError) {
-        throw buildAiError(fallbackError);
-      }
-    }
-
     throw buildAiError(functionError);
   }
 }
