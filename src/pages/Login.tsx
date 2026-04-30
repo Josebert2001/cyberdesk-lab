@@ -55,7 +55,7 @@ export default function Login() {
           {/* Terminal chrome */}
           <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
             <span className="w-2.5 h-2.5 rounded-full bg-destructive/65" />
-            <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
+            <span className="w-2.5 h-2.5 rounded-full bg-brand-gold/55" />
             <span className="w-2.5 h-2.5 rounded-full bg-primary/65" />
             <span className="ml-2 font-mono text-[9px] text-muted-foreground/55 tracking-wider">auth — secure login</span>
           </div>
@@ -114,7 +114,7 @@ export default function Login() {
 
             <p className="font-mono text-[10px] text-muted-foreground/50 mt-6 text-center">
               No account?{" "}
-              <Link to="/signup" className="text-primary hover:text-brand-ember-bright transition-colors">
+              <Link to="/signup" className="text-primary hover:text-brand-gold-bright transition-colors">
                 Sign up
               </Link>
             </p>

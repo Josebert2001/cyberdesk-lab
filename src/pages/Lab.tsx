@@ -59,7 +59,7 @@ const Lab = () => {
               {/* Terminal chrome */}
               <div className="flex items-center gap-1.5 px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
                 <span className="w-2 h-2 rounded-full bg-destructive/45" />
-                <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                <span className="w-2 h-2 rounded-full bg-brand-gold/35" />
                 <span className="w-2 h-2 rounded-full bg-primary/45" />
                 <span className="ml-2 font-mono text-[9px] text-primary/35 tracking-widest">[{lab.tag}]</span>
               </div>
