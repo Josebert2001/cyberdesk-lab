@@ -582,20 +582,46 @@ export default function Welcome() {
       {/* ABOUT */}
       <section id="about" className="py-24 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 01 — About the Department</p>
+          <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 01 — About</p>
           <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em] mb-16">
-            Shaping the Cyber <span className="text-primary">Defenders</span>
+            University of Uyo &amp; <span className="text-primary">Cybersecurity</span>
             <br />
-            of Tomorrow
+            Department
           </h2>
+
+          {/* University info cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-14">
+            {[
+              { num: "1991", label: "Federal University Est." },
+              { num: "13+", label: "Faculties" },
+              { num: "2022", label: "Dept. Established" },
+              { num: "Uyo", label: "Akwa Ibom State" },
+            ].map(({ num, label }) => (
+              <div key={label} className="border border-primary/15 bg-card/50 p-5 text-center">
+                <div className="font-display text-3xl text-primary neon-text-glow leading-none mb-2">{num}</div>
+                <div className="font-mono text-[9px] text-muted-foreground/60 uppercase tracking-widest">{label}</div>
+              </div>
+            ))}
+          </div>
 
           <div className="grid md:grid-cols-[1fr_340px] gap-16 items-start">
             <div>
+              {/* University info */}
+              <p className="font-mono text-[9px] text-primary/40 tracking-[0.2em] uppercase mb-3">// The University</p>
+              <p className="font-mono text-sm text-muted-foreground leading-[1.85] mb-5">
+                The University of Uyo is a federal government university located in Uyo, the capital of Akwa Ibom
+                State, Nigeria. It was originally established as the University of Cross River State in 1983, and
+                became a full federal university in 1991. It sits on a main campus along Nwaniba Road, with additional
+                campuses at Ikpa Road (Town Campus), College of Health Sciences, and the Ime Umanah College of Education.
+                Today it hosts over 13 faculties and is one of the foremost universities in the South-South region.
+              </p>
+
+              <p className="font-mono text-[9px] text-primary/40 tracking-[0.2em] uppercase mb-3 mt-6">// The Department</p>
               <p className="font-mono text-sm text-muted-foreground leading-[1.85] mb-6">
-                The Department of Cybersecurity at the University of Uyo is one of the pioneering departments within
-                the Faculty of Computing. It was established to address the growing national and global demand for
-                qualified cybersecurity professionals capable of protecting digital infrastructure and responding to
-                evolving cyber threats.
+                The Department of Cybersecurity, within the Faculty of Computing, was established in the 2022/2023
+                academic session — one of the first dedicated cybersecurity departments in the South-South. It was
+                created to address Nigeria's growing demand for cybersecurity professionals capable of protecting
+                digital infrastructure, responding to evolving threats, and securing critical national assets.
               </p>
 
               <blockquote className="border-l-2 border-primary/50 pl-5 mb-8">
@@ -607,10 +633,9 @@ export default function Welcome() {
               </blockquote>
 
               <p className="font-mono text-sm text-muted-foreground leading-[1.85]">
-                Our graduates leave equipped to think critically about cyber intelligence issues, develop and implement
-                security strategies, and pursue careers in government agencies, private enterprise, consultancy, or
-                entrepreneurship. We place particular emphasis on practical, hands-on learning alongside rigorous
-                academic theory.
+                Graduates are equipped to think critically about cyber intelligence, develop and implement security
+                strategies, and pursue careers in government agencies, private enterprise, consultancy, or
+                entrepreneurship — nationally and globally.
               </p>
             </div>
 
@@ -626,19 +651,34 @@ export default function Welcome() {
                 <div className="flex justify-center mb-4">
                   <img src="/logo-256.png" alt="DOCSSA" className="h-20 w-20 opacity-90 brand-logo" />
                 </div>
+                <p className="text-[10px] text-primary/40 tracking-widest uppercase mb-2">// University</p>
                 {[
-                  { label: "HOD", value: "Uyinomen O. Ekong" },
-                  { label: "DEAN", value: "Prof. Uduak A. Umoh" },
-                  { label: "FACULTY", value: "Faculty of Computing" },
-                  { label: "LOCATION", value: "Waniba Road, Uyo, AKS" },
-                  { label: "ACCREDITATION", value: "NUC Approved" },
-                  { label: "WEBSITE", value: "uniuyo.edu.ng" },
+                  { label: "UNIV", value: "University of Uyo" },
+                  { label: "EST", value: "1983 (State) · 1991 (Federal)" },
+                  { label: "LOCATION", value: "Nwaniba Road, Uyo, AKS" },
+                  { label: "FACULTIES", value: "13+ Faculties" },
+                  { label: "MOTTO", value: "Unity, Learning & Service" },
                 ].map(({ label, value }) => (
                   <p key={label}>
                     <span className="text-primary/50">[{label}]</span>{" "}
                     <span className="text-muted-foreground">{value}</span>
                   </p>
                 ))}
+                <div className="pt-3 border-t border-primary/10 mt-3">
+                  <p className="text-[10px] text-primary/40 tracking-widest uppercase mb-2">// Department</p>
+                  {[
+                    { label: "DEPT", value: "Cybersecurity" },
+                    { label: "HOD", value: "Prof. Uyinomen O. Ekong" },
+                    { label: "DEAN", value: "Prof. Uduak A. Umoh" },
+                    { label: "FACULTY", value: "Faculty of Computing" },
+                    { label: "ACCREDITED", value: "NUC Approved" },
+                  ].map(({ label, value }) => (
+                    <p key={label}>
+                      <span className="text-primary/50">[{label}]</span>{" "}
+                      <span className="text-muted-foreground">{value}</span>
+                    </p>
+                  ))}
+                </div>
                 <div className="pt-3 border-t border-primary/10">
                   <p className="text-[10px] text-muted-foreground/40">
                     Alongside: Computer Science · Data Science
@@ -739,14 +779,92 @@ export default function Welcome() {
         </div>
       </section>
 
-      {/* ACADEMIC STAFF */}
+      {/* LEADERSHIP & STAFF */}
       <section id="staff" className="py-24 px-6 md:px-12 bg-primary/[0.025]">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-2xl mb-16">
-            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 04 — Academic Staff</p>
+            <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-3">// 04 — Leadership & Staff</p>
             <h2 className="font-display text-4xl md:text-6xl leading-none tracking-[0.02em]">
-              Meet Our <span className="text-primary">Faculty</span>
+              University <span className="text-primary">Leadership</span>
+              <br />& Department Team
             </h2>
+          </div>
+
+          {/* University Principal Officers — 4-tier hierarchy */}
+          <div className="mb-16">
+            <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground/50 mb-8 flex items-center gap-3">
+              <span className="flex-1 h-px bg-primary/15" />
+              Principal Officers of the University
+              <span className="flex-1 h-px bg-primary/15" />
+            </p>
+
+            {/* Tier 1 */}
+            <div className="mb-6">
+              <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-brand-gold/70 mb-3">[01] University Executive</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  { role: "Vice Chancellor", name: "Prof. Nyaudoh U. Ndaeyo", initials: "NN" },
+                  { role: "Deputy Vice Chancellor (Admin)", name: "Prof. Aniekan Offiong", initials: "AO" },
+                  { role: "Deputy Vice Chancellor (Academic)", name: "Prof. Anthonia Maurice Essien", initials: "AM" },
+                ].map(({ role, name, initials }) => (
+                  <div key={role} className="bg-card border border-brand-gold/35 p-4 hover:border-brand-gold/65 transition-colors">
+                    <div className="w-10 h-10 mb-3 rounded-full bg-brand-gold/8 border border-brand-gold/35 flex items-center justify-center">
+                      <span className="font-mono font-bold text-sm text-brand-gold">{initials}</span>
+                    </div>
+                    <p className="font-mono text-[9px] text-brand-gold/65 uppercase tracking-widest leading-tight mb-1">{role}</p>
+                    <p className="text-sm text-foreground font-bold leading-snug">{name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tier 2 */}
+            <div className="mb-6 ml-0 sm:ml-5">
+              <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-primary/55 mb-3">[02] Principal Administrative Officers</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  { role: "Registrar", name: "Mrs. Blosson Okorie", initials: "BO" },
+                  { role: "Bursar", name: "Mrs. Mfon N. Bassey", initials: "MB" },
+                  { role: "Acting Librarian", name: "Dr. Mary M. Bassey", initials: "MM" },
+                ].map(({ role, name, initials }) => (
+                  <div key={role} className="bg-card border border-primary/25 p-4 hover:border-primary/50 transition-colors">
+                    <div className="w-10 h-10 mb-3 rounded-full bg-primary/8 border border-primary/25 flex items-center justify-center">
+                      <span className="font-mono font-bold text-sm text-primary">{initials}</span>
+                    </div>
+                    <p className="font-mono text-[9px] text-primary/50 uppercase tracking-widest leading-tight mb-1">{role}</p>
+                    <p className="text-sm text-foreground font-bold leading-snug">{name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tier 3 */}
+            <div className="mb-6 ml-0 sm:ml-10">
+              <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground/45 mb-3">[03] Faculty of Computing</p>
+              <div className="max-w-xs">
+                <div className="bg-card border border-border p-4 hover:border-muted-foreground/25 transition-colors">
+                  <div className="w-10 h-10 mb-3 rounded-full bg-muted/20 border border-border flex items-center justify-center">
+                    <span className="font-mono font-bold text-sm text-muted-foreground">UU</span>
+                  </div>
+                  <p className="font-mono text-[9px] text-muted-foreground/50 uppercase tracking-widest leading-tight mb-1">Dean, Faculty of Computing</p>
+                  <p className="text-sm text-foreground font-bold leading-snug">Prof. Uduak A. Umoh</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Tier 4 */}
+            <div className="ml-0 sm:ml-16">
+              <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-brand-gold/70 mb-3">[04] Department of Cybersecurity</p>
+              <div className="max-w-xs">
+                <div className="bg-card border border-brand-gold/45 p-4 hover:border-brand-gold transition-colors">
+                  <div className="w-10 h-10 mb-3 rounded-full bg-brand-gold/8 border border-brand-gold/45 flex items-center justify-center">
+                    <span className="font-mono font-bold text-sm text-brand-gold">UE</span>
+                  </div>
+                  <p className="font-mono text-[9px] text-brand-gold/65 uppercase tracking-widest leading-tight mb-1">Head of Department</p>
+                  <p className="text-sm text-foreground font-bold leading-snug">Prof. Uyinomen O. Ekong</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* HOD Spotlight */}
@@ -758,7 +876,7 @@ export default function Welcome() {
               <div className="font-mono text-[9px] text-primary/40 tracking-widest uppercase mb-1">[Head of Department]</div>
               <h3 className="font-display text-2xl tracking-[0.05em] text-foreground mb-1">Prof. Uyinomen O. Ekong</h3>
               <p className="font-mono text-[10px] text-primary/60 tracking-wide uppercase mb-4">
-                HOD, Department of Cybersecurity
+                Pioneer HOD · Department of Cybersecurity · University of Uyo
               </p>
               <blockquote className="border-l-2 border-primary/30 pl-4">
                 <p className="font-mono text-[11px] text-muted-foreground/80 leading-[1.85] italic">
@@ -769,12 +887,12 @@ export default function Welcome() {
             </div>
           </div>
 
-          {/* Staff grid */}
+          {/* Dept staff grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {staffRoles.filter((s) => !s.isHOD).map((s, i) => (
               <div
                 key={i}
-                className="text-center p-5 border border-primary/12 bg-card/60 hover:border-primary/38 hover:-translate-y-0.5 transition-all group"
+                className="text-center p-5 border border-primary/12 bg-card/60 hover:border-primary/38 hover:-translate-y-0.5 transition-all"
               >
                 <div className="font-mono text-[8px] text-primary/35 tracking-widest mb-3 uppercase">[{s.role}]</div>
                 <div className="w-14 h-14 mx-auto mb-3 border border-primary/25 bg-primary/5 flex items-center justify-center font-display text-xl tracking-wider text-primary/60">
@@ -787,7 +905,7 @@ export default function Welcome() {
             ))}
           </div>
           <p className="font-mono text-[10px] text-muted-foreground/30 tracking-widest text-center mt-6">
-            * Staff profiles with names and photos to be updated
+            * Full staff profiles available on the Staff page
           </p>
         </div>
       </section>
