@@ -149,7 +149,7 @@ Deno.serve(async (req) => {
         contents,
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: body.mode === "chat" ? 1500 : 900,
+          maxOutputTokens: body.mode === "chat" ? 1500 : 2000,
         },
       }),
     });

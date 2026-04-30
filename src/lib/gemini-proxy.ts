@@ -181,7 +181,7 @@ async function invokeGeminiDirect(body: GeminiRequestBody): Promise<string> {
       contents: buildGeminiContents(body),
       generationConfig: {
         temperature: 0.7,
-        maxOutputTokens: body.mode === "chat" ? 2048 : 1024,
+        maxOutputTokens: body.mode === "chat" ? 2048 : 2000,
       },
     }),
   });
