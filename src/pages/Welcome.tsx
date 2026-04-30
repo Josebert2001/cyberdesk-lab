@@ -20,6 +20,8 @@ import {
   FlaskConical,
   MapPin,
   Mail,
+  Phone,
+  ExternalLink,
 } from "lucide-react";
 
 const navLinks = [
@@ -199,6 +201,10 @@ export default function Welcome() {
       <nav className="fixed top-0 left-0 right-0 z-50 brand-glass border-b border-primary/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
           <Link to="/welcome" className="flex items-center gap-3">
+            <div className="bg-white/95 px-2 py-1 shrink-0 hidden sm:flex items-center">
+              <img src="/uniuyo-crest.png" alt="University of Uyo" className="h-7 w-auto" />
+            </div>
+            <div className="hidden sm:block w-px h-7 bg-primary/20" />
             <img src="/logo-256.png" alt="DOCSSA" className="h-9 w-9 shrink-0 brand-logo" />
             <div className="leading-none">
               <span className="font-display text-xl tracking-[0.12em] text-primary font-bold">DOCSSA</span>
@@ -473,6 +479,94 @@ export default function Welcome() {
                 </div>
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OFFICIAL UNIVERSITY RESOURCES */}
+      <section className="py-20 px-6 md:px-12 bg-primary/[0.025] border-b border-primary/8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+            <div>
+              <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-2">// Official University Links</p>
+              <h2 className="font-display text-3xl md:text-4xl leading-none tracking-[0.02em]">
+                UniUyo <span className="text-primary">Official Resources</span>
+              </h2>
+            </div>
+            <div className="flex items-center gap-3 bg-white/95 px-4 py-2 shrink-0 self-start sm:self-auto">
+              <img src="/uniuyo-crest.png" alt="University of Uyo" className="h-10 w-auto" />
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                label: "Student ePortal",
+                tag: "portal.uniuyo.edu.ng",
+                desc: "Course registration, fee payment, results checking, and student records.",
+                href: "https://uniuyo.edu.ng/eportals/",
+                badge: "Essential",
+              },
+              {
+                label: "Academic Calendar",
+                tag: "uniuyo.edu.ng",
+                desc: "Semester dates, resumption schedules, exam periods, and public holidays.",
+                href: "https://uniuyo.edu.ng/calender/",
+                badge: "Essential",
+              },
+              {
+                label: "Dept of Cybersecurity",
+                tag: "Official Dept Page",
+                desc: "The official University of Uyo page for the Department of Cybersecurity.",
+                href: "https://uniuyo.edu.ng/faculty-of-computing/cyber-security/",
+                badge: "Official",
+              },
+              {
+                label: "Faculty of Computing",
+                tag: "Faculty Page",
+                desc: "Faculty news, resources, and announcements from the Faculty of Computing.",
+                href: "https://uniuyo.edu.ng/faculty-of-computing/",
+                badge: "Official",
+              },
+              {
+                label: "Postgraduate School",
+                tag: "PG Admissions",
+                desc: "M.Sc. and PhD programme information, application, and postgraduate admissions.",
+                href: "https://uniuyo.edu.ng/postgraduate-school/",
+                badge: "Info",
+              },
+              {
+                label: "News & Events",
+                tag: "UniUyo News",
+                desc: "Latest university news, official notices, events, and campus announcements.",
+                href: "https://uniuyo.edu.ng/news-blog/",
+                badge: "Info",
+              },
+            ].map(({ label, tag, desc, href, badge }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="brand-card group relative overflow-hidden flex flex-col gap-3 p-5 no-underline"
+              >
+                <div className="flex items-center justify-between">
+                  <span className={`font-mono text-[8px] tracking-widest px-2 py-0.5 border ${
+                    badge === "Essential"
+                      ? "border-primary/30 text-primary bg-primary/5"
+                      : badge === "Official"
+                      ? "border-blue-400/30 text-blue-300"
+                      : "border-muted-foreground/20 text-muted-foreground/50"
+                  }`}>{badge}</span>
+                  <ChevronRight className="h-3 w-3 text-primary/40 group-hover:text-primary transition-colors" />
+                </div>
+                <div>
+                  <h3 className="font-display text-[1.05rem] tracking-[0.03em] text-foreground">{label}</h3>
+                  <p className="font-mono text-[9px] text-primary/40 tracking-widest mt-0.5">{tag}</p>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground/65 leading-[1.7]">{desc}</p>
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+              </a>
             ))}
           </div>
         </div>
@@ -847,6 +941,10 @@ export default function Welcome() {
           {/* Dept info */}
           <div>
             <div className="flex items-center gap-3 mb-5">
+              <div className="bg-white/95 px-2 py-1 flex items-center shrink-0">
+                <img src="/uniuyo-crest.png" alt="University of Uyo" className="h-8 w-auto" />
+              </div>
+              <div className="w-px h-8 bg-primary/15" />
               <img src="/logo-256.png" alt="DOCSSA" className="h-10 w-10 shrink-0 brand-logo" />
               <div>
                 <div className="font-display text-lg tracking-[0.1em] text-primary">DOCSSA</div>
@@ -856,28 +954,39 @@ export default function Welcome() {
             <div className="font-mono text-[11px] text-muted-foreground/60 space-y-1.5">
               <div className="flex items-start gap-2">
                 <MapPin className="h-3 w-3 text-primary/40 mt-0.5 shrink-0" />
-                <span>Waniba Road, Uyo, Akwa Ibom State, Nigeria</span>
+                <span>Nwaniba Road, Uyo, Akwa Ibom State, Nigeria</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-3 w-3 text-primary/40 shrink-0" />
                 <span>cybersecurity@uniuyo.edu.ng</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-3 w-3 text-primary/40 shrink-0" />
+                <span>+234 (0) 814 612 9875</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ExternalLink className="h-3 w-3 text-primary/40 shrink-0" />
+                <a href="https://uniuyo.edu.ng/faculty-of-computing/cyber-security/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  uniuyo.edu.ng/…/cyber-security
+                </a>
               </div>
             </div>
           </div>
 
           {/* Quick links */}
           <div>
-            <p className="font-mono text-[9px] text-primary/40 tracking-[0.2em] uppercase mb-4">Quick Links</p>
+            <p className="font-mono text-[9px] text-primary/40 tracking-[0.2em] uppercase mb-4">Official UniUyo Links</p>
             <ul className="space-y-2">
               {[
-                { label: "University Website", href: "#" },
-                { label: "Faculty of Computing", href: "#" },
-                { label: "JAMB Portal", href: "#" },
-                { label: "Student Portal", href: "#" },
-                { label: "Academic Calendar", href: "#" },
+                { label: "University Website", href: "https://uniuyo.edu.ng" },
+                { label: "Student ePortal", href: "https://uniuyo.edu.ng/eportals/" },
+                { label: "Faculty of Computing", href: "https://uniuyo.edu.ng/faculty-of-computing/" },
+                { label: "Academic Calendar", href: "https://uniuyo.edu.ng/calender/" },
+                { label: "JAMB Portal", href: "https://jamb.gov.ng" },
+                { label: "News & Events", href: "https://uniuyo.edu.ng/news-blog/" },
               ].map(({ label, href }) => (
                 <li key={label}>
-                  <a href={href} className="font-mono text-[10px] text-muted-foreground/50 hover:text-primary transition-colors tracking-wide">
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] text-muted-foreground/50 hover:text-primary transition-colors tracking-wide">
                     → {label}
                   </a>
                 </li>

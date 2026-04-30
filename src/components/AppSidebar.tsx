@@ -17,6 +17,7 @@ import {
   Layers,
   LogOut,
   Beaker,
+  ExternalLink,
 } from "lucide-react";
 import { useState } from "react";
 import { useXPContext } from "@/components/XPContext";
@@ -92,11 +93,15 @@ export function AppSidebar() {
     <div className="flex flex-col h-full bg-sidebar">
       {/* Header */}
       <div className="px-5 py-5 border-b border-sidebar-border">
-        <div className="flex items-center gap-2.5">
-          <img src="/logo-256.png" alt="DOCSSA" className="h-9 w-9 shrink-0 brand-logo" />
+        <div className="flex items-center gap-2.5 mb-3">
+          <div className="bg-white/95 px-1.5 py-0.5 flex items-center shrink-0">
+            <img src="/uniuyo-crest.png" alt="UniUyo" className="h-5 w-auto" />
+          </div>
+          <div className="w-px h-5 bg-primary/20" />
+          <img src="/logo-256.png" alt="DOCSSA" className="h-7 w-7 shrink-0 brand-logo" />
           <div>
-            <h1 className="font-display text-lg tracking-[0.12em] text-primary font-bold leading-none">DOCSSA</h1>
-            <p className="font-mono text-[9px] text-muted-foreground/40 tracking-widest mt-0.5 uppercase">
+            <h1 className="font-display text-base tracking-[0.12em] text-primary font-bold leading-none">DOCSSA</h1>
+            <p className="font-mono text-[8px] text-muted-foreground/40 tracking-widest mt-0.5 uppercase">
               UniUyo · Cyber Sec
             </p>
           </div>
@@ -140,6 +145,29 @@ export function AppSidebar() {
           </div>
         ))}
       </nav>
+
+      {/* Official UniUyo Links */}
+      <div className="px-3 pb-3 border-b border-sidebar-border mb-1">
+        <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-primary/38 px-3 mb-1.5">[UniUyo Official]</p>
+        <div className="space-y-0.5">
+          {[
+            { label: "Student ePortal", href: "https://uniuyo.edu.ng/eportals/" },
+            { label: "Academic Calendar", href: "https://uniuyo.edu.ng/calender/" },
+            { label: "Dept Official Page", href: "https://uniuyo.edu.ng/faculty-of-computing/cyber-security/" },
+          ].map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-3 py-2 text-[11px] font-mono text-muted-foreground hover:text-foreground hover:bg-primary/[0.04] transition-all duration-150 border-l-2 border-transparent"
+            >
+              <ExternalLink className="h-3 w-3 shrink-0" />
+              <span>{label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
 
       {/* XP section */}
       <div className="px-4 pb-2">
