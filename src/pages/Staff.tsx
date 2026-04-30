@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Users } from "lucide-react";
+import { Users, Building2 } from "lucide-react";
+
+const principalOfficers = [
+  { role: "Vice Chancellor", name: "Prof. Nyaudoh U. Ndaeyo", initials: "NN" },
+  { role: "DVC (Admin)", name: "Prof. Aniekan Offiong", initials: "AO" },
+  { role: "DVC (Academic)", name: "Prof. Anthonia Maurice Essien", initials: "AM" },
+  { role: "Registrar", name: "Mrs. Blosson Okorie", initials: "BO" },
+  { role: "Bursar", name: "Mrs. Mfon N. Bassey", initials: "MB" },
+  { role: "Acting Librarian", name: "Dr. Mary M. Bassey", initials: "MM" },
+  { role: "Dean, Faculty of Computing", name: "Prof. Uduak A. Umoh", initials: "UA" },
+  { role: "HOD, Cybersecurity", name: "Prof. Uyinomen O. Ekong", initials: "UE" },
+];
 
 type StaffType = "Lecturers" | "Admin" | "Director";
 
@@ -25,11 +36,11 @@ const staff: StaffMember[] = [
     types: ["Lecturers"],
   },
   {
-    name: "Dr. Uyinomen O. Ekong",
+    name: "Prof. Uyinomen O. Ekong",
     role: "Head of Department, Cybersecurity",
     department: "Department of Cybersecurity",
     specialisations: ["Cybersecurity", "Department Administration"],
-    bio: "Dr. Ekong serves as the Head of the Department of Cybersecurity, University of Uyo. He oversees the academic and administrative activities of the department and is committed to building a world-class cybersecurity programme.",
+    bio: "Prof. Ekong is the Head of the Department of Cybersecurity at the University of Uyo. He was appointed as the pioneer HOD when the department was established in the 2022/2023 academic session. He oversees academic and administrative activities and is committed to building a world-class cybersecurity programme.",
     initials: "UE",
     types: ["Lecturers", "Admin"],
   },
@@ -113,6 +124,25 @@ export default function Staff() {
         <p className="text-muted-foreground">
           Meet the team behind the Department of Cybersecurity, UniUyo
         </p>
+      </div>
+
+      {/* University Principal Officers */}
+      <div className="mb-10">
+        <div className="flex items-center gap-2 mb-4">
+          <Building2 className="h-5 w-5 text-primary" />
+          <h2 className="text-lg font-bold font-mono text-foreground">University Principal Officers</h2>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {principalOfficers.map(({ role, name, initials }) => (
+            <div key={role} className="bg-card border border-border p-3 text-center hover:border-primary/40 transition-colors">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                <span className="text-primary font-mono font-bold text-sm">{initials}</span>
+              </div>
+              <p className="text-[10px] font-mono text-primary/70 uppercase tracking-widest leading-tight mb-1">{role}</p>
+              <p className="text-xs text-foreground font-bold leading-snug">{name}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Filter tabs */}

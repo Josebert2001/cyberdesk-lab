@@ -134,7 +134,7 @@ const programmes = [
 ];
 
 const staffRoles = [
-  { initials: "UE", role: "Head of Department", specialisation: "Department of Cybersecurity", isHOD: true },
+  { initials: "UE", role: "Head of Department", specialisation: "Department of Cybersecurity", isHOD: true, name: "Prof. Uyinomen O. Ekong" },
   { initials: "SL", role: "Senior Lecturer", specialisation: "Network Security · Cryptography", isHOD: false },
   { initials: "SL", role: "Senior Lecturer", specialisation: "Digital Forensics · Cyber Law", isHOD: false },
   { initials: "L2", role: "Lecturer II", specialisation: "Ethical Hacking · Penetration Testing", isHOD: false },
@@ -228,7 +228,7 @@ export default function Welcome() {
             </Link>
             <a
               href="#contact"
-              className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] font-bold px-5 py-2.5 bg-primary text-primary-foreground hover:bg-brand-ember-bright transition-all"
+              className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] font-bold px-5 py-2.5 bg-primary text-primary-foreground hover:bg-brand-gold-bright transition-all"
             >
               Apply Now <ChevronRight className="h-3 w-3" />
             </a>
@@ -268,7 +268,7 @@ export default function Welcome() {
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest font-bold py-3 hover:bg-brand-ember-bright transition-colors"
+                  className="w-full text-center bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest font-bold py-3 hover:bg-brand-gold-bright transition-colors"
                 >
                   Apply Now →
                 </a>
@@ -284,11 +284,11 @@ export default function Welcome() {
         <div className="absolute inset-0 scanlines opacity-25 pointer-events-none" />
         <div
           className="absolute -top-40 -left-20 w-[900px] h-[900px] pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(255,100,0,0.18) 0%, transparent 62%)" }}
+          style={{ background: "radial-gradient(circle, rgba(30,80,200,0.22) 0%, transparent 62%)" }}
         />
         <div
           className="absolute bottom-0 -right-20 w-[600px] h-[600px] pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(255,136,0,0.07) 0%, transparent 65%)" }}
+          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.07) 0%, transparent 65%)" }}
         />
 
         <div className="relative z-10 max-w-7xl w-full mx-auto grid md:grid-cols-[1fr_360px] gap-12 lg:gap-20 items-center">
@@ -321,7 +321,7 @@ export default function Welcome() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="#programmes"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-7 py-3.5 hover:bg-brand-ember-bright hover:shadow-[0_6px_24px_rgba(255,136,0,0.35)] transition-all"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-7 py-3.5 hover:bg-brand-gold-bright hover:shadow-[0_6px_24px_rgba(255,184,0,0.35)] transition-all"
               >
                 Explore Programmes
                 <ChevronRight className="h-3.5 w-3.5" />
@@ -340,7 +340,7 @@ export default function Welcome() {
             <div className="border border-primary/20 bg-card/85 backdrop-blur-sm overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
                 <span className="w-2.5 h-2.5 rounded-full bg-destructive/70" />
-                <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
+                <span className="w-2.5 h-2.5 rounded-full bg-brand-gold/55" />
                 <span className="w-2.5 h-2.5 rounded-full bg-primary/70" />
                 <span className="ml-2 font-mono text-[9px] text-muted-foreground/60 tracking-wider">dept_portal — bash</span>
               </div>
@@ -406,17 +406,77 @@ export default function Welcome() {
         </div>
       </div>
 
-      {/* UNIVERSITY VISION BANNER */}
-      <div className="border-y border-primary/10 bg-primary/[0.03] py-10 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-mono text-[9px] text-primary/40 tracking-[0.25em] uppercase mb-4">// University of Uyo — Vision</p>
-          <blockquote className="font-mono text-sm md:text-base text-muted-foreground leading-[1.9] italic border-l-2 border-primary/40 pl-6 text-left max-w-3xl mx-auto">
-            "To be a centre of academic excellence by utilizing the available human and technological resources for
-            teaching, research, community service and sustainable development."
-          </blockquote>
-          <p className="font-mono text-[10px] text-primary/50 tracking-widest mt-4">— University of Uyo</p>
+      {/* UNIVERSITY MISSION / VISION / MOTTO BANNER */}
+      <div className="border-y border-primary/10 bg-primary/[0.03] py-12 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 md:gap-12">
+          <div className="text-center md:text-left">
+            <p className="font-mono text-[9px] text-primary/40 tracking-[0.25em] uppercase mb-3">// Motto</p>
+            <p className="font-display text-xl tracking-[0.06em] text-primary neon-text-glow">
+              Unity, Learning<br />and Service
+            </p>
+          </div>
+          <div className="md:col-span-2">
+            <p className="font-mono text-[9px] text-primary/40 tracking-[0.25em] uppercase mb-3">// Vision</p>
+            <p className="font-mono text-[11px] text-muted-foreground leading-[1.85] italic border-l-2 border-primary/35 pl-4 mb-4">
+              "To be a centre of academic excellence by utilizing the available human and technological resources for
+              teaching, research, community service and sustainable development."
+            </p>
+            <p className="font-mono text-[9px] text-primary/40 tracking-[0.25em] uppercase mb-2">// Mission</p>
+            <p className="font-mono text-[11px] text-muted-foreground leading-[1.85] italic border-l-2 border-primary/20 pl-4">
+              "To diligently pursue scholarship and deploy its output for human capacity development and economic growth
+              in the society, with active participation in ICT, sensitivity to Nigeria's rich cultural heritage and
+              responsiveness to global environmental changes."
+            </p>
+          </div>
         </div>
       </div>
+
+      {/* PUBLIC FEEDS — Department Updates */}
+      <section className="py-20 px-6 md:px-12 border-b border-primary/8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <p className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase mb-2">// Department Feed</p>
+              <h2 className="font-display text-3xl md:text-4xl leading-none tracking-[0.02em]">
+                News & <span className="text-primary">Updates</span>
+              </h2>
+            </div>
+            <span className="hidden sm:flex items-center gap-1.5 font-mono text-[9px] text-primary/60 tracking-widest border border-primary/20 px-3 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot" />
+              LIVE FEED
+            </span>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { date: "MAY 2026", tag: "WORKSHOP", title: "IoT Security Practical Session", body: "Hands-on practical on securing Internet of Things deployments — sensors, gateways, and protocol analysis. Open to 300L and 400L students.", badge: "Upcoming" },
+              { date: "APR 2026", tag: "COMPETITION", title: "CTF Challenge — Team Registration", body: "DOCSSA is registering teams for the 2026 national Capture the Flag competition. Contact the Software & Hardware Director to join.", badge: "Open" },
+              { date: "APR 2026", tag: "ACADEMIC", title: "2025/2026 Second Semester Registration", body: "Course registration for the second semester is ongoing. Minimum 15 credit units. Ensure all fees are cleared before submitting CRF.", badge: "Ongoing" },
+              { date: "MAR 2026", tag: "INDUSTRY", title: "Tech Talk: AI in Cyber Defence", body: "A guest lecture series on artificial intelligence applications in cybersecurity — threat detection, anomaly identification, and automated response.", badge: "Past" },
+              { date: "FEB 2026", tag: "EXAM PREP", title: "CBT Mock Tests Available", body: "Practice CBT examination sessions now available on the DOCSSA portal. Covers GST, core cybersecurity, and elective modules.", badge: "Available" },
+              { date: "JAN 2026", tag: "NOTICE", title: "SIWES Placement Announcement", body: "Students scheduled for SIWES should liaise with the department office for placement letters and approved industry partner listing.", badge: "Notice" },
+            ].map(({ date, tag, title, body, badge }) => (
+              <div key={title} className="brand-card group relative overflow-hidden flex flex-col">
+                <div className="flex items-center justify-between px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
+                  <span className="font-mono text-[8px] text-primary/40 tracking-widest">[{tag}]</span>
+                  <span className={`font-mono text-[8px] tracking-widest px-2 py-0.5 border ${
+                    badge === "Upcoming" || badge === "Open" || badge === "Ongoing"
+                      ? "border-primary/30 text-primary bg-primary/5"
+                      : badge === "Available"
+                      ? "border-blue-400/30 text-blue-300"
+                      : "border-muted-foreground/20 text-muted-foreground/40"
+                  }`}>{badge}</span>
+                </div>
+                <div className="p-5 flex-1 flex flex-col">
+                  <p className="font-mono text-[9px] text-muted-foreground/40 tracking-widest mb-2">{date}</p>
+                  <h3 className="font-display text-[1rem] tracking-[0.03em] text-foreground mb-2">{title}</h3>
+                  <p className="font-mono text-[10px] text-muted-foreground/65 leading-[1.75] flex-1">{body}</p>
+                </div>
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ABOUT */}
       <section id="about" className="py-24 px-6 md:px-12">
@@ -457,7 +517,7 @@ export default function Welcome() {
             <div className="border border-primary/18 bg-card/60 overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
                 <span className="w-2 h-2 rounded-full bg-destructive/55" />
-                <span className="w-2 h-2 rounded-full bg-brand-ember-bright/45" />
+                <span className="w-2 h-2 rounded-full bg-brand-gold/45" />
                 <span className="w-2 h-2 rounded-full bg-primary/55" />
                 <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">dept_info.txt</span>
               </div>
@@ -508,7 +568,7 @@ export default function Welcome() {
               <div key={code} className="brand-card group relative overflow-hidden">
                 <div className="flex items-center gap-1.5 px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
                   <span className="w-2 h-2 rounded-full bg-destructive/45" />
-                  <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                  <span className="w-2 h-2 rounded-full bg-brand-gold/35" />
                   <span className="w-2 h-2 rounded-full bg-primary/45" />
                   <span className="ml-2 font-mono text-[9px] text-primary/35 tracking-widest">[{tag}]</span>
                 </div>
@@ -547,7 +607,7 @@ export default function Welcome() {
               <div key={tag} className="border border-primary/15 bg-card/60 hover:border-primary/38 transition-all group flex flex-col">
                 <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
                   <span className="w-2 h-2 rounded-full bg-destructive/45" />
-                  <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                  <span className="w-2 h-2 rounded-full bg-brand-gold/35" />
                   <span className="w-2 h-2 rounded-full bg-primary/45" />
                   <span className="ml-2 font-mono text-[9px] text-primary/40 tracking-widest">[{tag}]</span>
                 </div>
@@ -595,7 +655,7 @@ export default function Welcome() {
             </div>
             <div>
               <div className="font-mono text-[9px] text-primary/40 tracking-widest uppercase mb-1">[Head of Department]</div>
-              <h3 className="font-display text-2xl tracking-[0.05em] text-foreground mb-1">Uyinomen O. Ekong</h3>
+              <h3 className="font-display text-2xl tracking-[0.05em] text-foreground mb-1">Prof. Uyinomen O. Ekong</h3>
               <p className="font-mono text-[10px] text-primary/60 tracking-wide uppercase mb-4">
                 HOD, Department of Cybersecurity
               </p>
@@ -646,7 +706,7 @@ export default function Welcome() {
               <div key={title} className="brand-card group relative overflow-hidden">
                 <div className="flex items-center gap-1.5 px-4 py-2 border-b border-primary/8 bg-primary/[0.03]">
                   <span className="w-2 h-2 rounded-full bg-destructive/45" />
-                  <span className="w-2 h-2 rounded-full bg-brand-ember-bright/35" />
+                  <span className="w-2 h-2 rounded-full bg-brand-gold/35" />
                   <span className="w-2 h-2 rounded-full bg-primary/45" />
                   <span className={`ml-auto font-mono text-[8px] tracking-widest px-2 py-0.5 border ${
                     status === "Active"
@@ -698,7 +758,7 @@ export default function Welcome() {
             <div className="mt-8">
               <Link
                 to="/signup"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-7 py-3.5 hover:bg-brand-ember-bright hover:shadow-[0_6px_24px_rgba(255,136,0,0.35)] transition-all"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-7 py-3.5 hover:bg-brand-gold-bright hover:shadow-[0_6px_24px_rgba(255,184,0,0.35)] transition-all"
               >
                 Join DOCSSA <ChevronRight className="h-3.5 w-3.5" />
               </Link>
@@ -709,7 +769,7 @@ export default function Welcome() {
           <div className="border border-primary/18 bg-card/60 overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-2.5 border-b border-primary/10 bg-primary/[0.04]">
               <span className="w-2 h-2 rounded-full bg-destructive/55" />
-              <span className="w-2 h-2 rounded-full bg-brand-ember-bright/45" />
+              <span className="w-2 h-2 rounded-full bg-brand-gold/45" />
               <span className="w-2 h-2 rounded-full bg-primary/55" />
               <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 tracking-wider">docssa_activities.sh</span>
             </div>
@@ -743,7 +803,7 @@ export default function Welcome() {
       {/* CTA BAND */}
       <div
         className="relative border-y border-primary/18 text-center py-24 px-6 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #1A0E00 0%, #0D0906 55%, #180A00 100%)" }}
+        style={{ background: "linear-gradient(135deg, #060F1E 0%, #0A1428 55%, #091830 100%)" }}
       >
         <div className="absolute inset-0 scanlines opacity-18 pointer-events-none" />
         <div className="absolute inset-0 brand-grid-bg opacity-60" />
@@ -767,7 +827,7 @@ export default function Welcome() {
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-10 py-4 hover:bg-brand-ember-bright hover:shadow-[0_8px_32px_rgba(255,136,0,0.4)] transition-all"
+              className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-mono text-xs uppercase tracking-[0.1em] font-bold px-10 py-4 hover:bg-brand-gold-bright hover:shadow-[0_8px_32px_rgba(255,184,0,0.4)] transition-all"
             >
               Apply via JAMB <ChevronRight className="h-3.5 w-3.5" />
             </a>
