@@ -1,6 +1,6 @@
-import { Send, ChevronDown, ChevronUp, Save, BookOpen, Loader2, Trash2 } from "lucide-react";
+import { Send, Loader2, Trash2, Save, BookOpen } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { chatWithGemini, ChatAiResponse } from "@/lib/gemini-chat";
+import { useChat, type Message } from "ai/react";
 import { useXPContext } from "@/components/XPContext";
 import { safeScopedJsonParse, safeSetScopedJson, saveToExamPrep } from "@/lib/storage";
 import { toast } from "@/components/ui/sonner";
@@ -9,55 +9,23 @@ import { useAuth } from "@/contexts/AuthContext";
 const CHAT_STORAGE_KEY = "ask_chat";
 const MAX_STORED_MESSAGES = 50;
 
-interface ChatMessage {
-  id: number;
-  role: "user" | "ai";
-  text: string;
-  aiData?: ChatAiResponse;
-}
-
-function AiMessage({ msg, userId }: { msg: ChatMessage; userId: string | null | undefined }) {
-  const [examOpen, setExamOpen] = useState(false);
+function AiMessage({ content, userId }: { content: string; userId: string | null | undefined }) {
   const [saved, setSaved] = useState(false);
-  const d = msg.aiData;
-  if (!d) return null;
+
+  const handleSave = () => {
+    const title = content.slice(0, 60) + (content.length > 60 ? "..." : "");
+    saveToExamPrep(userId, title, [content]);
+    setSaved(true);
+    toast("Saved to Exam Prep");
+  };
 
   return (
     <div className="flex flex-col items-start gap-2 max-w-[80%]">
-      <div className="bg-secondary rounded-lg rounded-tl-none px-4 py-3 space-y-3">
-        <p className="text-foreground text-sm leading-relaxed whitespace-pre-wrap">{d.answer}</p>
-        {d.example && (
-          <div className="bg-background border border-border rounded-md p-3 font-mono text-primary text-xs whitespace-pre-wrap neon-text-glow">
-            {d.example}
-          </div>
-        )}
+      <div className="bg-secondary rounded-lg rounded-tl-none px-4 py-3">
+        <p className="text-foreground text-sm leading-relaxed whitespace-pre-wrap">{content}</p>
       </div>
-
-      {/* Exam summary chip */}
-      {d.exam_summary && (
-        <button
-          onClick={() => setExamOpen(!examOpen)}
-          className="flex items-center gap-1.5 text-xs font-mono text-primary hover:neon-text-glow transition-all"
-        >
-          {examOpen ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-          Exam Summary
-        </button>
-      )}
-      {examOpen && d.exam_summary && (
-        <div className="bg-primary/10 border border-primary/20 rounded-md px-3 py-2 text-xs text-primary font-mono animate-fade-in">
-          {d.exam_summary}
-        </div>
-      )}
-
-      {/* Save button */}
       <button
-        onClick={() => {
-          const bullets = [d.exam_summary || d.answer.slice(0, 100)];
-          if (d.example) bullets.push(d.example);
-          saveToExamPrep(userId, d.answer.slice(0, 60) + "...", bullets);
-          setSaved(true);
-          toast("Saved to Exam Prep");
-        }}
+        onClick={handleSave}
         disabled={saved}
         className={`flex items-center gap-1.5 text-xs font-mono transition-colors ${
           saved ? "text-muted-foreground" : "text-primary hover:neon-text-glow"
@@ -71,71 +39,60 @@ function AiMessage({ msg, userId }: { msg: ChatMessage; userId: string | null | 
 }
 
 const AskAnything = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { addXP } = useXPContext();
   const { user } = useAuth();
 
-  // Load persisted conversation on mount.
-  useEffect(() => {
-    const stored = safeScopedJsonParse<ChatMessage[]>(CHAT_STORAGE_KEY, user?.id, []);
-    if (stored.length > 0) setMessages(stored);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.id]);
+  // Build the endpoint URL for the cyber-tutor edge function
+  const CYBER_TUTOR_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/cyber-tutor`;
 
-  // Persist conversation whenever it changes.
+  // Initialize useChat with the cyber-tutor endpoint
+  const { messages, input, setInput, handleSubmit, isLoading, setMessages, append, error } = useChat({
+    api: CYBER_TUTOR_URL,
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+      apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+    },
+    onFinish: () => {
+      addXP(5);
+    },
+  });
+
+  // Load persisted conversation on mount
+  useEffect(() => {
+    const stored = safeScopedJsonParse<Message[]>(CHAT_STORAGE_KEY, user?.id, []);
+    if (stored.length > 0) {
+      // Migrate old numeric IDs to strings if needed
+      const migratedMessages = stored.map((msg) => ({
+        ...msg,
+        id: typeof msg.id === "number" ? String(msg.id) : msg.id,
+      }));
+      setMessages(migratedMessages);
+    }
+  }, [user?.id, setMessages]);
+
+  // Persist conversation whenever it changes
   useEffect(() => {
     if (messages.length > 0) {
       safeSetScopedJson(CHAT_STORAGE_KEY, user?.id, messages.slice(-MAX_STORED_MESSAGES));
     }
   }, [messages, user?.id]);
 
+  // Auto-scroll to bottom on new messages
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-  }, [messages]);
+  }, [messages, isLoading]);
 
-  function clearHistory() {
+  const clearHistory = () => {
     setMessages([]);
     safeSetScopedJson(CHAT_STORAGE_KEY, user?.id, []);
     toast("Conversation cleared");
-  }
-
-  const handleSend = async () => {
-    const text = input.trim();
-    if (!text || isLoading) return;
-
-    const userMsg: ChatMessage = { id: Date.now(), role: "user", text };
-    setMessages((prev) => [...prev, userMsg]);
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      const history = [...messages, userMsg].map((m) => ({
-        role: m.role === "user" ? "user" : "model",
-        text: m.role === "user" ? m.text : (m.aiData?.answer || m.text),
-      }));
-      const response = await chatWithGemini(history);
-      addXP(5);
-      setMessages((prev) => [
-        ...prev,
-        { id: Date.now() + 1, role: "ai", text: response.answer, aiData: response },
-      ]);
-    } catch (e) {
-      setMessages((prev) => [
-        ...prev,
-        { id: Date.now() + 1, role: "ai", text: e instanceof Error ? e.message : "Something went wrong", aiData: { answer: "Error: " + (e instanceof Error ? e.message : "Unknown error"), example: "", exam_summary: "" } },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      handleSubmit(e as unknown as React.FormEvent);
     }
   };
 
@@ -143,9 +100,7 @@ const AskAnything = () => {
     <div className="flex flex-col h-screen">
       <div className="p-6 md:px-12 md:pt-8 pb-2 flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-foreground mb-1">
-            Ask CyberDesk Anything
-          </h1>
+          <h1 className="text-2xl font-bold text-foreground mb-1">Ask CyberDesk Anything</h1>
           <p className="text-muted-foreground text-sm">
             Cybersecurity, hacking, programming, networking, MATLAB — anything.
           </p>
@@ -174,12 +129,12 @@ const AskAnything = () => {
           msg.role === "user" ? (
             <div key={msg.id} className="flex justify-end">
               <div className="bg-primary/15 border border-primary/20 rounded-lg rounded-tr-none px-4 py-3 max-w-[80%]">
-                <p className="text-foreground text-sm">{msg.text}</p>
+                <p className="text-foreground text-sm">{msg.content}</p>
               </div>
             </div>
           ) : (
             <div key={msg.id}>
-              <AiMessage msg={msg} userId={user?.id} />
+              <AiMessage content={msg.content} userId={user?.id} />
             </div>
           )
         )}
@@ -194,11 +149,19 @@ const AskAnything = () => {
             </div>
           </div>
         )}
+
+        {error && (
+          <div className="flex items-start">
+            <div className="bg-destructive/10 border border-destructive/30 rounded-lg rounded-tl-none px-4 py-3">
+              <p className="text-destructive text-xs font-mono">Error: {error.message}</p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Input bar */}
       <div className="p-4 md:px-12 md:py-5 border-t border-border">
-        <div className="flex gap-3 max-w-3xl mx-auto">
+        <form onSubmit={handleSubmit} className="flex gap-3 max-w-3xl mx-auto">
           <input
             type="text"
             value={input}
@@ -206,15 +169,16 @@ const AskAnything = () => {
             onKeyDown={handleKeyDown}
             placeholder="Type your question..."
             className="flex-1 bg-card border border-border rounded-lg py-3 px-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-shadow font-mono text-sm"
+            disabled={isLoading}
           />
           <button
-            onClick={handleSend}
+            type="submit"
             disabled={isLoading || !input.trim()}
             className="bg-primary text-primary-foreground p-3 rounded-lg hover:neon-glow transition-shadow duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Send className="h-4 w-4" />
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
