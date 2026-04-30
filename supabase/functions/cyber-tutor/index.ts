@@ -1,6 +1,6 @@
-import { streamText, tool } from "https://esm.sh/ai@4.3.16";
-import { createGoogleGenerativeAI } from "https://esm.sh/@ai-sdk/google@1.0.20";
-import { z } from "https://esm.sh/zod@3.25.76";
+import { streamText, tool } from "npm:ai@^4.3";
+import { createGoogleGenerativeAI } from "npm:@ai-sdk/google@^1.0";
+import { z } from "npm:zod@^3.25";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
