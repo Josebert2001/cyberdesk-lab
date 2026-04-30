@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { Layout } from "./components/Layout";
 import { AiPanelProvider } from "./components/AiPanelContext";
@@ -10,23 +11,24 @@ import { XPProvider } from "./components/XPContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AuthGuard } from "./components/AuthGuard";
-import Lab from "./pages/Lab";
-import Playground from "./pages/Playground";
-import AskAnything from "./pages/AskAnything";
-import ExamPrep from "./pages/ExamPrep";
-import CbtPrep from "./pages/CbtPrep";
-import Opportunities from "./pages/Opportunities";
-import Roadmap from "./pages/Roadmap";
-import Resources from "./pages/Resources";
-import About from "./pages/About";
-import Staff from "./pages/Staff";
-import Showcase from "./pages/Showcase";
-import Programmes from "./pages/Programmes";
-import Research from "./pages/Research";
-import Welcome from "./pages/Welcome";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import NotFound from "./pages/NotFound";
+
+const Lab = lazy(() => import("./pages/Lab"));
+const Playground = lazy(() => import("./pages/Playground"));
+const AskAnything = lazy(() => import("./pages/AskAnything"));
+const ExamPrep = lazy(() => import("./pages/ExamPrep"));
+const CbtPrep = lazy(() => import("./pages/CbtPrep"));
+const Opportunities = lazy(() => import("./pages/Opportunities"));
+const Roadmap = lazy(() => import("./pages/Roadmap"));
+const Resources = lazy(() => import("./pages/Resources"));
+const About = lazy(() => import("./pages/About"));
+const Staff = lazy(() => import("./pages/Staff"));
+const Showcase = lazy(() => import("./pages/Showcase"));
+const Programmes = lazy(() => import("./pages/Programmes"));
+const Research = lazy(() => import("./pages/Research"));
+const Welcome = lazy(() => import("./pages/Welcome"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const routerFuture: NonNullable<Parameters<typeof BrowserRouter>[0]["future"]> = {
   v7_startTransition: true,
@@ -49,6 +51,7 @@ const App = () => (
         <AuthProvider>
           <XPProvider>
             <AiPanelProvider>
+              <Suspense fallback={<div className="min-h-screen bg-background" />}>
               <Routes>
                 <Route path="/" element={<Navigate to="/welcome" replace />} />
                 <Route path="/welcome" element={<Welcome />} />
@@ -69,6 +72,7 @@ const App = () => (
                 <Route path="/showcase" element={protect(<Showcase />)} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              </Suspense>
               <AiPanel />
             </AiPanelProvider>
           </XPProvider>

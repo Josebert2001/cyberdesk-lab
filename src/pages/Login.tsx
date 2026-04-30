@@ -57,7 +57,7 @@ export default function Login() {
             <span className="w-2.5 h-2.5 rounded-full bg-destructive/65" />
             <span className="w-2.5 h-2.5 rounded-full bg-brand-ember-bright/55" />
             <span className="w-2.5 h-2.5 rounded-full bg-primary/65" />
-            <span className="ml-2 font-mono text-[9px] text-muted-foreground/55 tracking-wider">auth â€” secure login</span>
+            <span className="ml-2 font-mono text-[9px] text-muted-foreground/55 tracking-wider">auth — secure login</span>
           </div>
 
           <div className="p-6">
@@ -108,7 +108,7 @@ export default function Login() {
                 className="w-full font-mono text-[10px] uppercase tracking-widest mt-2"
                 disabled={loading}
               >
-                {loading ? "Authenticating..." : "Login â†’"}
+                {loading ? "Authenticating..." : "Login →"}
               </Button>
             </form>
 

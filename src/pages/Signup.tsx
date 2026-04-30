@@ -55,7 +55,7 @@ export default function Signup() {
     }
 
     if (data.session) {
-      // Email confirmation disabled â€” straight to portal
+      // Email confirmation disabled — straight to portal
       navigate("/lab", { replace: true });
     } else {
       setSuccess(true);

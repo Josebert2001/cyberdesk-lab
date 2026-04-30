@@ -97,7 +97,7 @@ export function AppSidebar() {
           <div>
             <h1 className="font-display text-lg tracking-[0.12em] text-primary font-bold leading-none">DOCSSA</h1>
             <p className="font-mono text-[9px] text-muted-foreground/40 tracking-widest mt-0.5 uppercase">
-              UniUyo Â· Cyber Sec
+              UniUyo · Cyber Sec
             </p>
           </div>
         </div>
@@ -183,7 +183,7 @@ export function AppSidebar() {
           </button>
         )}
         <p className="font-mono text-[9px] text-muted-foreground/25 px-3 tracking-widest uppercase">
-          DOCSSA Â· UniUyo
+          DOCSSA · UniUyo
         </p>
       </div>
     </div>

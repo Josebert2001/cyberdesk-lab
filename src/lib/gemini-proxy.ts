@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
 const DIRECT_GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY?.trim();
 const AI_CONFIG_HINT =
   "Deploy the Supabase Edge Function gemini-proxy, or set VITE_GEMINI_API_KEY for browser fallback.";

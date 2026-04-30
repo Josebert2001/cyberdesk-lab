@@ -16,4 +16,25 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          "vendor-supabase": ["@supabase/supabase-js"],
+          "vendor-ui": [
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-dropdown-menu",
+            "@radix-ui/react-tooltip",
+            "@radix-ui/react-tabs",
+            "@radix-ui/react-select",
+            "@radix-ui/react-popover",
+            "@radix-ui/react-progress",
+            "@radix-ui/react-scroll-area",
+          ],
+          "vendor-charts": ["recharts"],
+        },
+      },
+    },
+  },
 });
