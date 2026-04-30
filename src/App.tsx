@@ -70,7 +70,7 @@ const App = () => (
                 <Route path="/programmes" element={<PublicPageWrapper><Programmes /></PublicPageWrapper>} />
                 <Route path="/research" element={<PublicPageWrapper><Research /></PublicPageWrapper>} />
                 <Route path="/staff" element={<PublicPageWrapper><Staff /></PublicPageWrapper>} />
-                <Route path="/showcase" element={protect(<Showcase />)} />
+                <Route path="/showcase" element={<PublicPageWrapper><Showcase /></PublicPageWrapper>} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               </Suspense>

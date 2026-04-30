@@ -58,7 +58,6 @@ const navGroups: NavGroup[] = [
       { title: "Opportunities", path: "/opportunities", icon: Trophy },
       { title: "Roadmap", path: "/roadmap", icon: Map },
       { title: "Resources", path: "/resources", icon: FolderOpen },
-      { title: "Showcase", path: "/showcase", icon: Layers },
     ],
   },
 ];
