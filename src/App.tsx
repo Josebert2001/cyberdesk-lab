@@ -11,6 +11,7 @@ import { XPProvider } from "./components/XPContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AuthGuard } from "./components/AuthGuard";
+import { PublicPageWrapper } from "./components/PublicPageWrapper";
 
 const Lab = lazy(() => import("./pages/Lab"));
 const Playground = lazy(() => import("./pages/Playground"));
@@ -65,10 +66,10 @@ const App = () => (
                 <Route path="/opportunities" element={protect(<Opportunities />)} />
                 <Route path="/roadmap" element={protect(<Roadmap />)} />
                 <Route path="/resources" element={protect(<Resources />)} />
-                <Route path="/about" element={protect(<About />)} />
-                <Route path="/programmes" element={protect(<Programmes />)} />
-                <Route path="/research" element={protect(<Research />)} />
-                <Route path="/staff" element={protect(<Staff />)} />
+                <Route path="/about" element={<PublicPageWrapper><About /></PublicPageWrapper>} />
+                <Route path="/programmes" element={<PublicPageWrapper><Programmes /></PublicPageWrapper>} />
+                <Route path="/research" element={<PublicPageWrapper><Research /></PublicPageWrapper>} />
+                <Route path="/staff" element={<PublicPageWrapper><Staff /></PublicPageWrapper>} />
                 <Route path="/showcase" element={protect(<Showcase />)} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

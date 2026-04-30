@@ -12,11 +12,8 @@ import {
   FolderOpen,
   Trophy,
   Map,
-  Info,
-  Users,
   Layers,
   LogOut,
-  Beaker,
   ExternalLink,
 } from "lucide-react";
 import { useState } from "react";
@@ -62,15 +59,6 @@ const navGroups: NavGroup[] = [
       { title: "Roadmap", path: "/roadmap", icon: Map },
       { title: "Resources", path: "/resources", icon: FolderOpen },
       { title: "Showcase", path: "/showcase", icon: Layers },
-    ],
-  },
-  {
-    label: "Department",
-    items: [
-      { title: "About", path: "/about", icon: Info },
-      { title: "Programmes", path: "/programmes", icon: GraduationCap },
-      { title: "Research", path: "/research", icon: Beaker },
-      { title: "Staff", path: "/staff", icon: Users },
     ],
   },
 ];

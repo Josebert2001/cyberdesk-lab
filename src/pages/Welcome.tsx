@@ -29,8 +29,15 @@ const navLinks = [
   { label: "Programmes", href: "#programmes" },
   { label: "Staff", href: "#staff" },
   { label: "Research", href: "#research" },
-  { label: "Student Body", href: "#student-body" },
+  { label: "DOCSSA", href: "#student-body" },
   { label: "Contact", href: "#contact" },
+];
+
+const detailLinks = [
+  { label: "Full About", href: "/about" },
+  { label: "Programmes Detail", href: "/programmes" },
+  { label: "Staff Directory", href: "/staff" },
+  { label: "Research Areas", href: "/research" },
 ];
 
 const heroStats = [
@@ -1005,8 +1012,18 @@ export default function Welcome() {
                   </a>
                 </li>
               ))}
+              <li className="pt-2 border-t border-primary/8 mt-2">
+                <p className="font-mono text-[9px] text-primary/30 tracking-widest uppercase mb-2">Full Pages</p>
+              </li>
+              {detailLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <Link to={href} className="font-mono text-[10px] text-muted-foreground/40 hover:text-primary transition-colors tracking-wide">
+                    → {label}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <Link to="/lab" className="font-mono text-[10px] text-primary/60 hover:text-primary transition-colors tracking-wide">
+                <Link to="/lab" className="font-mono text-[10px] text-primary/60 hover:text-primary transition-colors tracking-wide font-bold">
                   DOCSSA Portal →
                 </Link>
               </li>
